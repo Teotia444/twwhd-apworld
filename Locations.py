@@ -1204,7 +1204,7 @@ ISLAND_NAME_TO_SALVAGE_BIT: dict[str, int] = {
     "Seven Star Isles": 38,
     "Overlook Island": 15,
     "Four Eye Reef": 12,
-    "Mother and Child Isles": 56,
+    "Mother & Child Isles": 56,
     "Spectacle Island": 5,
     "Windfall Island": 58,
     "Pawprint Isle": 42,

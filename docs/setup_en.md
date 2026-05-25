@@ -14,7 +14,7 @@ You'll need the following components to be able to play The Wind Waker HD:
     image! Wii U support is not finished.
 * A The Wind Waker HD decrypted folder (North American version). The typical folder that comes from dumping the game from a
   Wii U with dumpling for instance. It should contain 3 folders inside: `"code", "content", "meta"`.
-* The latest APWorld for TWWHD. In order to install it, download the repo (on the initial page, click the Code button, then 
+* The latest APWorld for TWWHD. In order to install it, download [the repo you're on right now](https://github.com/teotia444/twwhd-apworld) (on the initial page, click the Code button, then 
   download zip), and rename the downloaded zip file into a .apworld file. Then in the AP launcher, install the new APWorld 
   as usual. Make sure to restart the launcher if TWWHD doesn't show up immediately.
 

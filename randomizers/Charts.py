@@ -15,7 +15,7 @@ ISLAND_NUMBER_TO_NAME: dict[int, str] = {
     6: "Seven Star Isles",
     7: "Overlook Island",
     8: "Four Eye Reef",
-    9: "Mother and Child Isles",
+    9: "Mother & Child Isles",
     10: "Spectacle Island",
     11: "Windfall Island",
     12: "Pawprint Isle",

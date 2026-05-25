@@ -60,7 +60,7 @@ twwhd_options_presets: dict[str, dict[str, Any]] = {
             "Windfall Island - Linda and Anton",
             "Dragon Roost Island - Secret Cave",
             "Greatfish Isle - Hidden Chest",
-            "Mother and Child Isles - Inside Mother Isle",
+            "Mother & Child Isles - Inside Mother Isle",
             "Fire Mountain - Cave - Chest",
             "Fire Mountain - Lookout Platform Chest",
             "Fire Mountain - Lookout Platform - Destroy the Cannons",
