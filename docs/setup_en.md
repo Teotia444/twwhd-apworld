@@ -7,11 +7,10 @@ If you're playing The Wind Waker HD, you must follow a few simple steps to get s
 
 You'll need the following components to be able to play The Wind Waker HD:
 * Install [Cemu Emulator](https://github.com/cemu-project/Cemu/releases/). **We recommend using the latest release.**
-* The latest version of the [TWWHD AP Randomizer Build](https://github.com/Teotia444/TWWHD-Randomizer-expbuilds/actions).
-    * To download the latest version, click on the latest passing build (one with a green check, the others are logic check 
-    that fails because I broke actions), and in the Summary tab, you can download the Windows build or the Mac build.
-    Note that Linux is not supported for now, since upstream doesn't support it either. For now do not try to use the wuhb
-    image! Wii U support is not finished.
+* The latest version of the [TWWHD AP Randomizer Build](https://nightly.link/Teotia444/TWWHD-Randomizer-expbuilds/workflows/build_latest/archipelago?preview).
+    * Note that Linux is not supported for now, since upstream doesn't support it either. For now do not try to use the wuhb
+    image! Wii U support is not finished. You can also download them from the Actions page if you prefer, both the nightly link 
+    and the actions are equivalent. 
 * A The Wind Waker HD decrypted folder (North American version). The typical folder that comes from dumping the game from a
   Wii U with dumpling for instance. It should contain 3 folders inside: `"code", "content", "meta"`.
 * The latest APWorld for TWWHD. In order to install it, download [the repo you're on right now](https://github.com/teotia444/twwhd-apworld) (on the initial page, click the Code button, then 

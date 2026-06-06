@@ -261,7 +261,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
         44, TWWHDFlag.SPLOOSH, "The Great Sea", 0xB, TWWHDLocationType.EVENT, 1, 0xfe
     ),
     "Windfall Island - Battle Squid Under 20 Prize": TWWHDLocationData(
-        45, TWWHDFlag.SPLOOSH, "The Great Sea", 0xB, TWWHDLocationType.EVENT, 0, 0xe
+        45, TWWHDFlag.SPLOOSH, "The Great Sea", 0xB, TWWHDLocationType.EVENT, 2, 0xe
     ),
     "Windfall Island - Pompie & Vera Secret Meeting Photo": TWWHDLocationData(
         46, TWWHDFlag.SHRT_SQ, "The Great Sea", 0x0, TWWHDLocationType.EVENT, 2, 0x69

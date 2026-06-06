@@ -412,17 +412,17 @@ def check_special_location(ctx:TWWHDContext, location_name: str, data: TWWHDLoca
     # 0x1 = Golden Feathers delivered, 0x2 = Mail sent by Hoskit's Girlfriend, 0x3 = Mail read by Link
     global TWWHDMemory
     if location_name == "Mailbox - Letter from Hoskit's Girlfriend":
-        checked = TWWHDMemory.read_bool(ctx.CEMU_BASE_ADDR + 0x145B81A4 + data.address) & 0x3 == 0x3
+        checked = TWWHDMemory.read_uchar(ctx.CEMU_BASE_ADDR + 0x145B81A4 + data.address) & 0x3 == 0x3
 
     # For Letter from Baito's Mother, we need to check two bytes.
     # 0x1 = Note to Mom sent, 0x2 = Mail sent by Baito's Mother, 0x3 = Mail read by Link
     if location_name == "Mailbox - Letter from Baito's Mother":
-        checked = TWWHDMemory.read_bool(ctx.CEMU_BASE_ADDR + 0x145B81A4 + data.address) & 0x3 == 0x3
+        checked = TWWHDMemory.read_uchar(ctx.CEMU_BASE_ADDR + 0x145B81A4 + data.address) & 0x3 == 0x3
 
     # For Letter from Grandma, we need to check two bytes.
     # 0x1 = Grandma saved, 0x2 = Mail sent by Grandma, 0x3 = Mail read by Link
     if location_name == "Mailbox - Letter from Grandma":
-        checked = TWWHDMemory.read_bool(ctx.CEMU_BASE_ADDR + 0x145B81A4 + data.address) & 0x3 == 0x3
+        checked = TWWHDMemory.read_uchar(ctx.CEMU_BASE_ADDR + 0x145B81A4 + data.address) & 0x3 == 0x3
 
     # We check if the bits for turning all five statues are set for the Ankle's reward.
     # For some reason, the bit for the Dragon Tingle Statue is separate from the rest.
@@ -530,7 +530,7 @@ async def check_locations(ctx: TWWHDContext) -> None:
                 checked = bool((ctx.charts_bitfield >> salvage_bit) & 1)
         elif data.type == TWWHDLocationType.BOCTO:
             assert data.address is not None
-            checked = bool((TWWHDMemory.read_uchar(ctx.CEMU_BASE_ADDR + 0x145B81A4 + data.address) >> data.bit) & 1)
+            checked = bool((TWWHDMemory.read_uchar(ctx.CEMU_BASE_ADDR + 0x145B81A5 + data.address) >> data.bit) & 1)
         elif data.type == TWWHDLocationType.EVENT:
             checked = bool((TWWHDMemory.read_uchar(ctx.CEMU_BASE_ADDR + 0x145B81A4 + data.address) >> data.bit) & 1)
         elif data.type == TWWHDLocationType.SPECL:

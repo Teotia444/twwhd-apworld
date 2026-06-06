@@ -117,6 +117,13 @@ def get_pool_core(world: "TWWHDWorld") -> tuple[list[str], list[str]]:
     # Or, if it's swordless mode, remove all swords from the item pool.
     elif world.options.sword_mode == "swordless":
         useful_pool = [item for item in useful_pool if item != "Progressive Sword"]
+    
+    # Remove the wind waker and the wind's requiem from the base pool. For now they're always handled by the game
+    precollected_items.append("Wind Waker")
+    progression_pool.remove("Wind Waker")
+    precollected_items.append("Wind's Requiem")
+    progression_pool.remove("Wind's Requiem")
+
 
     # Assign useful and filler items to item pools in the world.
     world.random.shuffle(useful_pool)
