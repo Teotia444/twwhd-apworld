@@ -525,7 +525,7 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
     set_rule_if_exists("Tower of the Gods - Gohdan Heart Container", lambda state: can_defeat_gohdan(state, player))
 
     # Hyrule
-    set_rule_if_exists("Hyrule - Sword Chamber Chest", lambda state: can_defeat_mighty_darknuts(state, player))
+    set_rule_if_exists("Hyrule Castle - Sword Chamber Chest", lambda state: can_defeat_mighty_darknuts(state, player))
 
     # Forsaken Fortress
     set_rule_if_exists(

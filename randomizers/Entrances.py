@@ -223,10 +223,10 @@ ENTRANCE_RANDOMIZABLE_ITEM_LOCATION_TYPES: list[TWWHDFlag] = [
 ]
 ITEM_LOCATION_NAME_TO_EXIT_OVERRIDES: dict[str, ZoneExit] = {
   "Forbidden Woods - Mothula Mini Boss Chest":         ZoneExit.all["Forbidden Woods Miniboss Arena"],
-  "Tower of the Gods - Darknut Mini Boss Chest":       ZoneExit.all["Tower of the Gods Miniboss Arena"],
-  "Earth Temple - Stalfos Mini Boss Chest":            ZoneExit.all["Earth Temple Miniboss Arena"],
-  "Wind Temple - Wizzrobe Mini Boss Chest":            ZoneExit.all["Wind Temple Miniboss Arena"],
-  "Hyrule - Sword Chamber Chest":                      ZoneExit.all["Master Sword Chamber"],
+  "Tower of the Gods - Darknut Mini Boss":             ZoneExit.all["Tower of the Gods Miniboss Arena"],
+  "Earth Temple - Stalfos Mini Boss":                  ZoneExit.all["Earth Temple Miniboss Arena"],
+  "Wind Temple - Wizzrobe Mini Boss":                  ZoneExit.all["Wind Temple Miniboss Arena"],
+  "Hyrule Castle - Sword Chamber Chest":               ZoneExit.all["Master Sword Chamber"],
 
   "Dragon Roost Cavern - Gohma Heart Container":       ZoneExit.all["Gohma Boss Arena"],
   "Forbidden Woods - Kalle Demos Heart Container":     ZoneExit.all["Kalle Demos Boss Arena"],
