@@ -73,123 +73,123 @@ class ZoneExit:
 
 
 DUNGEON_ENTRANCES: list[ZoneEntrance] = [
-    ZoneEntrance("Dungeon Entrance on Dragon Roost Island", "Dragon Roost Island"),
-    ZoneEntrance("Dungeon Entrance in Forest Haven Sector", "Forest Haven"),
-    ZoneEntrance("Dungeon Entrance in Tower of the Gods Sector", "Tower of the Gods Sector"),
-    ZoneEntrance("Dungeon Entrance on Headstone Island", "Headstone Island"),
-    ZoneEntrance("Dungeon Entrance on Gale Isle", "Gale Isle"),
+    ZoneEntrance("Dragon Roost Pond Past Statues -> DRC First Room", "Dragon Roost Island"),
+    ZoneEntrance("FW Entrance Platform -> FW First Room", "Forest Haven"),
+    ZoneEntrance("Tower of the Gods Sector -> TOTG Entrance Room", "Tower of the Gods Sector"),
+    ZoneEntrance("Headstone Island Interior -> ET First Room", "Headstone Island"),
+    ZoneEntrance("Gale Isle Interior -> WT First Room", "Gale Isle"),
 ]
 DUNGEON_EXITS: list[ZoneExit] = [
-    ZoneExit("Dragon Roost Cavern", "Dragon Roost Cavern"),
-    ZoneExit("Forbidden Woods", "Forbidden Woods"),
-    ZoneExit("Tower of the Gods", "Tower of the Gods"),
-    ZoneExit("Earth Temple", "Earth Temple"),
-    ZoneExit("Wind Temple", "Wind Temple"),
+    ZoneExit("DRC First Room", "Dragon Roost Cavern"),
+    ZoneExit("FW First Room", "Forbidden Woods"),
+    ZoneExit("TOTG Entrance Room", "Tower of the Gods"),
+    ZoneExit("ET First Room", "Earth Temple"),
+    ZoneExit("WT First Room", "Wind Temple"),
 ]
 
 MINIBOSS_ENTRANCES: list[ZoneEntrance] = [
-    ZoneEntrance("Miniboss Entrance in Forbidden Woods", nested_in=ZoneExit.all["Forbidden Woods"]),
-    ZoneEntrance("Miniboss Entrance in Tower of the Gods", nested_in=ZoneExit.all["Tower of the Gods"]),
-    ZoneEntrance("Miniboss Entrance in Earth Temple", nested_in=ZoneExit.all["Earth Temple"]),
-    ZoneEntrance("Miniboss Entrance in Wind Temple", nested_in=ZoneExit.all["Wind Temple"]),
-    ZoneEntrance("Miniboss Entrance in Hyrule Castle", "Tower of the Gods Sector"),
+    ZoneEntrance("FW Tall Room Before Mini Boss -> FW Mini Boss Room", nested_in=ZoneExit.all["FW First Room"]),
+    ZoneEntrance("TOTG West Servant Corridor Near Mini Boss Room -> TOTG Mini Boss Room", nested_in=ZoneExit.all["TOTG Entrance Room"]),
+    ZoneEntrance("ET Two Moblins and Poes Room Past Stairs -> ET Mini Boss Room", nested_in=ZoneExit.all["ET First Room"]),
+    ZoneEntrance("WT Hub Room Basement Above Fan -> WT Mini Boss Room", nested_in=ZoneExit.all["WT First Room"]),
+    ZoneEntrance("Hyrule Castle Interior -> Hyrule Castle Sword Chamber", "Tower of the Gods Sector"),
 ]
 MINIBOSS_EXITS: list[ZoneExit] = [
-    ZoneExit("Forbidden Woods Miniboss Arena"),
-    ZoneExit("Tower of the Gods Miniboss Arena"),
-    ZoneExit("Earth Temple Miniboss Arena"),
-    ZoneExit("Wind Temple Miniboss Arena"),
-    ZoneExit("Master Sword Chamber"),
+    ZoneExit("FW Mini Boss Room"),
+    ZoneExit("TOTG Mini Boss Room"),
+    ZoneExit("ET Mini Boss Room"),
+    ZoneExit("WT Mini Boss Room"),
+    ZoneExit("Hyrule Castle Sword Chamber"),
 ]
 
 BOSS_ENTRANCES: list[ZoneEntrance] = [
-    ZoneEntrance("Boss Entrance in Dragon Roost Cavern", nested_in=ZoneExit.all["Dragon Roost Cavern"]),
-    ZoneEntrance("Boss Entrance in Forbidden Woods", nested_in=ZoneExit.all["Forbidden Woods"]),
-    ZoneEntrance("Boss Entrance in Tower of the Gods", nested_in=ZoneExit.all["Tower of the Gods"]),
-    ZoneEntrance("Boss Entrance in Forsaken Fortress", "Forsaken Fortress Sector"),
-    ZoneEntrance("Boss Entrance in Earth Temple", nested_in=ZoneExit.all["Earth Temple"]),
-    ZoneEntrance("Boss Entrance in Wind Temple", nested_in=ZoneExit.all["Wind Temple"]),
+    ZoneEntrance("DRC Boss Door Room Across Lava -> Gohma Battle Arena", nested_in=ZoneExit.all["DRC First Room"]),
+    ZoneEntrance("FW Boss Door Room -> Kalle Demos Battle Arena", nested_in=ZoneExit.all["FW First Room"]),
+    ZoneEntrance("TOTG Outside Area -> Gohdan Battle Arena", nested_in=ZoneExit.all["TOTG Entrance Room"]),
+    ZoneEntrance("Forsaken Fortress Before Boss Door -> Helmaroc King Battle Arena", "Forsaken Fortress Sector"),
+    ZoneEntrance("ET Boss Door Room -> Jalhalla Battle Arena", nested_in=ZoneExit.all["ET First Room"]),
+    ZoneEntrance("WT Three Big Fans Room Past Song Stone -> Molgera Battle Arena", nested_in=ZoneExit.all["WT First Room"]),
 ]
 BOSS_EXITS: list[ZoneExit] = [
-    ZoneExit("Gohma Boss Arena"),
-    ZoneExit("Kalle Demos Boss Arena"),
-    ZoneExit("Gohdan Boss Arena"),
-    ZoneExit("Helmaroc King Boss Arena"),
-    ZoneExit("Jalhalla Boss Arena"),
-    ZoneExit("Molgera Boss Arena"),
+    ZoneExit("Gohma Battle Arena"),
+    ZoneExit("Kalle Demos Battle Arena"),
+    ZoneExit("Gohdan Battle Arena"),
+    ZoneExit("Helmaroc King Battle Arena"),
+    ZoneExit("Jalhalla Battle Arena"),
+    ZoneExit("Molgera Battle Arena"),
 ]
 
 SECRET_CAVE_ENTRANCES: list[ZoneEntrance] = [
-    ZoneEntrance("Secret Cave Entrance on Outset Island", "Outset Island"),
-    ZoneEntrance("Secret Cave Entrance on Dragon Roost Island", "Dragon Roost Island"),
-    ZoneEntrance("Secret Cave Entrance on Fire Mountain", "Fire Mountain"),
-    ZoneEntrance("Secret Cave Entrance on Ice Ring Isle", "Ice Ring Isle"),
-    ZoneEntrance("Secret Cave Entrance on Private Oasis", "Private Oasis"),
-    ZoneEntrance("Secret Cave Entrance on Needle Rock Isle", "Needle Rock Isle"),
-    ZoneEntrance("Secret Cave Entrance on Angular Isles", "Angular Isles"),
-    ZoneEntrance("Secret Cave Entrance on Boating Course", "Boating Course"),
-    ZoneEntrance("Secret Cave Entrance on Stone Watcher Island", "Stone Watcher Island"),
-    ZoneEntrance("Secret Cave Entrance on Overlook Island", "Overlook Island"),
-    ZoneEntrance("Secret Cave Entrance on Birds Peak Rock", "Birds Peak Rock"),
-    ZoneEntrance("Secret Cave Entrance on Pawprint Isle", "Pawprint Isle"),
-    ZoneEntrance("Secret Cave Entrance on Pawprint Isle Side Isle", "Pawprint Isle"),
-    ZoneEntrance("Secret Cave Entrance on Diamond Steppe Island", "Diamond Steppe Island"),
-    ZoneEntrance("Secret Cave Entrance on Bomb Island", "Bomb Island"),
-    ZoneEntrance("Secret Cave Entrance on Rock Spire Isle", "Rock Spire Isle"),
-    ZoneEntrance("Secret Cave Entrance on Shark Island", "Shark Island"),
-    ZoneEntrance("Secret Cave Entrance on Cliff Plateau Isles", "Cliff Plateau Isles"),
-    ZoneEntrance("Secret Cave Entrance on Horseshoe Island", "Horseshoe Island"),
-    ZoneEntrance("Secret Cave Entrance on Star Island", "Star Island"),
+    ZoneEntrance("Outset Near Savage Headstone -> Outset Savage Labyrinth", "Outset Island"),
+    ZoneEntrance("Dragon Roost Island -> Dragon Roost Island Cave", "Dragon Roost Island"),
+    ZoneEntrance("Fire Mountain -> Fire Mountain Interior", "Fire Mountain"),
+    ZoneEntrance("Ice Ring Isle -> Ice Ring Interior", "Ice Ring Isle"),
+    ZoneEntrance("The Cabana -> Cabana Labyrinth", "Private Oasis"),
+    ZoneEntrance("Needle Rock Isle -> Needle Rock Cave", "Needle Rock Isle"),
+    ZoneEntrance("Angular Isles Small Isle -> Angular Isles Cave", "Angular Isles"),
+    ZoneEntrance("Boating Course Small Isle -> Boating Course Cave", "Boating Course"),
+    ZoneEntrance("Stone Watcher Island -> Stone Watcher Cave", "Stone Watcher Island"),
+    ZoneEntrance("Overlook Island Upper Isles -> Overlook Cave", "Overlook Island"),
+    ZoneEntrance("Birds Peak Rock Behind Bars -> Birds Peak Rock Cave", "Birds Peak Rock"),
+    ZoneEntrance("Pawprint Isle -> Pawprint Chu Chu Cave", "Pawprint Isle"),
+    ZoneEntrance("Pawprint Wizzrobe Cave Isle -> Pawprint Wizzrobe Cave", "Pawprint Isle"),
+    ZoneEntrance("Diamond Steppe Upper Island -> Diamond Steppe Warp Maze", "Diamond Steppe Island"),
+    ZoneEntrance("Bomb Island -> Bomb Island Cave", "Bomb Island"),
+    ZoneEntrance("Rock Spire Upper Ledges -> Rock Spire Cave", "Rock Spire Isle"),
+    ZoneEntrance("Shark Island -> Shark Island Cave", "Shark Island"),
+    ZoneEntrance("Cliff Plateau Isles -> Cliff Plateau Cave", "Cliff Plateau Isles"),
+    ZoneEntrance("Horseshoe Island Past Tentacles -> Horseshoe Cave", "Horseshoe Island"),
+    ZoneEntrance("Star Island -> Star Island Cave", "Star Island"),
 ]
 SECRET_CAVE_EXITS: list[ZoneExit] = [
-    ZoneExit("Savage Labyrinth", zone_name="Outset Island"),
-    ZoneExit("Dragon Roost Island Secret Cave", zone_name="Dragon Roost Island"),
-    ZoneExit("Fire Mountain Secret Cave", zone_name="Fire Mountain"),
-    ZoneExit("Ice Ring Isle Secret Cave", zone_name="Ice Ring Isle"),
+    ZoneExit("Outset Savage Labyrinth", zone_name="Outset Island"),
+    ZoneExit("Dragon Roost Island Cave", zone_name="Dragon Roost Island"),
+    ZoneExit("Fire Mountain Interior", zone_name="Fire Mountain"),
+    ZoneExit("Ice Ring Interior", zone_name="Ice Ring Isle"),
     ZoneExit("Cabana Labyrinth", zone_name="Private Oasis"),
-    ZoneExit("Needle Rock Isle Secret Cave", zone_name="Needle Rock Isle"),
-    ZoneExit("Angular Isles Secret Cave", zone_name="Angular Isles"),
-    ZoneExit("Boating Course Secret Cave", zone_name="Boating Course"),
-    ZoneExit("Stone Watcher Island Secret Cave", zone_name="Stone Watcher Island"),
-    ZoneExit("Overlook Island Secret Cave", zone_name="Overlook Island"),
-    ZoneExit("Birds Peak Rock Secret Cave", zone_name="Birds Peak Rock"),
-    ZoneExit("Pawprint Isle Chuchu Cave", zone_name="Pawprint Isle"),
-    ZoneExit("Pawprint Isle Wizzrobe Cave"),
-    ZoneExit("Diamond Steppe Island Warp Maze Cave", zone_name="Diamond Steppe Island"),
-    ZoneExit("Bomb Island Secret Cave", zone_name="Bomb Island"),
-    ZoneExit("Rock Spire Isle Secret Cave", zone_name="Rock Spire Isle"),
-    ZoneExit("Shark Island Secret Cave", zone_name="Shark Island"),
-    ZoneExit("Cliff Plateau Isles Secret Cave", zone_name="Cliff Plateau Isles"),
-    ZoneExit("Horseshoe Island Secret Cave", zone_name="Horseshoe Island"),
-    ZoneExit("Star Island Secret Cave", zone_name="Star Island"),
+    ZoneExit("Needle Rock Cave", zone_name="Needle Rock Isle"),
+    ZoneExit("Angular Isles Cave", zone_name="Angular Isles"),
+    ZoneExit("Boating Course Cave", zone_name="Boating Course"),
+    ZoneExit("Stone Watcher Cave", zone_name="Stone Watcher Island"),
+    ZoneExit("Overlook Cave", zone_name="Overlook Island"),
+    ZoneExit("Birds Peak Rock Cave", zone_name="Birds Peak Rock"),
+    ZoneExit("Pawprint Chu Chu Cave", zone_name="Pawprint Isle"),
+    ZoneExit("Pawprint Wizzrobe Cave"),
+    ZoneExit("Diamond Steppe Warp Maze", zone_name="Diamond Steppe Island"),
+    ZoneExit("Bomb Island Cave", zone_name="Bomb Island"),
+    ZoneExit("Rock Spire Cave", zone_name="Rock Spire Isle"),
+    ZoneExit("Shark Island Cave", zone_name="Shark Island"),
+    ZoneExit("Cliff Plateau Cave", zone_name="Cliff Plateau Isles"),
+    ZoneExit("Horseshoe Cave", zone_name="Horseshoe Island"),
+    ZoneExit("Star Island Cave", zone_name="Star Island"),
 ]
 
 SECRET_CAVE_INNER_ENTRANCES: list[ZoneEntrance] = [
-    ZoneEntrance("Inner Entrance in Ice Ring Isle Secret Cave", nested_in=ZoneExit.all["Ice Ring Isle Secret Cave"]),
+    ZoneEntrance("Ice Ring Interior -> Ice Ring Inner Cave", nested_in=ZoneExit.all["Ice Ring Interior"]),
     ZoneEntrance(
-        "Inner Entrance in Cliff Plateau Isles Secret Cave", nested_in=ZoneExit.all["Cliff Plateau Isles Secret Cave"]
+        "Cliff Plateau Highest Isle -> Cliff Plateau Cave Past Wooden Barrier", nested_in=ZoneExit.all["Cliff Plateau Cave"]
     ),
 ]
 SECRET_CAVE_INNER_EXITS: list[ZoneExit] = [
-    ZoneExit("Ice Ring Isle Inner Cave"),
-    ZoneExit("Cliff Plateau Isles Inner Cave"),
+    ZoneExit("Ice Ring Inner Cave"),
+    ZoneExit("Cliff Plateau Cave Past Wooden Barrier"),
 ]
 
 FAIRY_FOUNTAIN_ENTRANCES: list[ZoneEntrance] = [
-    ZoneEntrance("Fairy Fountain Entrance on Outset Island", "Outset Island"),
-    ZoneEntrance("Fairy Fountain Entrance on Thorned Fairy Island", "Thorned Fairy Island"),
-    ZoneEntrance("Fairy Fountain Entrance on Eastern Fairy Island", "Eastern Fairy Island"),
-    ZoneEntrance("Fairy Fountain Entrance on Western Fairy Island", "Western Fairy Island"),
-    ZoneEntrance("Fairy Fountain Entrance on Southern Fairy Island", "Southern Fairy Island"),
-    ZoneEntrance("Fairy Fountain Entrance on Northern Fairy Island", "Northern Fairy Island"),
+    ZoneEntrance("Outset Forest of Fairies -> Outset Island - Great Fairy Fountain", "Outset Island"),
+    ZoneEntrance("Thorned Fairy Island Past Tentacles -> Thorned Fairy Island - Great Fairy Fountain", "Thorned Fairy Island"),
+    ZoneEntrance("Eastern Fairy Island Past Boulder -> Eastern Fairy Island - Great Fairy Fountain", "Eastern Fairy Island"),
+    ZoneEntrance("Western Fairy Island Past Flames -> Western Fairy Island - Great Fairy Fountain", "Western Fairy Island"),
+    ZoneEntrance("Southern Fairy Island Behind Wooden Barrier -> Southern Fairy Island - Great Fairy Fountain", "Southern Fairy Island"),
+    ZoneEntrance("Northern Fairy Island -> Northern Fairy Island - Great Fairy Fountain", "Northern Fairy Island"),
 ]
 FAIRY_FOUNTAIN_EXITS: list[ZoneExit] = [
-    ZoneExit("Outset Fairy Fountain"),
-    ZoneExit("Thorned Fairy Fountain", zone_name="Thorned Fairy Island"),
-    ZoneExit("Eastern Fairy Fountain", zone_name="Eastern Fairy Island"),
-    ZoneExit("Western Fairy Fountain", zone_name="Western Fairy Island"),
-    ZoneExit("Southern Fairy Fountain", zone_name="Southern Fairy Island"),
-    ZoneExit("Northern Fairy Fountain", zone_name="Northern Fairy Island"),
+    ZoneExit("Outset Island - Great Fairy Fountain"),
+    ZoneExit("Thorned Fairy Island - Great Fairy Fountain", zone_name="Thorned Fairy Island"),
+    ZoneExit("Eastern Fairy Island - Great Fairy Fountain", zone_name="Eastern Fairy Island"),
+    ZoneExit("Western Fairy Island - Great Fairy Fountain", zone_name="Western Fairy Island"),
+    ZoneExit("Southern Fairy Island - Great Fairy Fountain", zone_name="Southern Fairy Island"),
+    ZoneExit("Northern Fairy Island - Great Fairy Fountain", zone_name="Northern Fairy Island"),
 ]
 
 DUNGEON_INNER_EXITS: list[ZoneExit] = (
@@ -221,94 +221,95 @@ ENTRANCE_RANDOMIZABLE_ITEM_LOCATION_TYPES: list[TWWHDFlag] = [
     TWWHDFlag.SAVAGE,
     TWWHDFlag.GRT_FRY,
 ]
+
 ITEM_LOCATION_NAME_TO_EXIT_OVERRIDES: dict[str, ZoneExit] = {
-  "Forbidden Woods - Mothula Mini Boss Chest":         ZoneExit.all["Forbidden Woods Miniboss Arena"],
-  "Tower of the Gods - Darknut Mini Boss":             ZoneExit.all["Tower of the Gods Miniboss Arena"],
-  "Earth Temple - Stalfos Mini Boss":                  ZoneExit.all["Earth Temple Miniboss Arena"],
-  "Wind Temple - Wizzrobe Mini Boss":                  ZoneExit.all["Wind Temple Miniboss Arena"],
-  "Hyrule Castle - Sword Chamber Chest":               ZoneExit.all["Master Sword Chamber"],
+  "Forbidden Woods - Mothula Mini Boss Chest":         ZoneExit.all["FW Mini Boss Room"],
+  "Tower of the Gods - Darknut Mini Boss":             ZoneExit.all["TOTG Mini Boss Room"],
+  "Earth Temple - Stalfos Mini Boss":                  ZoneExit.all["ET Mini Boss Room"],
+  "Wind Temple - Wizzrobe Mini Boss":                  ZoneExit.all["WT Mini Boss Room"],
+  "Hyrule Castle - Sword Chamber Chest":               ZoneExit.all["Hyrule Castle Sword Chamber"],
 
-  "Dragon Roost Cavern - Gohma Heart Container":       ZoneExit.all["Gohma Boss Arena"],
-  "Forbidden Woods - Kalle Demos Heart Container":     ZoneExit.all["Kalle Demos Boss Arena"],
-  "Tower of the Gods - Gohdan Heart Container":        ZoneExit.all["Gohdan Boss Arena"],
-  "Forsaken Fortress - Helmaroc King Heart Container": ZoneExit.all["Helmaroc King Boss Arena"],
-  "Earth Temple - Jalhalla Heart Container":           ZoneExit.all["Jalhalla Boss Arena"],
-  "Wind Temple - Molgera Heart Container":             ZoneExit.all["Molgera Boss Arena"],
+  "Dragon Roost Cavern - Gohma Heart Container":       ZoneExit.all["Gohma Battle Arena"],
+  "Forbidden Woods - Kalle Demos Heart Container":     ZoneExit.all["Kalle Demos Battle Arena"],
+  "Tower of the Gods - Gohdan Heart Container":        ZoneExit.all["Gohdan Battle Arena"],
+  "Forsaken Fortress - Helmaroc King Heart Container": ZoneExit.all["Helmaroc King Battle Arena"],
+  "Earth Temple - Jalhalla Heart Container":           ZoneExit.all["Jalhalla Battle Arena"],
+  "Wind Temple - Molgera Heart Container":             ZoneExit.all["Molgera Battle Arena"],
 
-  "Pawprint Isle - Wizzrobe Cave Chest":               ZoneExit.all["Pawprint Isle Wizzrobe Cave"],
+  "Pawprint Isle - Wizzrobe Cave Chest":               ZoneExit.all["Pawprint Wizzrobe Cave"],
 
-  "Ice Ring Isle - Inner Cave Chest":                  ZoneExit.all["Ice Ring Isle Inner Cave"],
-  "Cliff Plateau Isles - Highest Isle Chest":          ZoneExit.all["Cliff Plateau Isles Inner Cave"],
+  "Ice Ring Isle - Inner Cave Chest":                  ZoneExit.all["Ice Ring Inner Cave"],
+  "Cliff Plateau Isles - Highest Isle Chest":          ZoneExit.all["Cliff Plateau Cave Past Wooden Barrier"],
 
-  "Outset Island - Great Fairy":                       ZoneExit.all["Outset Fairy Fountain"],
+  "Outset Island - Great Fairy":                       ZoneExit.all["Outset Island - Great Fairy Fountain"],
 }
 
 MINIBOSS_EXIT_TO_DUNGEON: dict[str, str] = {
-    "Forbidden Woods Miniboss Arena":   "Forbidden Woods",
-    "Tower of the Gods Miniboss Arena": "Tower of the Gods",
-    "Earth Temple Miniboss Arena":      "Earth Temple",
-    "Wind Temple Miniboss Arena":       "Wind Temple",
+    "FW Mini Boss Room":   "Forbidden Woods",
+    "TOTG Mini Boss Room": "Tower of the Gods",
+    "ET Mini Boss Room":   "Earth Temple",
+    "WT Mini Boss Room":   "Wind Temple",
 }
 
 BOSS_EXIT_TO_DUNGEON: dict[str, str] = {
-    "Gohma Boss Arena":         "Dragon Roost Cavern",
-    "Kalle Demos Boss Arena":   "Forbidden Woods",
-    "Gohdan Boss Arena":        "Tower of the Gods",
-    "Helmaroc King Boss Arena": "Forsaken Fortress",
-    "Jalhalla Boss Arena":      "Earth Temple",
-    "Molgera Boss Arena":       "Wind Temple",
+    "Gohma Battle Arena":         "Dragon Roost Cavern",
+    "Kalle Demos Battle Arena":   "Forbidden Woods",
+    "Gohdan Battle Arena":        "Tower of the Gods",
+    "Helmaroc King Battle Arena": "Forsaken Fortress",
+    "Jalhalla Battle Arena":      "Earth Temple",
+    "Molgera Battle Arena":       "Wind Temple",
 }
 
 VANILLA_ENTRANCES_TO_EXITS: dict[str, str] = {
-    "Dungeon Entrance on Dragon Roost Island": "Dragon Roost Cavern",
-    "Dungeon Entrance in Forest Haven Sector": "Forbidden Woods",
-    "Dungeon Entrance in Tower of the Gods Sector": "Tower of the Gods",
-    "Dungeon Entrance on Headstone Island": "Earth Temple",
-    "Dungeon Entrance on Gale Isle": "Wind Temple",
+    "Dragon Roost Pond Past Statues -> DRC First Room": "DRC First Room",
+    "FW Entrance Platform -> FW First Room": "FW First Room",
+    "Tower of the Gods Sector -> TOTG Entrance Room": "TOTG Entrance Room",
+    "Headstone Island Interior -> ET First Room": "ET First Room",
+    "Gale Isle Interior -> WT First Room": "WT First Room",
 
-    "Miniboss Entrance in Forbidden Woods": "Forbidden Woods Miniboss Arena",
-    "Miniboss Entrance in Tower of the Gods": "Tower of the Gods Miniboss Arena",
-    "Miniboss Entrance in Earth Temple": "Earth Temple Miniboss Arena",
-    "Miniboss Entrance in Wind Temple": "Wind Temple Miniboss Arena",
-    "Miniboss Entrance in Hyrule Castle": "Master Sword Chamber",
+    "FW Tall Room Before Mini Boss -> FW Mini Boss Room": "FW Mini Boss Room",
+    "TOTG West Servant Corridor Near Mini Boss Room -> TOTG Mini Boss Room": "TOTG Mini Boss Room",
+    "ET Two Moblins and Poes Room Past Stairs -> ET Mini Boss Room": "ET Mini Boss Room",
+    "WT Hub Room Basement Above Fan -> WT Mini Boss Room": "WT Mini Boss Room",
+    "Hyrule Castle Interior -> Hyrule Castle Sword Chamber": "Hyrule Castle Sword Chamber",
 
-    "Boss Entrance in Dragon Roost Cavern": "Gohma Boss Arena",
-    "Boss Entrance in Forbidden Woods": "Kalle Demos Boss Arena",
-    "Boss Entrance in Tower of the Gods": "Gohdan Boss Arena",
-    "Boss Entrance in Forsaken Fortress": "Helmaroc King Boss Arena",
-    "Boss Entrance in Earth Temple": "Jalhalla Boss Arena",
-    "Boss Entrance in Wind Temple": "Molgera Boss Arena",
+    "DRC Boss Door Room Across Lava -> Gohma Battle Arena": "Gohma Battle Arena",
+    "FW Boss Door Room -> Kalle Demos Battle Arena": "Kalle Demos Battle Arena",
+    "TOTG Outside Area -> Gohdan Battle Arena": "Gohdan Battle Arena",
+    "Forsaken Fortress Before Boss Door -> Helmaroc King Battle Arena": "Helmaroc King Battle Arena",
+    "ET Boss Door Room -> Jalhalla Battle Arena": "Jalhalla Battle Arena",
+    "WT Three Big Fans Room Past Song Stone -> Molgera Battle Arena": "Molgera Battle Arena",
 
-    "Secret Cave Entrance on Outset Island": "Savage Labyrinth",
-    "Secret Cave Entrance on Dragon Roost Island": "Dragon Roost Island Secret Cave",
-    "Secret Cave Entrance on Fire Mountain": "Fire Mountain Secret Cave",
-    "Secret Cave Entrance on Ice Ring Isle": "Ice Ring Isle Secret Cave",
-    "Secret Cave Entrance on Private Oasis": "Cabana Labyrinth",
-    "Secret Cave Entrance on Needle Rock Isle": "Needle Rock Isle Secret Cave",
-    "Secret Cave Entrance on Angular Isles": "Angular Isles Secret Cave",
-    "Secret Cave Entrance on Boating Course": "Boating Course Secret Cave",
-    "Secret Cave Entrance on Stone Watcher Island": "Stone Watcher Island Secret Cave",
-    "Secret Cave Entrance on Overlook Island": "Overlook Island Secret Cave",
-    "Secret Cave Entrance on Birds Peak Rock": "Birds Peak Rock Secret Cave",
-    "Secret Cave Entrance on Pawprint Isle": "Pawprint Isle Chuchu Cave",
-    "Secret Cave Entrance on Pawprint Isle Side Isle": "Pawprint Isle Wizzrobe Cave",
-    "Secret Cave Entrance on Diamond Steppe Island": "Diamond Steppe Island Warp Maze Cave",
-    "Secret Cave Entrance on Bomb Island": "Bomb Island Secret Cave",
-    "Secret Cave Entrance on Rock Spire Isle": "Rock Spire Isle Secret Cave",
-    "Secret Cave Entrance on Shark Island": "Shark Island Secret Cave",
-    "Secret Cave Entrance on Cliff Plateau Isles": "Cliff Plateau Isles Secret Cave",
-    "Secret Cave Entrance on Horseshoe Island": "Horseshoe Island Secret Cave",
-    "Secret Cave Entrance on Star Island": "Star Island Secret Cave",
+    "Outset Near Savage Headstone -> Outset Savage Labyrinth": "Outset Savage Labyrinth",
+    "Dragon Roost Island -> Dragon Roost Island Cave": "Dragon Roost Island Cave",
+    "Fire Mountain -> Fire Mountain Interior": "Fire Mountain Interior",
+    "Ice Ring Isle -> Ice Ring Interior": "Ice Ring Interior",
+    "The Cabana -> Cabana Labyrinth": "Cabana Labyrinth",
+    "Needle Rock Isle -> Needle Rock Cave": "Needle Rock Cave",
+    "Angular Isles Small Isle -> Angular Isles Cave": "Angular Isles Cave",
+    "Boating Course Small Isle -> Boating Course Cave": "Boating Course Cave",
+    "Stone Watcher Island -> Stone Watcher Cave": "Stone Watcher Cave",
+    "Overlook Island Upper Isles -> Overlook Cave": "Overlook Cave",
+    "Birds Peak Rock Behind Bars -> Birds Peak Rock Cave": "Birds Peak Rock Cave",
+    "Pawprint Isle -> Pawprint Chu Chu Cave": "Pawprint Chu Chu Cave",
+    "Pawprint Wizzrobe Cave Isle -> Pawprint Wizzrobe Cave": "Pawprint Wizzrobe Cave",
+    "Diamond Steppe Upper Island -> Diamond Steppe Warp Maze": "Diamond Steppe Warp Maze",
+    "Bomb Island -> Bomb Island Cave": "Bomb Island Cave",
+    "Rock Spire Upper Ledges -> Rock Spire Cave": "Rock Spire Cave",
+    "Shark Island -> Shark Island Cave": "Shark Island Cave",
+    "Cliff Plateau Isles -> Cliff Plateau Cave": "Cliff Plateau Cave",
+    "Horseshoe Island Past Tentacles -> Horseshoe Cave": "Horseshoe Cave",
+    "Star Island -> Star Island Cave": "Star Island Cave",
 
-    "Inner Entrance in Ice Ring Isle Secret Cave": "Ice Ring Isle Inner Cave",
-    "Inner Entrance in Cliff Plateau Isles Secret Cave": "Cliff Plateau Isles Inner Cave",
+    "Ice Ring Interior -> Ice Ring Inner Cave": "Ice Ring Inner Cave",
+    "Cliff Plateau Highest Isle -> Cliff Plateau Cave Past Wooden Barrier": "Cliff Plateau Cave Past Wooden Barrier",
 
-    "Fairy Fountain Entrance on Outset Island": "Outset Fairy Fountain",
-    "Fairy Fountain Entrance on Thorned Fairy Island": "Thorned Fairy Fountain",
-    "Fairy Fountain Entrance on Eastern Fairy Island": "Eastern Fairy Fountain",
-    "Fairy Fountain Entrance on Western Fairy Island": "Western Fairy Fountain",
-    "Fairy Fountain Entrance on Southern Fairy Island": "Southern Fairy Fountain",
-    "Fairy Fountain Entrance on Northern Fairy Island": "Northern Fairy Fountain",
+    "Outset Forest of Fairies -> Outset Island - Great Fairy Fountain": "Outset Island - Great Fairy Fountain",
+    "Thorned Fairy Island Past Tentacles -> Thorned Fairy Island - Great Fairy Fountain": "Thorned Fairy Island - Great Fairy Fountain",
+    "Eastern Fairy Island Past Boulder -> Eastern Fairy Island - Great Fairy Fountain": "Eastern Fairy Island - Great Fairy Fountain",
+    "Western Fairy Island Past Flames -> Western Fairy Island - Great Fairy Fountain": "Western Fairy Island - Great Fairy Fountain",
+    "Southern Fairy Island Behind Wooden Barrier -> Southern Fairy Island - Great Fairy Fountain": "Southern Fairy Island - Great Fairy Fountain",
+    "Northern Fairy Island -> Northern Fairy Island - Great Fairy Fountain": "Northern Fairy Island - Great Fairy Fountain",
 }
 
 
@@ -365,8 +366,8 @@ class EntranceRandomizer:
 
         if options.required_bosses:
             for zone_exit in BOSS_EXITS:
-                assert zone_exit.unique_name.endswith(" Boss Arena")
-                boss_name = zone_exit.unique_name.removesuffix(" Boss Arena")
+                assert zone_exit.unique_name.endswith(" Battle Arena")
+                boss_name = zone_exit.unique_name.removesuffix(" Battle Arena")
                 if boss_name in self.world.boss_reqs.banned_bosses:
                     self.banned_exits.append(zone_exit)
             for zone_exit in DUNGEON_EXITS:
@@ -374,11 +375,11 @@ class EntranceRandomizer:
                 if dungeon_name in self.world.boss_reqs.banned_dungeons:
                     self.banned_exits.append(zone_exit)
             for zone_exit in MINIBOSS_EXITS:
-                if zone_exit == ZoneExit.all["Master Sword Chamber"]:
+                if zone_exit == ZoneExit.all["Hyrule Castle Sword Chamber"]:
                     # Hyrule cannot be chosen as a banned dungeon.
                     continue
-                assert zone_exit.unique_name.endswith(" Miniboss Arena")
-                dungeon_name = zone_exit.unique_name.removesuffix(" Miniboss Arena")
+                assert zone_exit.unique_name.endswith(" Mini Boss Room")
+                dungeon_name = zone_exit.unique_name.removesuffix(" Mini Boss Room")
                 if dungeon_name in self.world.boss_reqs.banned_dungeons:
                     self.banned_exits.append(zone_exit)
 
@@ -487,7 +488,7 @@ class EntranceRandomizer:
         possible_island_entrances = [en for en in relevant_entrances if en.island_name is not None]
 
         # We need special logic to handle Forsaken Fortress, as it is the only island entrance inside a dungeon.
-        ff_boss_entrance = ZoneEntrance.all["Boss Entrance in Forsaken Fortress"]
+        ff_boss_entrance = ZoneEntrance.all["Forsaken Fortress Before Boss Door -> Helmaroc King Battle Arena"]
         if ff_boss_entrance in possible_island_entrances:
             if self.world.options.progression_dungeons:
                 if "Forsaken Fortress" in self.world.boss_reqs.banned_dungeons:
@@ -622,7 +623,8 @@ class EntranceRandomizer:
         """
 
         def get_access_rule(entrance: ZoneEntrance) -> str:
-            snake_case_region = entrance.entrance_name.lower().replace("'", "").replace(" ", "_")
+            snake_case_region = entrance.entrance_name.lower().replace("'", "").replace(" ", "_").replace("->","to").replace("-", "inside")
+
             return getattr(Macros, f"can_access_{snake_case_region}")
 
         # Connect each entrance-exit pair in the multiworld with the access rule for the entrance.
@@ -871,7 +873,7 @@ class EntranceRandomizer:
         :param boss_name: The name of the boss.
         :return: The name of the island on which the boss is located.
         """
-        boss_arena_name = f"{boss_name} Boss Arena"
+        boss_arena_name = f"{boss_name} Battle Arena"
         zone_exit = ZoneExit.all[boss_arena_name]
         outermost_entrance = self.get_outermost_entrance_for_exit(zone_exit)
         assert outermost_entrance is not None and outermost_entrance.island_name is not None

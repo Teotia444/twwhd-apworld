@@ -17,11 +17,12 @@ from worlds.LauncherComponents import Component, SuffixIdentifier, Type, compone
 
 from .Items import ISLAND_NUMBER_TO_CHART_NAME, ITEM_TABLE, TWWHDItem, item_name_groups
 from .Locations import LOCATION_TABLE, TWWHDFlag, TWWHDLocation
+from .randomizers.Entrances import VANILLA_ENTRANCES_TO_EXITS
 from .Options import TWWHDOptions, twwhd_option_groups
 from .Presets import twwhd_options_presets
 from .randomizers.Charts import ISLAND_NUMBER_TO_NAME, ChartRandomizer
 from .randomizers.Dungeons import Dungeon, create_dungeons
-from .randomizers.Entrances import ALL_EXITS, BOSS_EXIT_TO_DUNGEON, MINIBOSS_EXIT_TO_DUNGEON, EntranceRandomizer
+from .randomizers.Entrances import ALL_EXITS, BOSS_EXIT_TO_DUNGEON, MINIBOSS_EXIT_TO_DUNGEON, DUNGEON_EXITS, EntranceRandomizer
 from .randomizers.ItemPool import generate_itempool
 from .randomizers.RequiredBosses import RequiredBossesRandomizer
 from .Rules import set_rules
@@ -78,7 +79,8 @@ class TWWHDContainer(APPlayerContainer):
         opened_zipfile.writestr("plando", (bytes(yaml.safe_dump(self.data, sort_keys=False), "utf-8")))
         output_plando_file = {
             "World 1": {
-                "locations":{}
+                "locations":{},
+                "entrances":{}
             }
         }
         for key, value in dict.items(self.data["Locations"]):
@@ -87,13 +89,31 @@ class TWWHDContainer(APPlayerContainer):
             else:
                 output_plando_file["World 1"]["locations"][key] = value["name"]
 
+        for entr, exit in dict.items(self.data["Entrances"]):
+            entr_from = str(entr).split(" -> ")[0]
+            entr_to = str(entr).split(" -> ")[1]
+            exit_to = exit
+            exit_from = ([e for e in VANILLA_ENTRANCES_TO_EXITS.keys() if e.find(exit_to) != -1][0]).split(" -> ")[0]
+            
+            print(entr_from + " -> " + entr_to)
+            print(exit_from + " -> " + exit_to)
+
+            output_plando_file["World 1"]["entrances"][entr_from + " -> " + entr_to] = str(exit_to + " from " + exit_from)
+
         output_config_file = {}
         for key, value in dict.items(self.data["Options"]):
-            if(str(key).find("progression_") != -1):
+            if(str(key).find("progression_") != -1 and str(key).find("progression_dungeons") == -1):
                 output_config_file[key] = True if value == 1 else False
             if(str(key).find("classic_mode") != -1):
                 output_config_file[key] = True if value == 1 else False
+
         output_config_file["plandomizer"] = True
+        output_config_file["randomize_starting_island"] = bool(self.data["Options"]["randomize_starting_island"])
+        output_config_file["randomize_dungeon_entrances"] = bool(self.data["Options"]["randomize_dungeon_entrances"])
+        should_rando_cave = bool(self.data["Options"]["randomize_secret_cave_entrances"]) or bool(self.data["Options"]["randomize_secret_cave_inner_entrances"])
+        output_config_file["randomize_cave_entrances"] = "Caves and Fairies" if should_rando_cave and bool(self.data["Options"]["randomize_fairy_fountain_entrances"]) else "Caves" if should_rando_cave else "Disabled"
+        output_config_file["randomize_miniboss_entrances"] = bool(self.data["Options"]["randomize_miniboss_entrances"])
+        output_config_file["randomize_boss_entrances"] = bool(self.data["Options"]["randomize_boss_entrances"])
 
         opened_zipfile.writestr("plandomizer.yaml", bytes(yaml.safe_dump(output_plando_file, sort_keys=False), "utf-8"))
         opened_zipfile.writestr("config.yaml", bytes(yaml.safe_dump(output_config_file, sort_keys=False), "utf-8"))
@@ -380,8 +400,12 @@ class TWWHDWorld(World):
             location = TWWHDLocation(player, location_name, region, data)
 
             # Additionally, assign dungeon locations to the appropriate dungeon.
+
             if region.name in self.dungeons:
                 location.dungeon = self.dungeons[region.name]
+            elif region.name in [exit.unique_name for exit in DUNGEON_EXITS]:
+                exit = [exit for exit in DUNGEON_EXITS if exit.unique_name == region.name][0]
+                location.dungeon = self.dungeons[exit.zone_name]
             elif region.name in MINIBOSS_EXIT_TO_DUNGEON and not options.randomize_miniboss_entrances:
                 location.dungeon = self.dungeons[MINIBOSS_EXIT_TO_DUNGEON[region.name]]
             elif region.name in BOSS_EXIT_TO_DUNGEON and not options.randomize_boss_entrances:

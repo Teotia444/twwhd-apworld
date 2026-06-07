@@ -97,7 +97,7 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
     )
     # set_rule_if_exists("Outset Island - Orca - Hit 500 Times", lambda state: can_sword_fight_with_orca(state, player))
     set_rule_if_exists(
-        "Outset Island - Great Fairy", lambda state: state.can_reach_region("Outset Fairy Fountain", player)
+        "Outset Island - Great Fairy", lambda state: state.can_reach_region("Outset Island - Great Fairy Fountain", player)
     )
     set_rule_if_exists("Jabun's Cave Chest", lambda state: state.has("Bombs", player))
     set_rule_if_exists(
@@ -797,7 +797,7 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
     set_rule_if_exists(
         "Mailbox - Letter from Baito",
         lambda state: state.has_all(["Delivery Bag", "Note to Mom"], player)
-        and state.can_reach_region("Jalhalla Boss Arena", player)
+        and state.can_reach_region("Jalhalla Battle Arena", player)
         and can_defeat_jalhalla(state, player),
     )
     set_rule_if_exists("Mailbox - Letter from Komali's Father", lambda state: state.has("Farore's Pearl", player))
@@ -817,7 +817,7 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
     # )
     set_rule_if_exists(
         "Mailbox - Letter from Orca",
-        lambda state: state.can_reach_region("Kalle Demos Boss Arena", player)
+        lambda state: state.can_reach_region("Kalle Demos Battle Arena", player)
         and can_defeat_kalle_demos(state, player),
     )
     set_rule_if_exists(
@@ -826,14 +826,14 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
     )
     set_rule_if_exists(
         "Mailbox - Letter from Aryll",
-        lambda state: state.can_reach_region("Helmaroc King Boss Arena", player)
+        lambda state: state.can_reach_region("Helmaroc King Battle Arena", player)
         and can_defeat_helmaroc_king(state, player)
         and can_play_song_of_passing(state, player),
     )
     set_rule_if_exists(
         "Mailbox - Letter from Tingle",
         lambda state: has_any_wallet_upgrade(state, player)
-        and state.can_reach_region("Helmaroc King Boss Arena", player)
+        and state.can_reach_region("Helmaroc King Battle Arena", player)
         and can_defeat_helmaroc_king(state, player)
         and can_play_song_of_passing(state, player),
     )
@@ -848,7 +848,7 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
         lambda state: can_access_forest_haven(state, player)
         and state.has("Empty Bottle", player)
         and can_play_ballad_of_gales(state, player)
-        and state.can_reach_region("Cliff Plateau Isles Inner Cave", player),
+        and state.can_reach_region("Cliff Plateau Cave Past Wooden Barrier", player),
     )
     set_rule_if_exists(
         "Great Sea - Ghost Ship Chest",

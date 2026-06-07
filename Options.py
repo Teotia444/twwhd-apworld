@@ -454,6 +454,8 @@ class RandomizeBossEntrances(Toggle):
 
 class RandomizeSecretCaveInnerEntrances(Toggle):
     """
+    DEV NOTE: This option is currently broken and won't allow for generation!
+
     Allows the pit in Ice Ring Isle's secret cave and the rear exit out of Cliff Plateau Isles' secret cave to act as
     entrances to be randomized."""
 
@@ -462,6 +464,8 @@ class RandomizeSecretCaveInnerEntrances(Toggle):
 
 class RandomizeFairyFountainEntrances(Toggle):
     """
+    DEV NOTE: This option is currently broken and won't allow for generation!
+
     Allows the pits that lead down into Fairy Fountains to act as entrances to be randomized.
     """
 

@@ -144,10 +144,10 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
         6, TWWHDFlag.ISLND_P, "The Great Sea", 0x0, TWWHDLocationType.PCKUP, 2
     ),
     "Outset Island - Savage Labyrinth Floor 30": TWWHDLocationData(
-        7, TWWHDFlag.SAVAGE, "Savage Labyrinth", 0xD, TWWHDLocationType.CHEST, 11
+        7, TWWHDFlag.SAVAGE, "Outset Savage Labyrinth", 0xD, TWWHDLocationType.CHEST, 11
     ),
     "Outset Island - Savage Labyrinth Floor 50": TWWHDLocationData(
-        8, TWWHDFlag.SAVAGE, "Savage Labyrinth", 0xD, TWWHDLocationType.CHEST, 12
+        8, TWWHDFlag.SAVAGE, "Outset Savage Labyrinth", 0xD, TWWHDLocationType.CHEST, 12
     ),
 
     # Windfall Island
@@ -293,66 +293,66 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
         54, TWWHDFlag.MINIGME, "The Great Sea", 0xB, TWWHDLocationType.EVENT, 0, 0x27
     ),
     "Dragon Roost Island - Cave Chest": TWWHDLocationData(
-        55, TWWHDFlag.CBT_CVE, "Dragon Roost Island Secret Cave", 0xD, TWWHDLocationType.CHEST, 0
+        55, TWWHDFlag.CBT_CVE, "Dragon Roost Island Cave", 0xD, TWWHDLocationType.CHEST, 0
     ),
 
     # Dragon Roost Cavern
     "Dragon Roost Cavern - First Room Chest": TWWHDLocationData(
-        56, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 0
+        56, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 0
     ),
     "Dragon Roost Cavern - Water Jug Alcove Chest": TWWHDLocationData(
-        57, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 2
+        57, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 2
     ),
     "Dragon Roost Cavern - Water Jug On Upper Shelf": TWWHDLocationData(
-        58, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "Dragon Roost Cavern", 0x3, TWWHDLocationType.PCKUP, 1
+        58, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "DRC First Room", 0x3, TWWHDLocationType.PCKUP, 1
     ),
     "Dragon Roost Cavern - Boarded Up Chest": TWWHDLocationData(
-        59, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 1
+        59, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 1
     ),
     "Dragon Roost Cavern - Swing Across Lava Chest": TWWHDLocationData(
-        60, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 13
+        60, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 13
     ),
     "Dragon Roost Cavern - Rat Room Chest": TWWHDLocationData(
-        61, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 14
+        61, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 14
     ),
     "Dragon Roost Cavern - Rat Room Boarded Up Chest": TWWHDLocationData(
-        62, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 3
+        62, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 3
     ),
     "Dragon Roost Cavern - Bird's Nest": TWWHDLocationData(
-        63, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.PCKUP, 3
+        63, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.PCKUP, 3
     ),
     "Dragon Roost Cavern - Dark Room Chest": TWWHDLocationData(
-        64, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 4
+        64, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 4
     ),
     "Dragon Roost Cavern - Pot on Upper Shelf in Pot Room": TWWHDLocationData(
-        66, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "Dragon Roost Cavern", 0x3, TWWHDLocationType.PCKUP, 0
+        66, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "DRC First Room", 0x3, TWWHDLocationType.PCKUP, 0
     ),
     "Dragon Roost Cavern - Pot Room Chest": TWWHDLocationData(
-        67, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 6
+        67, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 6
     ),
     "Dragon Roost Cavern - Mini Boss": TWWHDLocationData(
-        68, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 17
+        68, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 17
     ),
     "Dragon Roost Cavern - Under Rope Bridge Chest": TWWHDLocationData(
-        69, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 7
+        69, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 7
     ),
     "Dragon Roost Cavern - Tingle Statue Chest": TWWHDLocationData(
-        70, TWWHDFlag.TNGL_CT | TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 15
+        70, TWWHDFlag.TNGL_CT | TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 15
     ),
     "Dragon Roost Cavern - Big Key Chest": TWWHDLocationData(
-        71, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 12
+        71, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 12
     ),
     "Dragon Roost Cavern - Boss Stairs Right Chest": TWWHDLocationData(
-        72, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 11
+        72, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 11
     ),
     "Dragon Roost Cavern - Boss Stairs Left Chest": TWWHDLocationData(
-        73, TWWHDFlag.DUNGEON, "Dragon Roost Cavern", 0x3, TWWHDLocationType.CHEST, 10
+        73, TWWHDFlag.DUNGEON, "DRC First Room", 0x3, TWWHDLocationType.CHEST, 10
     ),
     "Dragon Roost Cavern - Boss Stairs Right Pot": TWWHDLocationData(
-        74, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "Dragon Roost Cavern", 0x3, TWWHDLocationType.PCKUP, 6
+        74, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "DRC First Room", 0x3, TWWHDLocationType.PCKUP, 6
     ),
     "Dragon Roost Cavern - Gohma Heart Container": TWWHDLocationData(
-        75, TWWHDFlag.DUNGEON | TWWHDFlag.BOSS, "Gohma Boss Arena", 0x3, TWWHDLocationType.PCKUP, 21
+        75, TWWHDFlag.DUNGEON | TWWHDFlag.BOSS, "Gohma Battle Arena", 0x3, TWWHDLocationType.PCKUP, 21
     ),
 
     # Forest Haven
@@ -365,58 +365,58 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Forbidden Woods
     "Forbidden Woods - First Room Chest": TWWHDLocationData(
-        78, TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 0
+        78, TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 0
     ),
     "Forbidden Woods - Inside Hollow Tree Chest": TWWHDLocationData(
-        79, TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 1
+        79, TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 1
     ),
     "Forbidden Woods - Boko Baba Climb Chest": TWWHDLocationData(
-        80, TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 2
+        80, TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 2
     ),
     "Forbidden Woods - Pot High Above Hollow Tree": TWWHDLocationData(
-        81, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "Forbidden Woods", 0x4, TWWHDLocationType.PCKUP, 1
+        81, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "FW First Room", 0x4, TWWHDLocationType.PCKUP, 1
     ),
     "Forbidden Woods - Hole In Tree Chest": TWWHDLocationData(
-        82, TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 6
+        82, TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 6
     ),
     "Forbidden Woods - Morth Pit Chest": TWWHDLocationData(
-        83, TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 8
+        83, TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 8
     ),
     "Forbidden Woods - Vine Maze Left Chest": TWWHDLocationData(
-        84, TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 7
+        84, TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 7
     ),
     "Forbidden Woods - Vine Maze Right Chest": TWWHDLocationData(
-        85, TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 5
+        85, TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 5
     ),
     "Forbidden Woods - Highest Pot in Vine Maze": TWWHDLocationData(
-        86, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "Forbidden Woods", 0x4, TWWHDLocationType.PCKUP, 22
+        86, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "FW First Room", 0x4, TWWHDLocationType.PCKUP, 22
     ),
     "Forbidden Woods - Tall Room Chest": TWWHDLocationData(
-        87, TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 12
+        87, TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 12
     ),
     "Forbidden Woods - Mothula Mini Boss Chest": TWWHDLocationData(
-        88, TWWHDFlag.DUNGEON, "Forbidden Woods Miniboss Arena", 0x4, TWWHDLocationType.CHEST, 10
+        88, TWWHDFlag.DUNGEON, "FW Mini Boss Room", 0x4, TWWHDLocationType.CHEST, 10
     ),
     "Forbidden Woods - Past Seeds Hanging by Vines Chest": TWWHDLocationData(
-        89, TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 3
+        89, TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 3
     ),
     "Forbidden Woods - Chest Across Hanging Flower": TWWHDLocationData(
-        90, TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 11
+        90, TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 11
     ),
     "Forbidden Woods - Tingle Statue Chest": TWWHDLocationData(
-        91, TWWHDFlag.TNGL_CT | TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 15
+        91, TWWHDFlag.TNGL_CT | TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 15
     ),
     "Forbidden Woods - Locked Tree Trunk Chest": TWWHDLocationData(
-        92, TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 9
+        92, TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 9
     ),
     "Forbidden Woods - Big Key Chest": TWWHDLocationData(
-        93, TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 4
+        93, TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 4
     ),
     "Forbidden Woods - Double Mothula Room Chest": TWWHDLocationData(
-        94, TWWHDFlag.DUNGEON, "Forbidden Woods", 0x4, TWWHDLocationType.CHEST, 14
+        94, TWWHDFlag.DUNGEON, "FW First Room", 0x4, TWWHDLocationType.CHEST, 14
     ),
     "Forbidden Woods - Kalle Demos Heart Container": TWWHDLocationData(
-        95, TWWHDFlag.DUNGEON | TWWHDFlag.BOSS, "Kalle Demos Boss Arena", 0x4, TWWHDLocationType.PCKUP, 21
+        95, TWWHDFlag.DUNGEON | TWWHDFlag.BOSS, "Kalle Demos Battle Arena", 0x4, TWWHDLocationType.PCKUP, 21
     ),
 
     # Greatfish Isle
@@ -426,57 +426,57 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Tower of the Gods
     "Tower of the Gods - Chest Behind Bombable Wall": TWWHDLocationData(
-        97, TWWHDFlag.DUNGEON, "Tower of the Gods", 0x5, TWWHDLocationType.CHEST, 2
+        97, TWWHDFlag.DUNGEON, "TOTG Entrance Room", 0x5, TWWHDLocationType.CHEST, 2
     ),
     "Tower of the Gods - Pot Behind Bombable Wall": TWWHDLocationData(
-        98, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "Tower of the Gods", 0x5, TWWHDLocationType.PCKUP, 0
+        98, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "TOTG Entrance Room", 0x5, TWWHDLocationType.PCKUP, 0
     ),
     "Tower of the Gods - Hop Across Floating Boxes Chest": TWWHDLocationData(
-        99, TWWHDFlag.DUNGEON, "Tower of the Gods", 0x5, TWWHDLocationType.CHEST, 1
+        99, TWWHDFlag.DUNGEON, "TOTG Entrance Room", 0x5, TWWHDLocationType.CHEST, 1
     ),
     "Tower of the Gods - Light Two Torches Chest": TWWHDLocationData(
-        100, TWWHDFlag.DUNGEON, "Tower of the Gods", 0x5, TWWHDLocationType.CHEST, 10
+        100, TWWHDFlag.DUNGEON, "TOTG Entrance Room", 0x5, TWWHDLocationType.CHEST, 10
     ),
     "Tower of the Gods - Skull Room Chest": TWWHDLocationData(
-        101, TWWHDFlag.DUNGEON, "Tower of the Gods", 0x5, TWWHDLocationType.CHEST, 3
+        101, TWWHDFlag.DUNGEON, "TOTG Entrance Room", 0x5, TWWHDLocationType.CHEST, 3
     ),
     "Tower of the Gods - Shoot Eye Above Skulls Chest": TWWHDLocationData(
-        102, TWWHDFlag.DUNGEON, "Tower of the Gods", 0x5, TWWHDLocationType.CHEST, 9
+        102, TWWHDFlag.DUNGEON, "TOTG Entrance Room", 0x5, TWWHDLocationType.CHEST, 9
     ),
     "Tower of the Gods - Tingle Statue Chest": TWWHDLocationData(
-        103, TWWHDFlag.TNGL_CT | TWWHDFlag.DUNGEON, "Tower of the Gods", 0x5, TWWHDLocationType.CHEST, 15
+        103, TWWHDFlag.TNGL_CT | TWWHDFlag.DUNGEON, "TOTG Entrance Room", 0x5, TWWHDLocationType.CHEST, 15
     ),
     "Tower of the Gods - First Armos Knights Chest": TWWHDLocationData(
-        104, TWWHDFlag.DUNGEON, "Tower of the Gods", 0x5, TWWHDLocationType.CHEST, 6
+        104, TWWHDFlag.DUNGEON, "TOTG Entrance Room", 0x5, TWWHDLocationType.CHEST, 6
     ),
     "Tower of the Gods - Stone Tablet": TWWHDLocationData(
-        105, TWWHDFlag.DUNGEON, "Tower of the Gods", 0x5, TWWHDLocationType.EVENT, 4, 0x25
+        105, TWWHDFlag.DUNGEON, "TOTG Entrance Room", 0x5, TWWHDLocationType.EVENT, 4, 0x25
     ),
     "Tower of the Gods - Darknut Mini Boss": TWWHDLocationData(
-        106, TWWHDFlag.DUNGEON, "Tower of the Gods Miniboss Arena", 0x5, TWWHDLocationType.CHEST, 5
+        106, TWWHDFlag.DUNGEON, "TOTG Mini Boss Room", 0x5, TWWHDLocationType.CHEST, 5
     ),
     "Tower of the Gods - Second Armos Knights Chest": TWWHDLocationData(
-        107, TWWHDFlag.DUNGEON, "Tower of the Gods", 0x5, TWWHDLocationType.CHEST, 8
+        107, TWWHDFlag.DUNGEON, "TOTG Entrance Room", 0x5, TWWHDLocationType.CHEST, 8
     ),
     "Tower of the Gods - Floating Platforms Room Lower Chest": TWWHDLocationData(
-        108, TWWHDFlag.DUNGEON, "Tower of the Gods", 0x5, TWWHDLocationType.CHEST, 4
+        108, TWWHDFlag.DUNGEON, "TOTG Entrance Room", 0x5, TWWHDLocationType.CHEST, 4
     ),
     "Tower of the Gods - Floating Platforms Room Upper Chest": TWWHDLocationData(
-        109, TWWHDFlag.DUNGEON, "Tower of the Gods", 0x5, TWWHDLocationType.CHEST, 11
+        109, TWWHDFlag.DUNGEON, "TOTG Entrance Room", 0x5, TWWHDLocationType.CHEST, 11
     ),
     "Tower of the Gods - Eastern Pot in Big Key Chest Room": TWWHDLocationData(
-        110, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "Tower of the Gods", 0x5, TWWHDLocationType.PCKUP, 1
+        110, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "TOTG Entrance Room", 0x5, TWWHDLocationType.PCKUP, 1
     ),
     "Tower of the Gods - Big Key Chest": TWWHDLocationData(
-        111, TWWHDFlag.DUNGEON, "Tower of the Gods", 0x5, TWWHDLocationType.CHEST, 0
+        111, TWWHDFlag.DUNGEON, "TOTG Entrance Room", 0x5, TWWHDLocationType.CHEST, 0
     ),
     "Tower of the Gods - Gohdan Heart Container": TWWHDLocationData(
-        112, TWWHDFlag.DUNGEON | TWWHDFlag.BOSS, "Gohdan Boss Arena", 0x5, TWWHDLocationType.PCKUP, 21
+        112, TWWHDFlag.DUNGEON | TWWHDFlag.BOSS, "Gohdan Battle Arena", 0x5, TWWHDLocationType.PCKUP, 21
     ),
 
     # Hyrule
     "Hyrule Castle - Sword Chamber Chest": TWWHDLocationData(
-        113, TWWHDFlag.DUNGEON, "Master Sword Chamber", 0x9, TWWHDLocationType.CHEST, 0
+        113, TWWHDFlag.DUNGEON, "Hyrule Castle Sword Chamber", 0x9, TWWHDLocationType.CHEST, 0
     ),
 
     # Forsaken Fortress
@@ -496,7 +496,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
         118, TWWHDFlag.DUNGEON, "The Great Sea", 0x2, TWWHDLocationType.CHEST, 1
     ),
     "Forsaken Fortress - Helmaroc King Heart Container": TWWHDLocationData(
-        119, TWWHDFlag.DUNGEON | TWWHDFlag.BOSS, "Helmaroc King Boss Arena", 0x2, TWWHDLocationType.PCKUP, 21
+        119, TWWHDFlag.DUNGEON | TWWHDFlag.BOSS, "Helmaroc King Battle Arena", 0x2, TWWHDLocationType.PCKUP, 21
     ),
 
     # Mother and Child Isles
@@ -506,7 +506,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Fire Mountain
     "Fire Mountain - Interior Chest": TWWHDLocationData(
-        121, TWWHDFlag.PZL_CVE | TWWHDFlag.CBT_CVE, "Fire Mountain Secret Cave", 0xC, TWWHDLocationType.CHEST, 0
+        121, TWWHDFlag.PZL_CVE | TWWHDFlag.CBT_CVE, "Fire Mountain Interior", 0xC, TWWHDLocationType.CHEST, 0
     ),
     "Fire Mountain - Lookout Platform Chest": TWWHDLocationData(
         122, TWWHDFlag.PLTFRMS, "The Great Sea", 0x1, TWWHDLocationType.CHEST, 1
@@ -523,10 +523,10 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
         125, TWWHDFlag.ISLND_P, "The Great Sea", 0x0, TWWHDLocationType.CHEST, 18
     ),
     "Ice Ring Isle - Interior Chest": TWWHDLocationData(
-        126, TWWHDFlag.PZL_CVE, "Ice Ring Isle Secret Cave", 0xC, TWWHDLocationType.CHEST, 1
+        126, TWWHDFlag.PZL_CVE, "Ice Ring Interior", 0xC, TWWHDLocationType.CHEST, 1
     ),
     "Ice Ring Isle - Inner Cave Chest": TWWHDLocationData(
-        127, TWWHDFlag.PZL_CVE | TWWHDFlag.CBT_CVE, "Ice Ring Isle Inner Cave", 0xC, TWWHDLocationType.CHEST, 21
+        127, TWWHDFlag.PZL_CVE | TWWHDFlag.CBT_CVE, "Ice Ring Inner Cave", 0xC, TWWHDLocationType.CHEST, 21
     ),
 
     # Headstone Island
@@ -539,108 +539,108 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Earth Temple
     "Earth Temple - Warp Pot Room Chest": TWWHDLocationData(
-        130, TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.CHEST, 0
+        130, TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.CHEST, 0
     ),
     "Earth Temple - Warp Pot Room Behind Curtain": TWWHDLocationData(
-        131, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "Earth Temple", 0x6, TWWHDLocationType.PCKUP, 0
+        131, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "ET First Room", 0x6, TWWHDLocationType.PCKUP, 0
     ),
     "Earth Temple - First Crypt Chest": TWWHDLocationData(
-        132, TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.CHEST, 1
+        132, TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.CHEST, 1
     ),
     "Earth Temple - Chest Behind Destructable Wall": TWWHDLocationData(
-        133, TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.CHEST, 12
+        133, TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.CHEST, 12
     ),
     "Earth Temple - Three Blocks Room Chest": TWWHDLocationData(
-        134, TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.CHEST, 2
+        134, TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.CHEST, 2
     ),
     "Earth Temple - Behind Statues Chest": TWWHDLocationData(
-        135, TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.CHEST, 3
+        135, TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.CHEST, 3
     ),
     "Earth Temple - Second Crypt Casket": TWWHDLocationData(
-        136, TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.PCKUP, 14
+        136, TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.PCKUP, 14
     ),
     "Earth Temple - Stalfos Mini Boss": TWWHDLocationData(
-        137, TWWHDFlag.DUNGEON, "Earth Temple Miniboss Arena", 0x6, TWWHDLocationType.CHEST, 7
+        137, TWWHDFlag.DUNGEON, "ET Mini Boss Room", 0x6, TWWHDLocationType.CHEST, 7
     ),
     "Earth Temple - Tingle Statue Chest": TWWHDLocationData(
-        138, TWWHDFlag.TNGL_CT | TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.CHEST, 15
+        138, TWWHDFlag.TNGL_CT | TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.CHEST, 15
     ),
     "Earth Temple - Foggy Floormaster Room End Chest": TWWHDLocationData(
-        139, TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.CHEST, 4
+        139, TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.CHEST, 4
     ),
     "Earth Temple - Kill All Floormasters Chest": TWWHDLocationData(
-        140, TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.CHEST, 11
+        140, TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.CHEST, 11
     ),
     "Earth Temple - Near Hammer Button Behind Curtain": TWWHDLocationData(
-        141, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "Earth Temple", 0x6, TWWHDLocationType.PCKUP, 1
+        141, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "ET First Room", 0x6, TWWHDLocationType.PCKUP, 1
     ),
     "Earth Temple - Third Crypt Chest": TWWHDLocationData(
-        142, TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.CHEST, 5
+        142, TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.CHEST, 5
     ),
     "Earth Temple - Many Mirrors Room Right Chest": TWWHDLocationData(
-        143, TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.CHEST, 9
+        143, TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.CHEST, 9
     ),
     "Earth Temple - Many Mirrors Room Left Chest": TWWHDLocationData(
-        144, TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.CHEST, 10
+        144, TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.CHEST, 10
     ),
     "Earth Temple - Stalfos Crypt Room Chest": TWWHDLocationData(
-        145, TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.CHEST, 14
+        145, TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.CHEST, 14
     ),
     "Earth Temple - Big Key Chest": TWWHDLocationData(
-        146, TWWHDFlag.DUNGEON, "Earth Temple", 0x6, TWWHDLocationType.CHEST, 6
+        146, TWWHDFlag.DUNGEON, "ET First Room", 0x6, TWWHDLocationType.CHEST, 6
     ),
     "Earth Temple - Jalhalla Heart Container": TWWHDLocationData(
-        147, TWWHDFlag.DUNGEON | TWWHDFlag.BOSS, "Jalhalla Boss Arena", 0x6, TWWHDLocationType.PCKUP, 21
+        147, TWWHDFlag.DUNGEON | TWWHDFlag.BOSS, "Jalhalla Battle Arena", 0x6, TWWHDLocationType.PCKUP, 21
     ),
 
     # Wind Temple
     "Wind Temple - Between Dirt Patches Chest": TWWHDLocationData(
-        148, TWWHDFlag.DUNGEON, "Wind Temple", 0x7, TWWHDLocationType.CHEST, 0
+        148, TWWHDFlag.DUNGEON, "WT First Room", 0x7, TWWHDLocationType.CHEST, 0
     ),
     "Wind Temple - Behind Stone Head in Hidden Upper Room": TWWHDLocationData(
-        149, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "Wind Temple", 0x7, TWWHDLocationType.PCKUP, 0
+        149, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "WT First Room", 0x7, TWWHDLocationType.PCKUP, 0
     ),
     "Wind Temple - Tingle Statue Chest": TWWHDLocationData(
-        150, TWWHDFlag.TNGL_CT | TWWHDFlag.DUNGEON, "Wind Temple", 0x7, TWWHDLocationType.CHEST, 15
+        150, TWWHDFlag.TNGL_CT | TWWHDFlag.DUNGEON, "WT First Room", 0x7, TWWHDLocationType.CHEST, 15
     ),
     "Wind Temple - Behind Stone Head Chest": TWWHDLocationData(
-        151, TWWHDFlag.DUNGEON, "Wind Temple", 0x7, TWWHDLocationType.CHEST, 3
+        151, TWWHDFlag.DUNGEON, "WT First Room", 0x7, TWWHDLocationType.CHEST, 3
     ),
     "Wind Temple - Left Alcove Chest": TWWHDLocationData(
-        152, TWWHDFlag.DUNGEON, "Wind Temple", 0x7, TWWHDLocationType.CHEST, 7
+        152, TWWHDFlag.DUNGEON, "WT First Room", 0x7, TWWHDLocationType.CHEST, 7
     ),
     "Wind Temple - Big Key Chest": TWWHDLocationData(
-        153, TWWHDFlag.DUNGEON, "Wind Temple", 0x7, TWWHDLocationType.CHEST, 8
+        153, TWWHDFlag.DUNGEON, "WT First Room", 0x7, TWWHDLocationType.CHEST, 8
     ),
     "Wind Temple - Cyclones Room Chest": TWWHDLocationData(
-        154, TWWHDFlag.DUNGEON, "Wind Temple", 0x7, TWWHDLocationType.CHEST, 11
+        154, TWWHDFlag.DUNGEON, "WT First Room", 0x7, TWWHDLocationType.CHEST, 11
     ),
     "Wind Temple - Behind Stone Head in Many Cyclones Room": TWWHDLocationData(
-        155, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "Wind Temple", 0x7, TWWHDLocationType.PCKUP, 1
+        155, TWWHDFlag.DUNGEON | TWWHDFlag.DG_SCRT, "WT First Room", 0x7, TWWHDLocationType.PCKUP, 1
     ),
     "Wind Temple - Hub Room Center Chest": TWWHDLocationData(
-        156, TWWHDFlag.DUNGEON, "Wind Temple", 0x7, TWWHDLocationType.CHEST, 13
+        156, TWWHDFlag.DUNGEON, "WT First Room", 0x7, TWWHDLocationType.CHEST, 13
     ),
     "Wind Temple - Spike Wall Room First Chest": TWWHDLocationData(
-        157, TWWHDFlag.DUNGEON, "Wind Temple", 0x7, TWWHDLocationType.CHEST, 9
+        157, TWWHDFlag.DUNGEON, "WT First Room", 0x7, TWWHDLocationType.CHEST, 9
     ),
     "Wind Temple - Spike Wall Room Destroy Floors": TWWHDLocationData(
-        158, TWWHDFlag.DUNGEON, "Wind Temple", 0x7, TWWHDLocationType.CHEST, 10
+        158, TWWHDFlag.DUNGEON, "WT First Room", 0x7, TWWHDLocationType.CHEST, 10
     ),
     "Wind Temple - Wizzrobe Mini Boss": TWWHDLocationData(
-        159, TWWHDFlag.DUNGEON, "Wind Temple Miniboss Arena", 0x7, TWWHDLocationType.CHEST, 5
+        159, TWWHDFlag.DUNGEON, "WT Mini Boss Room", 0x7, TWWHDLocationType.CHEST, 5
     ),
     "Wind Temple - Hub Room Top Chest": TWWHDLocationData(
-        160, TWWHDFlag.DUNGEON, "Wind Temple", 0x7, TWWHDLocationType.CHEST, 2
+        160, TWWHDFlag.DUNGEON, "WT First Room", 0x7, TWWHDLocationType.CHEST, 2
     ),
     "Wind Temple - Behind Armos Chest": TWWHDLocationData(
-        161, TWWHDFlag.DUNGEON, "Wind Temple", 0x7, TWWHDLocationType.CHEST, 4
+        161, TWWHDFlag.DUNGEON, "WT First Room", 0x7, TWWHDLocationType.CHEST, 4
     ),
     "Wind Temple - Kill All Basement Room Enemies": TWWHDLocationData(
-        162, TWWHDFlag.DUNGEON, "Wind Temple", 0x7, TWWHDLocationType.CHEST, 12
+        162, TWWHDFlag.DUNGEON, "WT First Room", 0x7, TWWHDLocationType.CHEST, 12
     ),
     "Wind Temple - Molgera Heart Container": TWWHDLocationData(
-        163, TWWHDFlag.DUNGEON | TWWHDFlag.BOSS, "Molgera Boss Arena", 0x7, TWWHDLocationType.PCKUP, 21
+        163, TWWHDFlag.DUNGEON | TWWHDFlag.BOSS, "Molgera Battle Arena", 0x7, TWWHDLocationType.PCKUP, 21
     ),
 
     # Ganon's Tower
@@ -734,7 +734,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
         189, TWWHDFlag.ISLND_P, "The Great Sea", 0x0, TWWHDLocationType.CHEST, 3
     ),
     "Needle Rock Isle - Cave Chest": TWWHDLocationData(
-        190, TWWHDFlag.PZL_CVE, "Needle Rock Isle Secret Cave", 0xD, TWWHDLocationType.CHEST, 9
+        190, TWWHDFlag.PZL_CVE, "Needle Rock Cave", 0xD, TWWHDLocationType.CHEST, 9
     ),
     "Needle Rock Isle - Golden Gunboat": TWWHDLocationData(
         191, TWWHDFlag.BG_OCTO, "The Great Sea", 0x0, TWWHDLocationType.BOCTO, 2, -42
@@ -745,7 +745,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
         192, TWWHDFlag.ISLND_P, "The Great Sea", 0x0, TWWHDLocationType.CHEST, 0
     ),
     "Angular Isles - Cave Chest": TWWHDLocationData(
-        193, TWWHDFlag.PZL_CVE, "Angular Isles Secret Cave", 0xD, TWWHDLocationType.CHEST, 6
+        193, TWWHDFlag.PZL_CVE, "Angular Isles Cave", 0xD, TWWHDLocationType.CHEST, 6
     ),
 
     # Boating Course
@@ -753,12 +753,12 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
         194, TWWHDFlag.PLTFRMS, "The Great Sea", 0x0, TWWHDLocationType.CHEST, 21
     ),
     "Boating Course - Cave Chest": TWWHDLocationData(
-        195, TWWHDFlag.PZL_CVE | TWWHDFlag.CBT_CVE, "Boating Course Secret Cave", 0xD, TWWHDLocationType.CHEST, 15
+        195, TWWHDFlag.PZL_CVE | TWWHDFlag.CBT_CVE, "Boating Course Cave", 0xD, TWWHDLocationType.CHEST, 15
     ),
 
     # Stone Watcher Island
     "Stone Watcher Island - Cave Chest": TWWHDLocationData(
-        196, TWWHDFlag.CBT_CVE, "Stone Watcher Island Secret Cave", 0xC, TWWHDLocationType.CHEST, 10
+        196, TWWHDFlag.CBT_CVE, "Stone Watcher Cave", 0xC, TWWHDLocationType.CHEST, 10
     ),
     "Stone Watcher Island - Lookout Platform Chest": TWWHDLocationData(
         197, TWWHDFlag.PLTFRMS, "The Great Sea", 0x1, TWWHDLocationType.CHEST, 18
@@ -777,29 +777,29 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Overlook Island
     "Overlook Island - Cave Chest": TWWHDLocationData(
-        201, TWWHDFlag.CBT_CVE, "Overlook Island Secret Cave", 0xC, TWWHDLocationType.CHEST, 11
+        201, TWWHDFlag.CBT_CVE, "Overlook Cave", 0xC, TWWHDLocationType.CHEST, 11
     ),
 
     # Bird's Peak Rock
     "Birds Peak Rock - Cave Chest": TWWHDLocationData(
-        202, TWWHDFlag.PZL_CVE, "Birds Peak Rock Secret Cave", 0xC, TWWHDLocationType.CHEST, 16
+        202, TWWHDFlag.PZL_CVE, "Birds Peak Rock Cave", 0xC, TWWHDLocationType.CHEST, 16
     ),
 
     # Pawprint Isle
     "Pawprint Isle - Chu Chu Cave Chest": TWWHDLocationData(
-        203, TWWHDFlag.PZL_CVE, "Pawprint Isle Chuchu Cave", 0xC, TWWHDLocationType.CHEST, 26
+        203, TWWHDFlag.PZL_CVE, "Pawprint Chu Chu Cave", 0xC, TWWHDLocationType.CHEST, 26
     ),
     "Pawprint Isle - Chu Chu Cave Chest Behind Left Boulder": TWWHDLocationData(
-        204, TWWHDFlag.PZL_CVE, "Pawprint Isle Chuchu Cave", 0xC, TWWHDLocationType.CHEST, 24
+        204, TWWHDFlag.PZL_CVE, "Pawprint Chu Chu Cave", 0xC, TWWHDLocationType.CHEST, 24
     ),
     "Pawprint Isle - Chu Chu Cave Chest Behind Right Boulder": TWWHDLocationData(
-        205, TWWHDFlag.PZL_CVE, "Pawprint Isle Chuchu Cave", 0xC, TWWHDLocationType.CHEST, 25
+        205, TWWHDFlag.PZL_CVE, "Pawprint Chu Chu Cave", 0xC, TWWHDLocationType.CHEST, 25
     ),
     "Pawprint Isle - Chu Chu Cave Chest Scale Wall": TWWHDLocationData(
-        206, TWWHDFlag.PZL_CVE, "Pawprint Isle Chuchu Cave", 0xC, TWWHDLocationType.CHEST, 2
+        206, TWWHDFlag.PZL_CVE, "Pawprint Chu Chu Cave", 0xC, TWWHDLocationType.CHEST, 2
     ),
     "Pawprint Isle - Wizzrobe Cave Chest": TWWHDLocationData(
-        207, TWWHDFlag.CBT_CVE, "Pawprint Isle Wizzrobe Cave", 0xD, TWWHDLocationType.CHEST, 2
+        207, TWWHDFlag.CBT_CVE, "Pawprint Wizzrobe Cave", 0xD, TWWHDLocationType.CHEST, 2
     ),
     "Pawprint Isle - Lookout Platform Defeat Enemies": TWWHDLocationData(
         208, TWWHDFlag.PLTFRMS, "The Great Sea", 0x1, TWWHDLocationType.CHEST, 5
@@ -807,7 +807,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Thorned Fairy Island
     "Thorned Fairy Island - Great Fairy": TWWHDLocationData(
-        209, TWWHDFlag.GRT_FRY, "Thorned Fairy Fountain", 0xC, TWWHDLocationType.EVENT, 0, 0x30
+        209, TWWHDFlag.GRT_FRY, "Thorned Fairy Island - Great Fairy Fountain", 0xC, TWWHDLocationType.EVENT, 0, 0x30
     ),
     "Thorned Fairy Island - Northeastern Lookout Platform Destroy Cannons": TWWHDLocationData(
         210, TWWHDFlag.PLTFRMS, "The Great Sea", 0x1, TWWHDLocationType.CHEST, 14
@@ -818,7 +818,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Eastern Fairy Island
     "Eastern Fairy Island - Great Fairy": TWWHDLocationData(
-        212, TWWHDFlag.GRT_FRY, "Eastern Fairy Fountain", 0xC, TWWHDLocationType.EVENT, 3, 0x30
+        212, TWWHDFlag.GRT_FRY, "Eastern Fairy Island - Great Fairy Fountain", 0xC, TWWHDLocationType.EVENT, 3, 0x30
     ),
     "Eastern Fairy Island - Lookout Platform Defeat Cannons and Enemies": TWWHDLocationData(
         213, TWWHDFlag.PLTFRMS, "The Great Sea", 0x1, TWWHDLocationType.CHEST, 10
@@ -826,7 +826,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Western Fairy Island
     "Western Fairy Island - Great Fairy": TWWHDLocationData(
-        214, TWWHDFlag.GRT_FRY, "Western Fairy Fountain", 0xC, TWWHDLocationType.EVENT, 1, 0x30
+        214, TWWHDFlag.GRT_FRY, "Western Fairy Island - Great Fairy Fountain", 0xC, TWWHDLocationType.EVENT, 1, 0x30
     ),
     "Western Fairy Island - Lookout Platform Chest": TWWHDLocationData(
         215, TWWHDFlag.PLTFRMS, "The Great Sea", 0x1, TWWHDLocationType.CHEST, 6
@@ -834,7 +834,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Southern Fairy Island
     "Southern Fairy Island - Great Fairy": TWWHDLocationData(
-        216, TWWHDFlag.GRT_FRY, "Southern Fairy Fountain", 0xC, TWWHDLocationType.EVENT, 2, 0x30
+        216, TWWHDFlag.GRT_FRY, "Southern Fairy Island - Great Fairy Fountain", 0xC, TWWHDLocationType.EVENT, 2, 0x30
     ),
     "Southern Fairy Island - Lookout Platform Destroy Northwest Cannons": TWWHDLocationData(
         217, TWWHDFlag.PLTFRMS, "The Great Sea", 0x0, TWWHDLocationType.CHEST, 23
@@ -845,7 +845,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Northern Fairy Island
     "Northern Fairy Island - Great Fairy": TWWHDLocationData(
-        219, TWWHDFlag.GRT_FRY, "Northern Fairy Fountain", 0xC, TWWHDLocationType.EVENT, 5, 0x30
+        219, TWWHDFlag.GRT_FRY, "Northern Fairy Island - Great Fairy Fountain", 0xC, TWWHDLocationType.EVENT, 5, 0x30
     ),
     "Northern Fairy Island - Submarine Chest": TWWHDLocationData(
         220, TWWHDFlag.SUBMRIN, "The Great Sea", 0xA, TWWHDLocationType.CHEST, 6
@@ -861,10 +861,10 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Diamond Steppe Island
     "Diamond Steppe Island - Maze First Chest": TWWHDLocationData(
-        223, TWWHDFlag.PZL_CVE, "Diamond Steppe Island Warp Maze Cave", 0xC, TWWHDLocationType.CHEST, 23
+        223, TWWHDFlag.PZL_CVE, "Diamond Steppe Warp Maze", 0xC, TWWHDLocationType.CHEST, 23
     ),
     "Diamond Steppe Island - Maze Second Chest": TWWHDLocationData(
-        224, TWWHDFlag.PZL_CVE, "Diamond Steppe Island Warp Maze Cave", 0xC, TWWHDLocationType.CHEST, 3
+        224, TWWHDFlag.PZL_CVE, "Diamond Steppe Warp Maze", 0xC, TWWHDLocationType.CHEST, 3
     ),
     "Diamond Steppe Island - Big Octo": TWWHDLocationData(
         225, TWWHDFlag.BG_OCTO, "The Great Sea", 0x0, TWWHDLocationType.BOCTO, 0, -28
@@ -872,7 +872,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Bomb Island
     "Bomb Island - Cave Chest": TWWHDLocationData(
-        226, TWWHDFlag.PZL_CVE, "Bomb Island Secret Cave", 0xC, TWWHDLocationType.CHEST, 5
+        226, TWWHDFlag.PZL_CVE, "Bomb Island Cave", 0xC, TWWHDLocationType.CHEST, 5
     ),
     "Bomb Island - Lookout Platform Defeat Enemies": TWWHDLocationData(
         227, TWWHDFlag.PLTFRMS, "The Great Sea", 0x1, TWWHDLocationType.CHEST, 3
@@ -883,7 +883,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Rock Spire Isle
     "Rock Spire Isle - Cave Chest": TWWHDLocationData(
-        229, TWWHDFlag.CBT_CVE, "Rock Spire Isle Secret Cave", 0xC, TWWHDLocationType.CHEST, 8
+        229, TWWHDFlag.CBT_CVE, "Rock Spire Cave", 0xC, TWWHDLocationType.CHEST, 8
     ),
     "Rock Spire Isle - Beedle 500 Rupee Item": TWWHDLocationData(
         230, TWWHDFlag.XPENSVE, "The Great Sea", 0xA, TWWHDLocationType.EVENT, 5, 0x20
@@ -909,15 +909,15 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Shark Island
     "Shark Island - Cave Chest": TWWHDLocationData(
-        237, TWWHDFlag.CBT_CVE, "Shark Island Secret Cave", 0xD, TWWHDLocationType.CHEST, 22
+        237, TWWHDFlag.CBT_CVE, "Shark Island Cave", 0xD, TWWHDLocationType.CHEST, 22
     ),
 
     # Cliff Plateau Isles
     "Cliff Plateau Isles - Cave Chest": TWWHDLocationData(
-        238, TWWHDFlag.PZL_CVE, "Cliff Plateau Isles Secret Cave", 0xC, TWWHDLocationType.CHEST, 7
+        238, TWWHDFlag.PZL_CVE, "Cliff Plateau Cave", 0xC, TWWHDLocationType.CHEST, 7
     ),
     "Cliff Plateau Isles - Highest Isle Chest": TWWHDLocationData(
-        239, TWWHDFlag.PZL_CVE, "Cliff Plateau Isles Inner Cave", 0x0, TWWHDLocationType.CHEST, 1
+        239, TWWHDFlag.PZL_CVE, "Cliff Plateau Cave Past Wooden Barrier", 0x0, TWWHDLocationType.CHEST, 1
     ),
     "Cliff Plateau Isles - Lookout Platform Chest": TWWHDLocationData(
         240, TWWHDFlag.PLTFRMS, "The Great Sea", 0x1, TWWHDLocationType.CHEST, 19
@@ -936,7 +936,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
         243, TWWHDFlag.ISLND_P, "The Great Sea", 0x0, TWWHDLocationType.CHEST, 5
     ),
     "Horseshoe Island - Cave Chest": TWWHDLocationData(
-        244, TWWHDFlag.CBT_CVE, "Horseshoe Island Secret Cave", 0xD, TWWHDLocationType.CHEST, 1
+        244, TWWHDFlag.CBT_CVE, "Horseshoe Cave", 0xD, TWWHDLocationType.CHEST, 1
     ),
     "Horseshoe Island - Northwestern Lookout Platform Chest": TWWHDLocationData(
         245, TWWHDFlag.PLTFRMS, "The Great Sea", 0x1, TWWHDLocationType.CHEST, 26
@@ -955,7 +955,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Star Island
     "Star Island - Cave Chest": TWWHDLocationData(
-        249, TWWHDFlag.CBT_CVE, "Star Island Secret Cave", 0xC, TWWHDLocationType.CHEST, 6
+        249, TWWHDFlag.CBT_CVE, "Star Island Cave", 0xC, TWWHDLocationType.CHEST, 6
     ),
     "Star Island - Lookout Platform Chest": TWWHDLocationData(
         250, TWWHDFlag.PLTFRMS, "The Great Sea", 0x1, TWWHDLocationType.CHEST, 4
