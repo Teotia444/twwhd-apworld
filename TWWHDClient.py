@@ -16,6 +16,63 @@ from .randomizers.Charts import ISLAND_NUMBER_TO_NAME
 if TYPE_CHECKING:
     import kvui
 
+import sys
+
+if sys.platform != "win32":
+    import os
+    import struct
+
+    class LinuxMemory:
+        def __init__(self, process_name: str):
+            self.pid = self._find_pid(process_name)
+            self._mem_path = f"/proc/{self.pid}/mem"
+        
+        def _find_pid(self, process_name: str) -> int:
+            for pid in os.listdir("/proc"):
+                if pid.isdigit():
+                    try:
+                        with open(f"/proc/{pid}/comm") as f:
+                            if process_name.lower() in f.read().strip().lower():
+                                return int(pid)
+                    except (FileNotFoundError, PermissionError):
+                        pass
+            raise ProcessLookupError(f"Process '{process_name}' not found")
+
+        def _read(self, address: int, length: int) -> bytes:
+            with open(self._mem_path, "rb") as f:
+                f.seek(address)
+                return f.read(length)
+
+        def _write(self, address: int, data: bytes) -> None:
+            with open(self._mem_path, "rb+") as f:
+                f.seek(address)
+                f.write(data)
+
+
+        def read_bytes(self, address: int, length: int) -> bytes:
+            return self._read(address, length)
+
+        def read_short(self, address: int) -> int:
+            return struct.unpack("<h", self._read(address, 2))[0]
+
+        def read_uchar(self, address: int) -> int:
+            return struct.unpack("B", self._read(address, 1))[0]
+
+        def read_bool(self, address: int) -> int:
+            return self.read_uchar(address)
+
+        def read_string(self, address: int, length: int) -> str:
+            return self._read(address, length).rstrip(b"\x00").decode("utf-8", errors="ignore")
+
+        def write_short(self, address: int, value: int) -> None:
+            self._write(address, struct.pack("<h", value))
+
+        def write_uchar(self, address: int, value: int) -> None:
+            self._write(address, struct.pack("B", value))
+
+        def write_bytes(self, address: int, data: bytes, length: int = None) -> None:
+            self._write(address, data)
+
 CONNECTION_REFUSED_GAME_STATUS = (
     "Cemu failed to connect. Please load a randomized ROM for The Wind Waker HD. Trying again in 5 seconds..."
 )
@@ -67,9 +124,12 @@ CHARTS_MAPPING_ADDR = 0x803FE8E0
 # Data storage key
 AP_VISITED_STAGE_NAMES_KEY_FORMAT = "twwhd_visited_stages_%i"
 
-TWWHDMemory : pymem.Pymem = None
+if sys.platform == "win32":
+    MemoryType = pymem.Pymem
+else:
+    MemoryType = LinuxMemory
 
-
+TWWHDMemory: Optional[MemoryType] = None
 
 class TWWHDCommandProcessor(ClientCommandProcessor):
     """
@@ -664,7 +724,7 @@ async def cemu_sync_task(ctx: TWWHDContext) -> None:
                     ctx.cemu_status = CONNECTION_LOST_STATUS
                 logger.info("Attempting to connect to Cemu...")
                 try:
-                    TWWHDMemory = pymem.Pymem("Cemu")
+                    TWWHDMemory = pymem.Pymem("Cemu") if sys.platform == "win32" else LinuxMemory("Cemu")
                     logger.info(CONNECTION_CONNECTED_STATUS)
                     ctx.cemu_status = CONNECTION_CONNECTED_STATUS
                     ctx.locations_checked = set()
