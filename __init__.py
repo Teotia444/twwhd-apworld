@@ -77,28 +77,45 @@ class TWWHDContainer(APPlayerContainer):
 
         # Record the data for the game under the key `plando`.
         opened_zipfile.writestr("plando", (bytes(yaml.safe_dump(self.data, sort_keys=False), "utf-8")))
-        output_plando_file = {
-            "World 1": {
-                "locations":{},
-                "entrances":{}
+
+        entrance_rando = (bool(self.data["Options"]["randomize_dungeon_entrances"]) 
+                          or bool(self.data["Options"]["randomize_secret_cave_entrances"]) 
+                          or bool(self.data["Options"]["randomize_secret_cave_inner_entrances"])
+                          or bool(self.data["Options"]["randomize_fairy_fountain_entrances"]) 
+                          or bool(self.data["Options"]["randomize_miniboss_entrances"])
+                          or bool(self.data["Options"]["randomize_boss_entrances"])
+        )
+        if entrance_rando:
+            output_plando_file = {
+                "World 1": {
+                    "locations":{},
+                    "entrances":{}
+                }
             }
-        }
+        else:
+            output_plando_file = {
+                "World 1": {
+                    "locations":{}
+                }
+            }
+
         for key, value in dict.items(self.data["Locations"]):
             if value["player"] != self.data["Slot"]:
                 output_plando_file["World 1"]["locations"][key] = "Fathers Letter"
             else:
                 output_plando_file["World 1"]["locations"][key] = value["name"]
 
-        for entr, exit in dict.items(self.data["Entrances"]):
-            entr_from = str(entr).split(" -> ")[0]
-            entr_to = str(entr).split(" -> ")[1]
-            exit_to = exit
-            exit_from = ([e for e in VANILLA_ENTRANCES_TO_EXITS.keys() if e.find(exit_to) != -1][0]).split(" -> ")[0]
-            
-            print(entr_from + " -> " + entr_to)
-            print(exit_from + " -> " + exit_to)
+        if entrance_rando:
+            for entr, exit in dict.items(self.data["Entrances"]):
+                entr_from = str(entr).split(" -> ")[0]
+                entr_to = str(entr).split(" -> ")[1]
+                exit_to = exit
+                exit_from = ([e for e in VANILLA_ENTRANCES_TO_EXITS.keys() if e.find(exit_to) != -1][0]).split(" -> ")[0]
 
-            output_plando_file["World 1"]["entrances"][entr_from + " -> " + entr_to] = str(exit_to + " from " + exit_from)
+                print(entr_from + " -> " + entr_to)
+                print(exit_from + " -> " + exit_to)
+
+                output_plando_file["World 1"]["entrances"][entr_from + " -> " + entr_to] = str(exit_to + " from " + exit_from)
 
         output_config_file = {}
         for key, value in dict.items(self.data["Options"]):

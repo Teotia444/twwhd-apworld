@@ -476,7 +476,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Hyrule
     "Hyrule Castle - Sword Chamber Chest": TWWHDLocationData(
-        113, TWWHDFlag.DUNGEON, "Hyrule Castle Sword Chamber", 0x9, TWWHDLocationType.CHEST, 0
+        113, TWWHDFlag.MISCELL, "Hyrule Castle Sword Chamber", 0x9, TWWHDLocationType.CHEST, 0
     ),
 
     # Forsaken Fortress
