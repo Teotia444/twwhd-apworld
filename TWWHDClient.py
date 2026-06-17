@@ -53,19 +53,19 @@ if sys.platform != "win32":
             return self._read(address, length)
 
         def read_short(self, address: int) -> int:
-            return struct.unpack("<h", self._read(address, 2))[0]
+            return struct.unpack("H", self._read(address, 2))[0]
 
         def read_uchar(self, address: int) -> int:
             return struct.unpack("B", self._read(address, 1))[0]
 
-        def read_bool(self, address: int) -> int:
-            return self.read_uchar(address)
+        def read_bool(self, address: int) -> bool:
+            return bool(self.read_uchar(address))
 
         def read_string(self, address: int, length: int) -> str:
-            return self._read(address, length).rstrip(b"\x00").decode("utf-8", errors="ignore")
+            return self._read(address, length).split(b"\x00")[0].decode("utf-8", errors="ignore")
 
         def write_short(self, address: int, value: int) -> None:
-            self._write(address, struct.pack("<h", value))
+            self._write(address, struct.pack("H", value))
 
         def write_uchar(self, address: int, value: int) -> None:
             self._write(address, struct.pack("B", value))
