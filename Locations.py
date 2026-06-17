@@ -853,7 +853,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Tingle Island
     "Tingle Island - Ankle All Statues Reward": TWWHDLocationData(
-        221, TWWHDFlag.MISCELL, "The Great Sea", 0x0, TWWHDLocationType.SPECL, 0
+        221, TWWHDFlag.MISCELL, "The Great Sea", 0x0, TWWHDLocationType.SPECL, 1, 0x1D
     ),
     "Tingle Island - Big Octo": TWWHDLocationData(
         222, TWWHDFlag.BG_OCTO, "The Great Sea", 0x0, TWWHDLocationType.BOCTO, 0, -66
