@@ -46,14 +46,10 @@ you open the program.
 on the website, this will be `archipelago.gg:<port>`, where `<port>` is the port number. If a game is hosted from the
 `ArchipelagoServer.exe` (without `.exe` on Linux), the port number will default to `38281` but may be changed in the
 `host.yaml`.
-8. Once you're connected, go into Cemu and click on File->Open Cemu Folder. You should then see a `log.txt` file, open
-it with a text editor. Find the line that reads something like `Init Wii U memory space (base: 0x.......)`
-Copy the hex code that is noted right after base. Make sure you also copy the 0x part.
-9. Go back to the Wind Waker HD Client console and type the following: `/attach 0xXXXXXX..` where 0xXXXX represents the
-hex code you just copied.
 10. The client should notify that Cemu connected succesfully. You can start playing.
 11. Optionnaly, connect the integrated tracker. In the TWWHD AP Randomizer Build program, go into the Tracker tab and
-input your room informations, then connect. This will track the locations checked and items recieved.
+input your room informations, then connect. This will track the locations checked and items recieved. If connecting to 
+locally hosted room, make sure to specify the port (default is `38281`)
 
 ## Troubleshooting
 

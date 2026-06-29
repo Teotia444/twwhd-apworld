@@ -1,6 +1,8 @@
 import asyncio
 import time
 import traceback
+import os
+
 from typing import TYPE_CHECKING, Any, Optional
 
 import pymem
@@ -19,7 +21,6 @@ if TYPE_CHECKING:
 import sys
 
 if sys.platform != "win32":
-    import os
     import struct
 
     class LinuxMemory:
@@ -146,26 +147,40 @@ class TWWHDCommandProcessor(ClientCommandProcessor):
         """
         super().__init__(ctx)
 
-    def _cmd_cemu(self) -> None:
+    async def _cmd_cemu(self) -> None:
         """
-        Display the current Cemu emulator connection status.
+        Connects the client to Cemu.
+        Display the current Cemu emulator connection status if the client is already connected.
         """
-        if isinstance(self.ctx, TWWHDContext):
+
+        if isinstance(self.ctx, TWWHDContext) and self.ctx.auth and self.ctx.cemu_sync_task is None:
+            if os.path.isfile(os.getenv('APPDATA') + "\\Cemu\\log.txt"):
+                with open(os.getenv('APPDATA') + "\\Cemu\\log.txt") as f:
+                    next(f)
+                    base_addr = "0x" + f.readline().split("0x")[1].split(")")[0]
+                    self.ctx.CEMU_BASE_ADDR = int(base_addr, base=16)
+                    
+            else:
+                logger.info('Enter base address:')
+                base_addr = await self.ctx.console_input()
+                self.ctx.CEMU_BASE_ADDR = int(base_addr, base=16)
+                
+            self.ctx.cemu_sync_task = asyncio.create_task(cemu_sync_task(self.ctx), name="CemuSync")
+
+        elif isinstance(self.ctx, TWWHDContext) and not self.ctx.auth:
+            logger.info(f"Connect to the AP room before connecting Cemu!")
+
+        elif isinstance(self.ctx, TWWHDContext):
             logger.info(f"Cemu Status: {self.ctx.cemu_status}")
+        
 
     def _cmd_attach(self, base_addr: str) -> None:
         """
-        Connects to Cemu.
+        Deprecated
 
         :param base_addr: The base cemu address.
         """
-        if isinstance(self.ctx, TWWHDContext) and self.ctx.auth:
-            self.ctx.CEMU_BASE_ADDR = int(base_addr, base=16)
-            self.ctx.cemu_sync_task = asyncio.create_task(cemu_sync_task(self.ctx), name="CemuSync")
-        elif isinstance(self.ctx, TWWHDContext) and not self.ctx.auth:
-            logger.info(f"Connect to the AP room before connecting Cemu!")
-            
-
+        logger.info(f"Deprecated command! Your client should already be connected. Use /cemu to check the status of your connection.")
 
 class TWWHDContext(CommonContext):
     """
@@ -244,6 +259,18 @@ class TWWHDContext(CommonContext):
         if not self.auth:
             await self.get_username()
             await self.send_connect()
+            if os.path.isfile(os.getenv('APPDATA') + "\\Cemu\\log.txt"):
+                with open(os.getenv('APPDATA') + "\\Cemu\\log.txt") as f:
+                    next(f)
+                    base_addr = "0x" + f.readline().split("0x")[1].split(")")[0]
+                    self.CEMU_BASE_ADDR = int(base_addr, base=16)
+                    
+            else:
+                logger.info('Enter base address:')
+                base_addr = await self.console_input()
+                self.CEMU_BASE_ADDR = int(base_addr, base=16)
+                
+            self.cemu_sync_task = asyncio.create_task(cemu_sync_task(self), name="CemuSync")
             
 
     def on_package(self, cmd: str, args: dict[str, Any]) -> None:
