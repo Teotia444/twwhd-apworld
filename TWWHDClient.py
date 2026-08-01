@@ -511,13 +511,6 @@ def check_special_location(ctx:TWWHDContext, location_name: str, data: TWWHDLoca
     if location_name == "Mailbox - Letter from Grandma":
         checked = TWWHDMemory.read_uchar(ctx.CEMU_BASE_ADDR + 0x145B81A4 + data.address) & 0x3 == 0x3
 
-    # We check if the bits for turning all five statues are set for the Ankle's reward.
-    # For some reason, the bit for the Dragon Tingle Statue is separate from the rest.
-    #elif location_name == "Tingle Island - Ankle - Reward for All Tingle Statues":
-    #    dragon_tingle_statue_rewarded = TWWHDMemory.read_bool(TINGLE_STATUE_1_ADDR) & 0x40 == 0x40
-    #    other_tingle_statues_rewarded = TWWHDMemory.read_bool(TINGLE_STATUE_2_ADDR) & 0x0F == 0x0F
-    #    checked = dragon_tingle_statue_rewarded and other_tingle_statues_rewarded
-
     # else:
     #     raise NotImplementedError(f"Unknown special location: {location_name}")
 

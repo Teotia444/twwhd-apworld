@@ -27,7 +27,7 @@ from .randomizers.ItemPool import generate_itempool
 from .randomizers.RequiredBosses import RequiredBossesRandomizer
 from .Rules import set_rules
 
-VERSION: tuple[int, int, int] = (3, 0, 0)
+VERSION: tuple[int, int, int] = (0, 0, 1)
 
 
 def run_client(*args: str) -> None:
@@ -76,65 +76,14 @@ class TWWHDContainer(APPlayerContainer):
         super().write_contents(opened_zipfile)
 
         # Record the data for the game under the key `plando`.
-        opened_zipfile.writestr("plando", (bytes(yaml.safe_dump(self.data, sort_keys=False), "utf-8")))
+        for entr, exit in dict.items(self.data["Entrances"]):
+            print(exit)
+            exit_to = exit
+            assert [e for e in VANILLA_ENTRANCES_TO_EXITS.keys() if e.find(exit_to) != -1][0], "somehow " + exit_to
+            exit_from = ([e for e in VANILLA_ENTRANCES_TO_EXITS.keys() if e.find(exit_to) != -1][0]).split(" -> ")[0]             
+            self.data["Entrances"][entr] = str(exit_to + " from " + exit_from)        
 
-        entrance_rando = (bool(self.data["Options"]["randomize_dungeon_entrances"]) 
-                          or bool(self.data["Options"]["randomize_secret_cave_entrances"]) 
-                          or bool(self.data["Options"]["randomize_secret_cave_inner_entrances"])
-                          or bool(self.data["Options"]["randomize_fairy_fountain_entrances"]) 
-                          or bool(self.data["Options"]["randomize_miniboss_entrances"])
-                          or bool(self.data["Options"]["randomize_boss_entrances"])
-        )
-        if entrance_rando:
-            output_plando_file = {
-                "World 1": {
-                    "locations":{},
-                    "entrances":{}
-                }
-            }
-        else:
-            output_plando_file = {
-                "World 1": {
-                    "locations":{}
-                }
-            }
-
-        for key, value in dict.items(self.data["Locations"]):
-            if value["player"] != self.data["Slot"]:
-                output_plando_file["World 1"]["locations"][key] = "Fathers Letter"
-            else:
-                output_plando_file["World 1"]["locations"][key] = value["name"]
-
-        if entrance_rando:
-            for entr, exit in dict.items(self.data["Entrances"]):
-                entr_from = str(entr).split(" -> ")[0]
-                entr_to = str(entr).split(" -> ")[1]
-                exit_to = exit
-                exit_from = ([e for e in VANILLA_ENTRANCES_TO_EXITS.keys() if e.find(exit_to) != -1][0]).split(" -> ")[0]
-
-                print(entr_from + " -> " + entr_to)
-                print(exit_from + " -> " + exit_to)
-
-                output_plando_file["World 1"]["entrances"][entr_from + " -> " + entr_to] = str(exit_to + " from " + exit_from)
-
-        output_config_file = {}
-        for key, value in dict.items(self.data["Options"]):
-            if(str(key).find("progression_") != -1 and str(key).find("progression_dungeons") == -1):
-                output_config_file[key] = True if value == 1 else False
-            if(str(key).find("classic_mode") != -1):
-                output_config_file[key] = True if value == 1 else False
-
-        output_config_file["plandomizer"] = True
-        output_config_file["randomize_starting_island"] = bool(self.data["Options"]["randomize_starting_island"])
-        output_config_file["randomize_dungeon_entrances"] = bool(self.data["Options"]["randomize_dungeon_entrances"])
-        should_rando_cave = bool(self.data["Options"]["randomize_secret_cave_entrances"]) or bool(self.data["Options"]["randomize_secret_cave_inner_entrances"])
-        output_config_file["randomize_cave_entrances"] = "Caves and Fairies" if should_rando_cave and bool(self.data["Options"]["randomize_fairy_fountain_entrances"]) else "Caves" if should_rando_cave else "Disabled"
-        output_config_file["randomize_miniboss_entrances"] = bool(self.data["Options"]["randomize_miniboss_entrances"])
-        output_config_file["randomize_boss_entrances"] = bool(self.data["Options"]["randomize_boss_entrances"])
-
-        opened_zipfile.writestr("plandomizer.yaml", bytes(yaml.safe_dump(output_plando_file, sort_keys=False), "utf-8"))
-        opened_zipfile.writestr("config.yaml", bytes(yaml.safe_dump(output_config_file, sort_keys=False), "utf-8"))
-        
+        opened_zipfile.writestr("plando", (bytes(yaml.safe_dump(self.data, sort_keys=False), "utf-8")))        
 
 
 class TWWHDWeb(WebWorld):

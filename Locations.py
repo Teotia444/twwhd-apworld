@@ -853,7 +853,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
 
     # Tingle Island
     "Tingle Island - Ankle All Statues Reward": TWWHDLocationData(
-        221, TWWHDFlag.MISCELL, "The Great Sea", 0x0, TWWHDLocationType.SPECL, 1, 0x1D
+        221, TWWHDFlag.MISCELL, "The Great Sea", 0x0, TWWHDLocationType.EVENT, 1, 0x1D
     ),
     "Tingle Island - Big Octo": TWWHDLocationData(
         222, TWWHDFlag.BG_OCTO, "The Great Sea", 0x0, TWWHDLocationType.BOCTO, 0, -66
@@ -1050,13 +1050,13 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
         273, TWWHDFlag.TRE_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 51
     ),
     "Gale Isle - Sunken Treasure": TWWHDLocationData(
-        274, TWWHDFlag.TRI_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 33
+        274, TWWHDFlag.TRE_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 33
     ),
     "Crescent Moon Island - Sunken Treasure": TWWHDLocationData(
         275, TWWHDFlag.TRE_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 40
     ),
     "Seven Star Isles - Sunken Treasure": TWWHDLocationData(
-        276, TWWHDFlag.TRI_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 38
+        276, TWWHDFlag.TRE_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 38
     ),
     "Overlook Island - Sunken Treasure": TWWHDLocationData(
         277, TWWHDFlag.TRE_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 15
@@ -1134,7 +1134,7 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
         301, TWWHDFlag.TRI_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 34
     ),
     "Southern Triangle Island - Sunken Treasure": TWWHDLocationData(
-        302, TWWHDFlag.TRI_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 37
+        302, TWWHDFlag.TRE_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 37
     ),
     "Private Oasis - Sunken Treasure": TWWHDLocationData(
         303, TWWHDFlag.TRE_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 55
@@ -1170,13 +1170,13 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
         313, TWWHDFlag.TRE_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 4
     ),
     "Outset Island - Sunken Treasure": TWWHDLocationData(
-        314, TWWHDFlag.TRI_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 35
+        314, TWWHDFlag.TRE_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 35
     ),
     "Headstone Island - Sunken Treasure": TWWHDLocationData(
         315, TWWHDFlag.TRE_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 63
     ),
     "Two Eye Reef - Sunken Treasure": TWWHDLocationData(
-        316, TWWHDFlag.TRI_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 39
+        316, TWWHDFlag.TRE_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 39
     ),
     "Angular Isles - Sunken Treasure": TWWHDLocationData(
         317, TWWHDFlag.TRE_CHT, "The Great Sea", 0x0, TWWHDLocationType.CHART, 41
