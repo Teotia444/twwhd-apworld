@@ -8,9 +8,8 @@ If you're playing The Wind Waker HD, you must follow a few simple steps to get s
 You'll need the following components to be able to play The Wind Waker HD:
 * Install [Cemu Emulator](https://github.com/cemu-project/Cemu/releases/). **We recommend using the latest release.**
 * The latest version of the [TWWHD AP Randomizer Build](https://nightly.link/Teotia444/TWWHD-Randomizer-expbuilds/workflows/build_latest/archipelago?preview).
-    * Note that Linux is not supported for now, since upstream doesn't support it either. For now do not try to use the wuhb
-    image! Wii U support is not finished. You can also download them from the Actions page if you prefer, both the nightly link 
-    and the actions are equivalent. 
+    * For now do not try to use the wuhb image! Wii U support is not finished. You can also download them from the Actions page if you prefer, 
+    both the nightly link and the actions are equivalent. 
 * A The Wind Waker HD decrypted folder (North American version). The typical folder that comes from dumping the game from a
   Wii U with dumpling for instance. It should contain 3 folders inside: `"code", "content", "meta"`.
 * The latest APWorld for TWWHD. In order to install it, download [the repo you're on right now](https://github.com/teotia444/twwhd-apworld) (on the initial page, click the Code button, then 
@@ -54,8 +53,9 @@ locally hosted room, make sure to specify the port (default is `38281`)
 ## Troubleshooting
 
 * Ensure you are running the same version of Archipelago on which the multiworld was generated.
-* Ensure `twwhd.apworld` is not in your Archipelago installation's `custom_worlds` folder.
 * Ensure you are using the correct randomizer build for the version of Archipelago you are using.
+* Ensure you restart the client if you happen to crash or close Cemu.
 * Do not run the Archipelago Launcher or Cemu as an administrator on Windows.
 * If you encounter issues with authenticating, ensure that the randomized folder is open in Cemu and corresponds to the
   multiworld to which you are connecting.
+* Ask for help in [the WWHD thread](https://discord.com/channels/731205301247803413/1353503360938151979) if you can't figure it out.
