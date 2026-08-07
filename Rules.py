@@ -154,11 +154,11 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
     set_rule_if_exists("Windfall Island - Tingle Second Gift", lambda state: True)
     set_rule_if_exists("Windfall Island - Windfall Jail Maze Chest", lambda state: True)
     set_rule_if_exists(
-        "Windfall Island - Chu Jelly Juice Shop - Potion Shop 15 Green Chu",
+        "Windfall Island - Potion Shop 15 Green Chu",
         lambda state: can_farm_green_chu_jelly(state, player),
     )
     set_rule_if_exists(
-        "Windfall Island - Chu Jelly Juice Shop - Potion Shop 15 Blue Chu",
+        "Windfall Island - Potion Shop 15 Blue Chu",
         lambda state: can_obtain_15_blue_chu_jelly(state, player),
     )
     set_rule_if_exists("Windfall Island - Ivan Catch Killer Bees", lambda state: True)
@@ -287,7 +287,7 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
         "Dragon Roost Cavern - Water Jug Alcove Chest", lambda state: state.has("Dragon Roost Cavern Small Key", player, 1)
     )
     set_rule_if_exists(
-        "Dragon Roost Cavern - Water Jug on Upper Shelf", lambda state: state.has("Dragon Roost Cavern Small Key", player, 1)
+        "Dragon Roost Cavern - Water Jug On Upper Shelf", lambda state: state.has("Dragon Roost Cavern Small Key", player, 1)
     )
     set_rule_if_exists("Dragon Roost Cavern - Boarded Up Chest", lambda state: state.has("Dragon Roost Cavern Small Key", player, 1))
     set_rule_if_exists(
@@ -596,7 +596,7 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
         and (can_play_command_melody(state, player) or has_mirror_shield(state, player)),
     )
     set_rule_if_exists(
-        "Earth Temple - Chest Behind Destructible Wall",
+        "Earth Temple - Chest Behind Destructable Wall",
         lambda state: can_reach_earth_temple_right_path(state, player) and has_mirror_shield(state, player),
     )
     set_rule_if_exists(
