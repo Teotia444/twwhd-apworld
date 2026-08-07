@@ -91,8 +91,8 @@ CONNECTION_INITIAL_STATUS = "Cemu connection has not been initiated."
 CURR_HEALTH_ADDR = 0x145b7b82
 
 # These addresses are used for the Moblin's Letter check.
-LETTER_BASE_ADDR = 0x803C4C8E
-LETTER_OWND_ADDR = 0x803C4C98
+LETTER_BASE_ADDR = 0x145B7C06
+LETTER_OWND_ADDR = 0x145B7C10
 
 # These addresses are used to check flags for locations.
 CHARTS_BITFLD_ADDR = 0x145B7C74
@@ -476,6 +476,7 @@ def check_special_location(ctx:TWWHDContext, location_name: str, data: TWWHDLoca
     :param data: The data associated with the location.
     :raises NotImplementedError: If an unknown location name is provided.
     """
+    global TWWHDMemory
     checked = False
 
     # For "Windfall Island - Lenzo's House - Become Lenzo's Assistant"
@@ -490,14 +491,13 @@ def check_special_location(ctx:TWWHDContext, location_name: str, data: TWWHDLoca
     # The "Windfall Island - Maggie - Delivery Reward" flag remains unknown.
     # However, as a temporary workaround, we can check if the player had Moblin's letter at some point, but it's no
     # longer in their Delivery Bag.
-    # elif location_name == "Windfall Island - Maggie - Delivery Reward":
-    #     was_moblins_owned = (TWWHDMemory.read_long(LETTER_OWND_ADDR) >> 15) & 1
-    #     dbag_contents = [TWWHDMemory.read_bool(LETTER_BASE_ADDR + offset) for offset in range(8)]
-    #     checked = was_moblins_owned and 0x9B not in dbag_contents
+    if location_name == "Windfall Island - Maggie Delivery Reward":
+        was_moblins_owned = (TWWHDMemory.read_long(ctx.CEMU_BASE_ADDR + LETTER_OWND_ADDR) >> 23) & 1
+        dbag_contents : list[int] = [TWWHDMemory.read_uchar(ctx.CEMU_BASE_ADDR + LETTER_BASE_ADDR + offset) for offset in range(8)]
+        checked = was_moblins_owned and 0x9B not in dbag_contents
 
     # For Letter from Hoskit's Girlfriend, we need to check two bytes.
     # 0x1 = Golden Feathers delivered, 0x2 = Mail sent by Hoskit's Girlfriend, 0x3 = Mail read by Link
-    global TWWHDMemory
     if location_name == "Mailbox - Letter from Hoskit's Girlfriend":
         checked = TWWHDMemory.read_uchar(ctx.CEMU_BASE_ADDR + 0x145B81A4 + data.address) & 0x3 == 0x3
 
@@ -696,6 +696,8 @@ def check_ingame(ctx: TWWHDContext) -> bool:
 
     :return: `True` if the player is in-game, otherwise `False`.
     """
+    if ctx.CEMU_BASE_ADDR == 0 :
+        return False
     return read_string(ctx, CURR_STAGE_NAME_ADDR, 8) not in ["", "sea_T", "Name"]
 
 
@@ -757,6 +759,7 @@ async def cemu_sync_task(ctx: TWWHDContext) -> None:
                     
         except Exception:
             TWWHDMemory=None
+            ctx.CEMU_BASE_ADDR = 0
             logger.info("Connection to Cemu failed, attempting again in 5 seconds...")
             logger.error(traceback.format_exc())
             ctx.cemu_status = CONNECTION_LOST_STATUS
