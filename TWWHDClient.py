@@ -682,8 +682,8 @@ async def check_death(ctx: TWWHDContext) -> None:
     if ctx.slot is not None and check_ingame(ctx):
         cur_health = read_short(ctx, CURR_HEALTH_ADDR)
         m_mode = read_short(ctx, 0x10474342) # m_mode
-        if cur_health <= 0 and m_mode == 3:
-            if not ctx.has_send_death and time.time() >= ctx.last_death_link + 3:
+        if cur_health <= 0:
+            if not ctx.has_send_death and time.time() >= ctx.last_death_link + 3 and m_mode == 3:
                 ctx.has_send_death = True
                 await ctx.send_death(ctx.player_names[ctx.slot] + " ran out of hearts.")
         else:
