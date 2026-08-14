@@ -190,9 +190,9 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
     "Windfall Island - Lenzo Become Assistant": TWWHDLocationData(
         21, TWWHDFlag.LONG_SQ, "The Great Sea", 0xB, TWWHDLocationType.SPECL, 0, 0xc4
     ),
-    "Windfall Island - Lenzo Bring Forest Firefly": TWWHDLocationData(
-        22, TWWHDFlag.LONG_SQ, "The Great Sea", 0xB, TWWHDLocationType.EVENT, 5, 0x69
-    ),
+    # "Windfall Island - Lenzo Bring Forest Firefly": TWWHDLocationData( # TODO: this is a repeatable location in hd and does not seem to be bound to any flags
+    #     22, TWWHDFlag.LONG_SQ, "The Great Sea", 0xB, TWWHDLocationType.EVENT, 5, 0x69
+    # ),
     "Windfall Island - House of Wealth Chest": TWWHDLocationData(
         23, TWWHDFlag.MISCELL, "The Great Sea", 0xB, TWWHDLocationType.CHEST, 3
     ),

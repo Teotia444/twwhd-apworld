@@ -482,11 +482,11 @@ def check_special_location(ctx:TWWHDContext, location_name: str, data: TWWHDLoca
     # For "Windfall Island - Lenzo's House - Become Lenzo's Assistant"
     # 0x6 is delivered the final picture for Lenzo, 0x7 is a day has passed since becoming his assistant
     # Either is fine for sending the check, so check both conditions. TODO
-    # if location_name == "Windfall Island - Lenzo's House - Become Lenzo's Assistant":
-    #     checked = (
-    #         TWWHDMemory.read_bool(0x145B81A4 + data.address) & 0x6 == 0x6
-    #         or TWWHDMemory.read_bool(0x145B81A4 + data.address) & 0x7 == 0x7
-    #     )
+    if location_name == "Windfall Island - Lenzo Become Assistant":
+        checked = (
+            TWWHDMemory.read_uchar(ctx.CEMU_BASE_ADDR + 0x145B81A4 + data.address) & 0x6 == 0x6
+            or TWWHDMemory.read_uchar(ctx.CEMU_BASE_ADDR + 0x145B81A4 + data.address) & 0x7 == 0x7
+        )
 
     # The "Windfall Island - Maggie - Delivery Reward" flag remains unknown.
     # However, as a temporary workaround, we can check if the player had Moblin's letter at some point, but it's no
