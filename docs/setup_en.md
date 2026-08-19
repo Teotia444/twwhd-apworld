@@ -6,16 +6,19 @@ If you're playing The Wind Waker HD, you must follow a few simple steps to get s
 ## Requirements
 
 You'll need the following components to be able to play The Wind Waker HD:
-* Install [Cemu Emulator](https://github.com/cemu-project/Cemu/releases/). **We recommend using the latest release.**
-* The latest version of the [TWWHD AP Randomizer Build](https://nightly.link/Teotia444/TWWHD-Randomizer-expbuilds/workflows/build_latest/archipelago?preview).
-    * For now do not try to use the wuhb image! Wii U support is not finished. You can also download them from the Actions page if you prefer, 
-    both the nightly link and the actions are equivalent. 
+* Install [Cemu Emulator](https://github.com/cemu-project/Cemu/releases/). **We recommend using the latest release. Older** 
+  **releases will have a harder time connecting properly**
+* The latest version of the [TWWHD AP Randomizer Build](https://github.com/Teotia444/twwhd-apworld/releases/latest).
+    * The releases contains both the latest APWorld, and the latest generator (the exe file that also contains the tracker).
 * A The Wind Waker HD decrypted folder (North American version). The typical folder that comes from dumping the game from a
   Wii U with dumpling for instance. It should contain 3 folders inside: `"code", "content", "meta"`.
-* The latest APWorld for TWWHD. In order to install it, download [the repo you're on right now](https://github.com/teotia444/twwhd-apworld) (on the initial page, click the Code button, then 
-  download zip), and rename the downloaded zip file into a .apworld file. Then in the AP launcher, install the new APWorld 
-  as usual. Make sure to restart the launcher if TWWHD doesn't show up immediately.
-
+* The latest APWorld for TWWHD. In order to install it, download the APWorld from the releases tab or by clicking the link 
+  above. Then in the AP launcher, install the new APWorld as usual. Make sure to restart the launcher if TWWHD doesn't show 
+  up immediately.
+* Note that [the actions build](https://nightly.link/Teotia444/TWWHD-Randomizer-expbuilds/workflows/build_latest/archipelago?preview)
+  as well as this repo may contain nightly versions of the APWorld. For stability, downloading the release versions is safer, but if
+  you wish to download nightlies, you can by following the link above, as well as downloading the repo you are on right now,
+  and rename it from a `.zip` to a `.apworld`.
 
 ## Setting Up a YAML
 
