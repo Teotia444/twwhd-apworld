@@ -2,6 +2,7 @@ import asyncio
 from asyncio.log import logger
 import json
 import socket
+import struct
 import time
 import traceback
 from typing import Optional
@@ -29,7 +30,8 @@ CONNECTION_INITIAL_STATUS = "Wii U connection has not been initiated."
 class WiiUClass:
     def __init__(self, _ip_addr: str):
         self.ip_addr = _ip_addr
-        self.socket = socket.socket((self.ip_addr, 3599))
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket.connect((self.ip_addr, 3599))
 
         self.chest_bitfield: Optional[list[list[int]]] = None
         self.switches_bitfield: Optional[list[list[int]]] = None
@@ -54,11 +56,33 @@ class WiiUClass:
         self.dBag_flags: Optional[list[int]] = None
 
     def connect(self):
-        self.socket = socket.socket((self.ip_addr, 3599))
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.socket.connect((self.ip_addr, 3599))
+
+    def recv_num(self, n: int):
+        data = bytearray()
+        while len(data) < n :
+            chunk = self.socket.recv(n-len(data))
+            if not chunk:
+                raise ConnectionError("Connection to the Wii U was closed while receiving data")
+            data.extend(chunk)
+        return bytes(data)
+
+    def recv(self):
+        # start with the header
+        header = self.recv_num(4)
+        length = struct.unpack("!I", header)[0]
+        return self.recv_num(length)
+
+    def send(self, payload:str):
+        self.socket.send(payload.encode())
+        res = self.recv()
+        if not res:
+            raise ConnectionError("Recieved nothing from the Wii U!")
+        return json.loads(res)
 
     def update(self):
-        self.socket.send("u")
-        data = json.loads(self.socket.recv(4096))
+        data = self.send("u")
         if data["result"] != 0:
             return False
         self.chest_bitfield = data["data"]["chest_bitfields"]
@@ -97,8 +121,7 @@ def _give_death(ctx: TWWHDContext) -> None:
         and TWWHDMemory is not None
         and ctx.status == CONNECTION_CONNECTED_STATUS
     ):
-        TWWHDMemory.socket.send("h0")
-        res = json.loads(TWWHDMemory.socket.recv(256))
+        res = TWWHDMemory.send("h0")
         if res["result"] != 0:
             return
         ctx.has_send_death = True
@@ -112,8 +135,7 @@ def _give_item(ctx: TWWHDContext, item_name: str) -> bool:
     :return: Whether the item was successfully given.
     """
     global TWWHDMemory
-    TWWHDMemory.socket.send("g" + str(ITEM_TABLE[item_name].item_id))
-    res = json.loads(TWWHDMemory.socket.recv(256))
+    res = TWWHDMemory.send("g" + str(ITEM_TABLE[item_name].item_id))
     return res["result"]
 
 async def give_items(ctx: TWWHDContext) -> None:
@@ -141,9 +163,12 @@ async def give_items(ctx: TWWHDContext) -> None:
             res = _give_item(ctx, LOOKUP_ID_TO_NAME[item.item])
             if res == 2:
                 return
+        if(item.player == 0):
+            TWWHDMemory.send("nRecieved " + str(LOOKUP_ID_TO_NAME[item.item]) + " from the server!")
+        elif(item.player != ctx.slot):
+            TWWHDMemory.send("nRecieved " + str(LOOKUP_ID_TO_NAME[item.item]) + " from " + ctx.player_names[item.player] + " !")    
         # Increment the expected index.
-        TWWHDMemory.socket.send("i1")
-        res = json.loads(TWWHDMemory.socket.recv(256))
+        TWWHDMemory.send("i1")
 
 def check_special_location(ctx:TWWHDContext, location_name: str, data: TWWHDLocationData) -> bool:
     """
@@ -246,6 +271,7 @@ async def check_locations(ctx: TWWHDContext) -> None:
             assert data.address is not None
             checked = bool((TWWHDMemory.octo_flags[101 + data.address] >> data.bit) & 1)
         elif data.type == TWWHDLocationType.EVENT:
+            print(TWWHDMemory.story_flags)
             checked = bool((TWWHDMemory.story_flags[data.address] >> data.bit) & 1)
         elif data.type == TWWHDLocationType.SPECL:
             checked = check_special_location(ctx, location, data)
@@ -382,7 +408,7 @@ async def wiiu_sync_task(ctx: TWWHDContext) -> None:
     :param ctx: The Wind Waker HD client context.
     """
     global TWWHDMemory
-    logger.info("Starting Cemu connector. Use /cemu for status information.")
+    logger.info("Starting Wii U connector. Use /wiiu for status information.")
     sleep_time = 0.0
     while not ctx.exit_event.is_set():
         if sleep_time > 0.0:
@@ -396,12 +422,12 @@ async def wiiu_sync_task(ctx: TWWHDContext) -> None:
 
         try:
             if TWWHDMemory and ctx.status == CONNECTION_CONNECTED_STATUS:
+                TWWHDMemory.update()
                 if not check_ingame(ctx):
                     # Reset the give item array while not in the game.
                     sleep_time = 0.1
                     continue
-                if ctx.slot is not None:
-                    TWWHDMemory.update()
+                if ctx.slot is not None:      
                     if "DeathLink" in ctx.tags:
                         await check_death(ctx)
                     await give_items(ctx)
@@ -438,3 +464,7 @@ async def wiiu_sync_task(ctx: TWWHDContext) -> None:
             await ctx.disconnect()
             sleep_time = 5
             continue
+
+def setup_wiiu_mem(ip: str):
+    global TWWHDMemory
+    TWWHDMemory = WiiUClass(ip)

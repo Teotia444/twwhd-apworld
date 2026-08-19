@@ -61,7 +61,7 @@ class TWWHDCommandProcessor(ClientCommandProcessor):
                 base_addr = await self.ctx.console_input()
                 self.ctx.CEMU_BASE_ADDR = int(base_addr, base=16)
 
-            from .helpers.Cemu import check_death, _give_death, check_ingame, give_items, check_locations, check_current_stage_changed, cemu_sync_task
+            from .helpers.Cemu import _give_death, cemu_sync_task
             self.ctx.sync_task = asyncio.create_task(cemu_sync_task(self.ctx), name="CemuSync")
             logger.info('Cemu is connected!')
 
@@ -71,6 +71,24 @@ class TWWHDCommandProcessor(ClientCommandProcessor):
         elif isinstance(self.ctx, TWWHDContext):
             logger.info(f"Cemu Status: {self.ctx.status}")
         
+    async def _cmd_wiiu(self, ip_addr: str) -> None:
+        """
+        Connects the client to the Wii U.
+        Display the current Wii U connection status if the client is already connected.
+        """
+
+        if isinstance(self.ctx, TWWHDContext) and self.ctx.auth and self.ctx.sync_task is None:
+            from .helpers.WiiU import _give_death, wiiu_sync_task, setup_wiiu_mem
+            setup_wiiu_mem(ip_addr)
+            self.ctx.sync_task = asyncio.create_task(wiiu_sync_task(self.ctx), name="WiiUSync")
+            logger.info('Wii U is connected!')
+
+        elif isinstance(self.ctx, TWWHDContext) and not self.ctx.auth:
+            logger.info(f"Connect to the AP room before connecting to the Wii U!")
+
+        elif isinstance(self.ctx, TWWHDContext):
+            logger.info(f"Wii U Status: {self.ctx.status}")
+
 
     def _cmd_attach(self, base_addr: str) -> None:
         """
