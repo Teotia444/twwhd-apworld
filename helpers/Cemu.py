@@ -128,7 +128,7 @@ CURR_STAGE_NAME_ADDR = 0x104741F0
 # The chart name is inferrable from the chart's original destination.
 CHARTS_MAPPING_ADDR = 0x803FE8E0
 
-ITEM_GET_BYTE_ADDR = 0x28F8844
+ITEM_GET_BYTE_ADDR = 0x104741fe
 
 if sys.platform == "win32":
     MemoryType = pymem.Pymem
