@@ -195,7 +195,7 @@ def check_special_location(ctx:TWWHDContext, location_name: str, data: TWWHDLoca
     # However, as a temporary workaround, we can check if the player had Moblin's letter at some point, but it's no
     # longer in their Delivery Bag.
     elif location_name == "Windfall Island - Maggie Delivery Reward":
-        was_moblins_owned = False #(read_long(ctx, LETTER_OWND_ADDR) >> 23) & 1 # what do i do for this one
+        was_moblins_owned = TWWHDMemory.dBag_flags[2] & 0x80 == 0x80 
         checked = was_moblins_owned and 0x9B not in TWWHDMemory.dBag_content
 
     # For Letter from Hoskit's Girlfriend, we need to check two bytes.
