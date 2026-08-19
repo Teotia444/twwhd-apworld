@@ -27,7 +27,7 @@ from .randomizers.ItemPool import generate_itempool
 from .randomizers.RequiredBosses import RequiredBossesRandomizer
 from .Rules import set_rules
 
-VERSION: tuple[int, int, int] = (0, 0, 1)
+VERSION: tuple[int, int, int] = (1, 1, 0)
 
 
 def run_client(*args: str) -> None:
