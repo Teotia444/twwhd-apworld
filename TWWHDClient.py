@@ -61,7 +61,7 @@ class TWWHDCommandProcessor(ClientCommandProcessor):
                 base_addr = await self.ctx.console_input()
                 self.ctx.CEMU_BASE_ADDR = int(base_addr, base=16)
 
-            from .helpers.Cemu import _give_death, cemu_sync_task
+            from .helpers.Cemu import cemu_sync_task
             self.ctx.sync_task = asyncio.create_task(cemu_sync_task(self.ctx), name="CemuSync")
             logger.info('Cemu is connected!')
 
@@ -78,7 +78,7 @@ class TWWHDCommandProcessor(ClientCommandProcessor):
         """
 
         if isinstance(self.ctx, TWWHDContext) and self.ctx.auth and self.ctx.sync_task is None:
-            from .helpers.WiiU import _give_death, wiiu_sync_task, setup_wiiu_mem
+            from .helpers.WiiU import wiiu_sync_task, setup_wiiu_mem
             setup_wiiu_mem(ip_addr)
             self.ctx.sync_task = asyncio.create_task(wiiu_sync_task(self.ctx), name="WiiUSync")
             logger.info('Wii U is connected!')
@@ -108,6 +108,7 @@ class TWWHDContext(CommonContext):
     command_processor = TWWHDCommandProcessor
     game: str = "The Wind Waker HD"
     items_handling: int = 0b111
+    
 
     def __init__(self, server_address: Optional[str], password: Optional[str]) -> None:
         """
@@ -122,6 +123,7 @@ class TWWHDContext(CommonContext):
         self.status: str = CONNECTION_INITIAL_STATUS
         self.awaiting_rom: bool = False
         self.has_send_death: bool = False
+        self.give_death_func: Optional[function] = None
 
         # Bitfields used for checking locations.
         self.charts_bitfield: int
@@ -227,7 +229,7 @@ class TWWHDContext(CommonContext):
         :param data: The data associated with the DeathLink event.
         """
         super().on_deathlink(data)
-        _give_death(self)
+        self.give_death_func(self)
 
     def make_gui(self) -> type["kvui.GameManager"]:
         """

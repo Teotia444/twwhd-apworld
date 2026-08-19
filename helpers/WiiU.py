@@ -271,7 +271,6 @@ async def check_locations(ctx: TWWHDContext) -> None:
             assert data.address is not None
             checked = bool((TWWHDMemory.octo_flags[101 + data.address] >> data.bit) & 1)
         elif data.type == TWWHDLocationType.EVENT:
-            print(TWWHDMemory.story_flags)
             checked = bool((TWWHDMemory.story_flags[data.address] >> data.bit) & 1)
         elif data.type == TWWHDLocationType.SPECL:
             checked = check_special_location(ctx, location, data)
@@ -409,6 +408,7 @@ async def wiiu_sync_task(ctx: TWWHDContext) -> None:
     """
     global TWWHDMemory
     logger.info("Starting Wii U connector. Use /wiiu for status information.")
+    ctx.give_death_func = _give_death
     sleep_time = 0.0
     while not ctx.exit_event.is_set():
         if sleep_time > 0.0:

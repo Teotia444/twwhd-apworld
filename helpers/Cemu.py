@@ -520,6 +520,7 @@ async def cemu_sync_task(ctx: TWWHDContext) -> None:
     """
     global TWWHDMemory
     logger.info("Starting Cemu connector. Use /cemu for status information.")
+    ctx.give_death_func = _give_death
     sleep_time = 0.0
     while not ctx.exit_event.is_set():
         if sleep_time > 0.0:
