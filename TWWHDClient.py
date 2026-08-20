@@ -2,6 +2,7 @@ import asyncio
 import copy
 import os
 
+import sys
 from typing import TYPE_CHECKING, Any, Optional
 
 import Utils
@@ -28,6 +29,14 @@ CONNECTION_INITIAL_STATUS = "Cemu connection has not been initiated."
 # Data storage key
 AP_VISITED_STAGE_NAMES_KEY_FORMAT = "twwhd_visited_stages_%i"
 
+def get_log_path() -> str:
+    log_file_path = ''
+    if sys.platform == 'win32':
+        log_file_path = os.getenv('APPDATA') + "\\Cemu\\log.txt"
+    elif sys.platform == 'linux':
+        log_file_path = os.path.expanduser('~') + "/.local/share/Cemu/log.txt"
+    return log_file_path
+
 
 class TWWHDCommandProcessor(ClientCommandProcessor):
     """
@@ -51,12 +60,16 @@ class TWWHDCommandProcessor(ClientCommandProcessor):
         """
 
         if isinstance(self.ctx, TWWHDContext) and self.ctx.auth and self.ctx.sync_task is None:
-            if os.path.isfile(os.getenv('APPDATA') + "\\Cemu\\log.txt"):
-                with open(os.getenv('APPDATA') + "\\Cemu\\log.txt") as f:
-                    next(f)
-                    base_addr = "0x" + f.readline().split("0x")[1].split(")")[0]
-                    self.ctx.CEMU_BASE_ADDR = int(base_addr, base=16)
-                    
+            log_file_path = get_log_path()
+            if os.path.isfile(log_file_path):
+                with open(log_file_path) as f:
+                    curr_line = f.readline()
+                    while("Init Wii U memory space" not in curr_line):
+                        curr_line = f.readline()
+                        assert curr_line != "", "Reached EOF in the cemu log file. This most likely means either your Cemu installation is incorrect, or you've not launched the game yet."
+                    base_addr = "0x" + curr_line.split("0x")[1].split(")")[0]
+                    self.CEMU_BASE_ADDR = int(base_addr, base=16)
+
             else:
                 logger.info('Enter base address:')
                 base_addr = await self.ctx.console_input()
