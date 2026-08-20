@@ -1,4 +1,5 @@
 import asyncio
+import copy
 import os
 
 from typing import TYPE_CHECKING, Any, Optional
@@ -124,6 +125,7 @@ class TWWHDContext(CommonContext):
         self.awaiting_rom: bool = False
         self.has_send_death: bool = False
         self.give_death_func: Optional[function] = None
+        self.forward_message_func: Optional[function] = None
 
         # Bitfields used for checking locations.
         self.charts_bitfield: int
@@ -276,7 +278,11 @@ class TWWHDContext(CommonContext):
             salvage_location_name = f"{shuffled_island_name} - Sunken Treasure"
             self.salvage_locations_map[salvage_location_name] = salvage_bit
 
+    def on_print_json(self, args: dict) -> None:
+        if not self.is_uninteresting_item_send(args) and self.forward_message_func:
+            self.forward_message_func(self, self.rawjsontotextparser(copy.deepcopy(args["data"])))
 
+        super().on_print_json(args)
 
 def main(*args: str) -> None:
     """

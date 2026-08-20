@@ -86,11 +86,16 @@ class WiiUClass:
         if data["result"] != 0:
             return False
         self.chest_bitfield = data["data"]["chest_bitfields"]
-        self.switches_bitfield = data["data"]["switches_bitfields"]
+        self.switches_bitfield = data["data"]["switches_bitfields"] 
+        for i in range(len(self.switches_bitfield)):
+            self.switches_bitfield[i] = self.switches_bitfield[i][:10] # this is really dumb
+        
         self.pickups_bitfield = data["data"]["pickups_bitfields"]
 
         self.curr_stage_chests_bitfield = data["data"]["current_chest_bitfield"]
-        self.curr_stage_switches_bitfield = data["data"]["current_switch_bitfield"]
+        self.curr_stage_switches_bitfield = data["data"]["current_switch_bitfield"][:10] #same as above
+
+
         self.curr_stage_pickups_bitfield = data["data"]["current_pickup_bitfield"]
 
         self.charts_bitfield = data["data"]["charts_bitfield"]
@@ -163,10 +168,10 @@ async def give_items(ctx: TWWHDContext) -> None:
             res = _give_item(ctx, LOOKUP_ID_TO_NAME[item.item])
             if res == 2:
                 return
-        if(item.player == 0):
-            TWWHDMemory.send("nRecieved " + str(LOOKUP_ID_TO_NAME[item.item]) + " from the server!")
-        elif(item.player != ctx.slot):
-            TWWHDMemory.send("nRecieved " + str(LOOKUP_ID_TO_NAME[item.item]) + " from " + ctx.player_names[item.player] + " !")    
+        # if(item.player == 0):
+        #     TWWHDMemory.send("nRecieved " + str(LOOKUP_ID_TO_NAME[item.item]) + " from the server!")
+        # elif(item.player != ctx.slot):
+        #     TWWHDMemory.send("nRecieved " + str(LOOKUP_ID_TO_NAME[item.item]) + " from " + ctx.player_names[item.player] + " !")    
         # Increment the expected index.
         TWWHDMemory.send("i1")
 
@@ -398,6 +403,10 @@ def check_regular_location(ctx: TWWHDContext, curr_stage_id: int, data: TWWHDLoc
 
     return checked
 
+def _forward_message_func(ctx: TWWHDContext, data):
+    global TWWHDMemory
+    TWWHDMemory.send("n"+data)
+
 async def wiiu_sync_task(ctx: TWWHDContext) -> None:
     """
     The task loop for managing the connection to the Wii U.
@@ -409,6 +418,7 @@ async def wiiu_sync_task(ctx: TWWHDContext) -> None:
     global TWWHDMemory
     logger.info("Starting Wii U connector. Use /wiiu for status information.")
     ctx.give_death_func = _give_death
+    ctx.forward_message_func = _forward_message_func
     sleep_time = 0.0
     while not ctx.exit_event.is_set():
         if sleep_time > 0.0:
