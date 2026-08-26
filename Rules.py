@@ -99,7 +99,7 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
     set_rule_if_exists(
         "Outset Island - Great Fairy", lambda state: state.can_reach_region("Outset Island - Great Fairy Fountain", player)
     )
-    set_rule_if_exists("Jabun's Cave Chest", lambda state: state.has("Bombs", player))
+    set_rule_if_exists("Outset Island - Jabun's Cave Chest", lambda state: state.has("Bombs", player))
     set_rule_if_exists(
         "Outset Island - Dig up Black Soil", lambda state: state.has_all(["Bait Bag", "Power Bracelets"], player)
     )
@@ -243,7 +243,7 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
     set_rule_if_exists("Windfall Island - Mila Catch Thief", lambda state: True)
     set_rule_if_exists("Windfall Island - Battle Squid First Prize", lambda state: True)
     set_rule_if_exists("Windfall Island - Battle Squid Second Prize", lambda state: True)
-    set_rule_if_exists("Windfall Island - Battlesquid Under 20 Prize", lambda state: True)
+    set_rule_if_exists("Windfall Island - Battle Squid Under 20 Prize", lambda state: True)
     set_rule_if_exists(
         "Windfall Island - Pompie & Vera Secret Meeting Photo",
         lambda state: can_play_winds_requiem(state, player) and has_picto_box(state, player),
@@ -801,7 +801,7 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
         and can_defeat_jalhalla(state, player),
     )
     set_rule_if_exists("Mailbox - Letter from Komali's Father", lambda state: state.has("Farore's Pearl", player))
-    set_rule_if_exists("Mailbox - Letter Advertising Bombs in Beedle's Shop", lambda state: state.has("Bombs", player))
+    set_rule_if_exists("Mailbox - Letter Advertising Bombs", lambda state: state.has("Bombs", player))
     set_rule_if_exists(
         "Mailbox - Letter Advertising Rock Spire Shop Ship", lambda state: has_any_wallet_upgrade(state, player)
     )

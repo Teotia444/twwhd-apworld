@@ -77,7 +77,6 @@ class TWWHDContainer(APPlayerContainer):
 
         # Record the data for the game under the key `plando`.
         for entr, exit in dict.items(self.data["Entrances"]):
-            print(exit)
             exit_to = exit
             assert [e for e in VANILLA_ENTRANCES_TO_EXITS.keys() if e.find(exit_to) != -1][0], "somehow " + exit_to
             exit_from = ([e for e in VANILLA_ENTRANCES_TO_EXITS.keys() if e.find(exit_to) != -1][0]).split(" -> ")[0]             
@@ -401,14 +400,14 @@ class TWWHDWorld(World):
 
         # Ban the Bait Bag slot from having bait.
         # Beedle's shop does not work correctly if the same item is in multiple slots in the same shop.
-        if "The Great Sea - Beedle's Shop Ship - 20 Rupee Item" in self.progress_locations:
-            beedle_20 = self.get_location("The Great Sea - Beedle's Shop Ship - 20 Rupee Item")
+        if "Great Sea - Beedle Shop 20 Rupee Item" in self.progress_locations:
+            beedle_20 = self.get_location("Great Sea - Beedle Shop 20 Rupee Item")
             add_item_rule(beedle_20, lambda item: item.name not in ["All-Purpose Bait", "Hyoi Pear"])
 
         # For the same reason, the same item should not appear more than once on the Rock Spire Isle shop ship.
         # All non-TWWHD items use the same item (Father's Letter), so at most one non-TWWHD item can appear in the shop.
         # The rest must be (unique, but not necessarily local) TWWHD items.
-        locations = [f"Rock Spire Isle - Beedle's Special Shop Ship - {v} Rupee Item" for v in [500, 950, 900]]
+        locations = [f"Rock Spire Isle - Beedle {v} Rupee Item" for v in [500, 950, 900]]
         if all(loc in self.progress_locations for loc in locations):
             rock_spire_shop_ship_locations = [self.get_location(location_name) for location_name in locations]
 
