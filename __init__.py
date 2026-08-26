@@ -496,6 +496,7 @@ class TWWHDWorld(World):
                 if location.item:
                     item_info = {
                         "player": location.item.player,
+                        "player_name": self.multiworld.get_player_name(location.item.player),
                         "name": location.item.name,
                         "game": location.item.game,
                         "classification": self._get_classification_name(location.item.classification),

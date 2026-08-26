@@ -1,5 +1,5 @@
 import asyncio
-from asyncio.log import logger
+from CommonClient import logger
 import sys
 import time
 import traceback
