@@ -674,6 +674,12 @@ class ClassicMode(Toggle):
 
     display_name = "Classic Mode"
 
+class StartWithRandomItemSlideItem(Toggle):
+    """
+    Start with a random item that can item slide. This includes: Bow, Grappling Hook, Boomerang or Hookshot
+    """
+    display_name = "Start with random Item Slide item"
+
 
 @dataclass
 class TWWHDOptions(PerGameCommonOptions):
@@ -709,6 +715,7 @@ class TWWHDOptions(PerGameCommonOptions):
     randomize_smallkeys: RandomizeSmallKeys
     randomize_bigkeys: RandomizeBigKeys
     sword_mode: SwordMode
+    random_itemslide_item: StartWithRandomItemSlideItem
     required_bosses: RequiredBosses
     num_required_bosses: NumRequiredBosses
     included_dungeons: IncludedDungeons
@@ -777,6 +784,7 @@ class TWWHDOptions(PerGameCommonOptions):
             "progression_island_puzzles",
             "progression_misc",
             "sword_mode",
+            "random_itemslide_item",
             "required_bosses",
             "logic_obscurity",
             "logic_precision",
@@ -892,6 +900,7 @@ twwhd_option_groups: list[OptionGroup] = [
             RandomizeSmallKeys,
             RandomizeBigKeys,
             ChestTypeMatchesContents,
+            StartWithRandomItemSlideItem,
             # TrapChests,
         ],
     ),
