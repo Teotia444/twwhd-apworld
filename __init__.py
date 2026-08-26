@@ -6,7 +6,7 @@ from typing import Any, ClassVar
 
 import yaml
 
-from BaseClasses import Item
+from BaseClasses import Item, LocationProgressType
 from BaseClasses import ItemClassification as IC
 from BaseClasses import MultiWorld, Region, Tutorial
 from Options import Toggle
@@ -486,12 +486,15 @@ class TWWHDWorld(World):
             "Locations": {},
             "Entrances": {},
             "Charts": charts_mapping,
+            "Excluded": []
         }
 
         # Output which item has been placed at each location.
         output_locations = output_data["Locations"]
         locations = multiworld.get_locations(player)
         for location in locations:
+            if location.progress_type == LocationProgressType.EXCLUDED:
+                output_data["Excluded"].append(location.name)
             if location.name != "Defeat Ganondorf":
                 if location.item:
                     item_info = {
@@ -504,6 +507,7 @@ class TWWHDWorld(World):
                 else:
                     item_info = {"name": "Nothing", "game": "The Wind Waker HD", "classification": "filler"}
                 output_locations[location.name] = item_info
+
 
         # Output the mapping of entrances to exits.
         output_entrances = output_data["Entrances"]
