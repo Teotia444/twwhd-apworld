@@ -354,8 +354,6 @@ class ExcludedDungeons(OptionSet):
 
 class ChestTypeMatchesContents(Toggle):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     Changes the chest type to reflect its contents. A metal chest has a progress item, a wooden chest has a non-progress
     item or a consumable, and a green chest has a potentially required dungeon key.
     """
