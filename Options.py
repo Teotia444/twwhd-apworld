@@ -527,6 +527,17 @@ class HoHoHints(DefaultOnToggle):
 
     display_name = "Place Hints on Old Man Ho Ho"
 
+class KreebHints(Range):
+    """
+    Places hints on Kreeb. Kreeb appears at Windfall's windmill and will give you hints on where bows are located. Any 
+    items from any game that has the word "Bow" can be chosen.
+    Set this option to 0 if you don't want any hints from Kreeb. 
+    """
+
+    display_name = "Place Hints on Kreeb"
+    range_start = 0
+    range_end = 10
+    default = 4
 
 class FishmenHints(DefaultOnToggle):
     """
@@ -736,6 +747,7 @@ class TWWHDOptions(PerGameCommonOptions):
     # randomize_music: RandomizeMusic
     randomize_starting_island: RandomizeStartingIsland
     randomize_charts: RandomizeCharts
+    kreeb_bow_hints: KreebHints
     # hoho_hints: HoHoHints
     # fishmen_hints: FishmenHints
     # korl_hints: KoRLHints
@@ -785,6 +797,7 @@ class TWWHDOptions(PerGameCommonOptions):
             "progression_misc",
             "sword_mode",
             "random_itemslide_item",
+            "kreeb_bow_hints",
             "required_bosses",
             "logic_obscurity",
             "logic_precision",
@@ -860,6 +873,7 @@ class TWWHDOptions(PerGameCommonOptions):
             "skip_rematch_bosses",
             "remove_music",
             "classic_mode",
+            "kreeb_bow_hints"
         )
 
 
@@ -941,6 +955,13 @@ twwhd_option_groups: list[OptionGroup] = [
             NumRequiredBosses,
             IncludedDungeons,
             ExcludedDungeons,
+        ],
+        start_collapsed=True,
+    ),
+    OptionGroup(
+        "Hints",
+        [
+            KreebHints,
         ],
         start_collapsed=True,
     ),
