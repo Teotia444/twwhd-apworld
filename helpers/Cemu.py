@@ -1,6 +1,7 @@
 import asyncio
 from CommonClient import logger
 import sys
+import os
 import time
 import traceback
 from typing import Optional
@@ -40,7 +41,8 @@ if sys.platform != "win32":
                 if pid.isdigit():
                     try:
                         with open(f"/proc/{pid}/comm") as f:
-                            if process_name.lower() in f.read().strip().lower():
+                            cur_proccess = f.read().strip().lower()
+                            if process_name.lower() in cur_proccess and 'cemu-wrapper' not in cur_proccess:
                                 return int(pid)
                     except (FileNotFoundError, PermissionError):
                         pass

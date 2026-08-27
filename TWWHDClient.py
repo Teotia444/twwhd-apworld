@@ -34,7 +34,19 @@ def get_log_path() -> str:
     if sys.platform == 'win32':
         log_file_path = os.getenv('APPDATA') + "\\Cemu\\log.txt"
     elif sys.platform == 'linux':
-        log_file_path = os.path.expanduser('~') + "/.local/share/Cemu/log.txt"
+        non_flat_log_file_path = os.path.expanduser('~') + "/.local/share/Cemu/log.txt"
+        flatpak_log_file_path = os.path.expanduser('~') + "/.var/app/info.cemu.Cemu/data/Cemu/log.txt"
+        if (os.path.isfile(non_flat_log_file_path) and os.path.isfile(flatpak_log_file_path)):
+            t1 = os.path.getmtime(non_flat_log_file_path)
+            t2 = os.path.getmtime(flatpak_log_file_path)
+            if t1 > t2:
+                log_file_path = non_flat_log_file_path
+            else:
+                log_file_path = flatpak_log_file_path
+        elif os.path.isfile(non_flat_log_file_path):
+            log_file_path = non_flat_log_file_path
+        else:
+            log_file_path = flatpak_log_file_path
     return log_file_path
 
 
