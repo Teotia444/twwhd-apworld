@@ -745,11 +745,11 @@ class TWWHDOptions(PerGameCommonOptions):
     kreeb_bow_hints: KreebHints
     ho_ho_hints: HoHoHints
     ho_ho_triforce_hints: HoHoTriforceHints
-    # korl_hints: KoRLHints
-    # num_item_hints: NumItemHints
-    # num_location_hints: NumLocationHints
-    # num_barren_hints: NumBarrenHints
-    # num_path_hints: NumPathHints
+    korl_hints: KoRLHints
+    item_hints: NumItemHints
+    location_hints: NumLocationHints
+    barren_hints: NumBarrenHints
+    path_hints: NumPathHints
     # prioritize_remote_hints: PrioritizeRemoteHints
     instant_text_boxes: InstantTextBoxes
     reveal_full_sea_chart: RevealFullSeaChart
@@ -795,6 +795,11 @@ class TWWHDOptions(PerGameCommonOptions):
             "kreeb_bow_hints",
             "ho_ho_hints",
             "ho_ho_triforce_hints",
+            "korl_hints",
+            "item_hints",
+            "location_hints",
+            "barren_hints",
+            "path_hints",
             "required_bosses",
             "logic_obscurity",
             "logic_precision",
@@ -873,6 +878,11 @@ class TWWHDOptions(PerGameCommonOptions):
             "kreeb_bow_hints",
             "ho_ho_hints",
             "ho_ho_triforce_hints",
+            "korl_hints",
+            "item_hints",
+            "location_hints",
+            "barren_hints",
+            "path_hints",
         )
 
 
@@ -963,6 +973,12 @@ twwhd_option_groups: list[OptionGroup] = [
             KreebHints,
             HoHoHints,
             HoHoTriforceHints,
+            KoRLHints,
+            NumPathHints,
+            NumItemHints,
+            NumLocationHints,
+            NumBarrenHints,
+            
         ],
         start_collapsed=True,
     ),
