@@ -527,6 +527,16 @@ class HoHoHints(DefaultOnToggle):
 
     display_name = "Place Hints on Old Man Ho Ho"
 
+class HoHoTriforceHints(DefaultOnToggle):
+    """
+    **DEV NOTE:** This option is currently unimplemented and will be ignored.
+
+    Hints from Old Man Ho Ho will prioritize triforce pieces. This applies to any game that has an item conaining the
+    word "Triforce" in it.
+    """
+
+    display_name = "Place Hints on Old Man Ho Ho"
+
 class KreebHints(Range):
     """
     Places hints on Kreeb. Kreeb appears at Windfall's windmill and will give you hints on where bows are located. Any 
@@ -748,7 +758,8 @@ class TWWHDOptions(PerGameCommonOptions):
     randomize_starting_island: RandomizeStartingIsland
     randomize_charts: RandomizeCharts
     kreeb_bow_hints: KreebHints
-    # hoho_hints: HoHoHints
+    ho_ho_hints: HoHoHints
+    ho_ho_triforce_hints: HoHoTriforceHints
     # fishmen_hints: FishmenHints
     # korl_hints: KoRLHints
     # num_item_hints: NumItemHints
@@ -798,6 +809,8 @@ class TWWHDOptions(PerGameCommonOptions):
             "sword_mode",
             "random_itemslide_item",
             "kreeb_bow_hints",
+            "ho_ho_hints",
+            "ho_ho_triforce_hints",
             "required_bosses",
             "logic_obscurity",
             "logic_precision",
@@ -873,7 +886,9 @@ class TWWHDOptions(PerGameCommonOptions):
             "skip_rematch_bosses",
             "remove_music",
             "classic_mode",
-            "kreeb_bow_hints"
+            "kreeb_bow_hints",
+            "ho_ho_hints",
+            "ho_ho_triforce_hints",
         )
 
 
@@ -962,6 +977,8 @@ twwhd_option_groups: list[OptionGroup] = [
         "Hints",
         [
             KreebHints,
+            HoHoHints,
+            HoHoTriforceHints,
         ],
         start_collapsed=True,
     ),
