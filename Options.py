@@ -519,8 +519,6 @@ class RandomizeCharts(Toggle):
 
 class HoHoHints(DefaultOnToggle):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     Places hints on Old Man Ho Ho. Old Man Ho Ho appears at 10 different islands in the game. Talk to Old Man Ho Ho to
     get hints.
     """
@@ -529,8 +527,6 @@ class HoHoHints(DefaultOnToggle):
 
 class HoHoTriforceHints(DefaultOnToggle):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     Hints from Old Man Ho Ho will prioritize triforce pieces. This applies to any game that has an item conaining the
     word "Triforce" in it.
     """
@@ -548,17 +544,6 @@ class KreebHints(Range):
     range_start = 0
     range_end = 10
     default = 4
-
-class FishmenHints(DefaultOnToggle):
-    """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
-    Places hints on the fishmen. There is one fishman at each of the 49 islands of the Great Sea. Each fishman must be
-    fed an All-Purpose Bait before he will give a hint.
-    """
-
-    display_name = "Place Hints on Fishmen"
-
 
 class KoRLHints(Toggle):
     """
@@ -760,7 +745,6 @@ class TWWHDOptions(PerGameCommonOptions):
     kreeb_bow_hints: KreebHints
     ho_ho_hints: HoHoHints
     ho_ho_triforce_hints: HoHoTriforceHints
-    # fishmen_hints: FishmenHints
     # korl_hints: KoRLHints
     # num_item_hints: NumItemHints
     # num_location_hints: NumLocationHints
