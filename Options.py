@@ -547,8 +547,6 @@ class KreebHints(Range):
 
 class KoRLHints(Toggle):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     Places hints on the King of Red Lions. Talk to the King of Red Lions to get hints.
     """
 
@@ -557,8 +555,6 @@ class KoRLHints(Toggle):
 
 class NumItemHints(Range):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     The number of item hints that will be placed. Item hints tell you which area contains a particular progress item in
     this seed.
 
@@ -573,8 +569,6 @@ class NumItemHints(Range):
 
 class NumLocationHints(Range):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     The number of location hints that will be placed. Location hints tell you what item is at a specific location in
     this seed.
 
@@ -589,8 +583,6 @@ class NumLocationHints(Range):
 
 class NumBarrenHints(Range):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     The number of barren hints that will be placed. Barren hints tell you that an area does not contain any required
     items in this seed.
 
@@ -605,8 +597,6 @@ class NumBarrenHints(Range):
 
 class NumPathHints(Range):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     The number of path hints that will be placed. Path hints tell you that an area contains an item that is required to
     reach a particular goal in this seed.
 
@@ -686,6 +676,21 @@ class StartWithRandomItemSlideItem(Toggle):
     """
     display_name = "Start with random Item Slide item"
 
+class FixRng(Toggle):
+    """
+    This option attempts to fix some of the RNG elements of the game to be fixed, for now this only fixes
+    the Helmaroc King's flight pattern.
+    """
+
+    display_name = "Fix RNG"
+
+class Performance(Toggle):
+    """
+    This option makes the game lag less on real hardware. For now this only fixes a few list of particles
+    that produces lag (for example on the Gohma fight)
+    """
+
+    display_name = "Performance"
 
 @dataclass
 class TWWHDOptions(PerGameCommonOptions):
@@ -757,6 +762,8 @@ class TWWHDOptions(PerGameCommonOptions):
     skip_rematch_bosses: SkipRematchBosses
     remove_music: RemoveMusic
     classic_mode: ClassicMode
+    fix_rng: FixRng
+    performance: Performance
     death_link: DeathLink
 
     def get_slot_data_dict(self) -> dict[str, Any]:
@@ -812,6 +819,8 @@ class TWWHDOptions(PerGameCommonOptions):
             "skip_rematch_bosses",
             "remove_music",
             "classic_mode",
+            "fix_rng",
+            "performance",
             "death_link",
         )
 
@@ -875,6 +884,8 @@ class TWWHDOptions(PerGameCommonOptions):
             "skip_rematch_bosses",
             "remove_music",
             "classic_mode",
+            "fix_rng",
+            "performance",
             "kreeb_bow_hints",
             "ho_ho_hints",
             "ho_ho_triforce_hints",
@@ -955,6 +966,9 @@ twwhd_option_groups: list[OptionGroup] = [
             SkipRematchBosses,
             AddShortcutWarpsBetweenDungeons,
             RemoveMusic,
+            ClassicMode,
+            FixRng,
+            Performance
         ],
     ),
     OptionGroup(
