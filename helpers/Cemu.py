@@ -132,6 +132,8 @@ CHARTS_MAPPING_ADDR = 0x803FE8E0
 
 ITEM_GET_BYTE_ADDR = 0x104741fe
 
+LINK_PTR_ADDR = 0x10474be4
+
 if sys.platform == "win32":
     MemoryType = pymem.Pymem
 else:
@@ -282,6 +284,7 @@ async def give_items(ctx: TWWHDContext) -> None:
 
             # Increment the expected index.
             write_short(ctx, EXPECTED_INDEX_ADDR, idx + 1)
+            await asyncio.sleep(0.01)
 
 def check_special_location(ctx:TWWHDContext, location_name: str, data: TWWHDLocationData) -> bool:
     """
@@ -471,7 +474,7 @@ def check_ingame(ctx: TWWHDContext) -> bool:
     """
     if ctx.CEMU_BASE_ADDR == 0 :
         return False
-    return read_string(ctx, CURR_STAGE_NAME_ADDR, 8) not in ["", "sea_T", "Name"]
+    return read_string(ctx, CURR_STAGE_NAME_ADDR, 8) not in ["", "sea_T", "Name"] and read_long(ctx, LINK_PTR_ADDR) != 0
 
 
 def check_regular_location(ctx: TWWHDContext, curr_stage_id: int, data: TWWHDLocationData) -> bool:
