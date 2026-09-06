@@ -564,7 +564,7 @@ class NumItemHints(Range):
     display_name = "Item Hints"
     range_start = 0
     range_end = 15
-    default = 15
+    default = 0
 
 
 class NumLocationHints(Range):

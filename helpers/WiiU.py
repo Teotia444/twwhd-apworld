@@ -31,7 +31,6 @@ class WiiUClass:
     def __init__(self, _ip_addr: str):
         self.ip_addr = _ip_addr
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.connect((self.ip_addr, 3599))
 
         self.chest_bitfield: Optional[list[list[int]]] = None
         self.switches_bitfield: Optional[list[list[int]]] = None
@@ -57,7 +56,16 @@ class WiiUClass:
 
     def connect(self):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.connect((self.ip_addr, 3599))
+        self.socket.settimeout(5)
+        try:
+            self.socket.connect((self.ip_addr, 3599))
+            self.socket.settimeout(None)
+            return 0
+        except socket.error as e:
+            logger.info("Error connecting to the Wii U : %s", e) 
+            self.socket.close()
+            return e.errno
+
 
     def recv_num(self, n: int):
         data = bytearray()
@@ -75,7 +83,10 @@ class WiiUClass:
         return self.recv_num(length)
 
     def send(self, payload:str):
-        self.socket.send(payload.encode())
+        data = payload.encode()
+        header = struct.pack("!I", len(data))
+        self.socket.sendall(header)
+        self.socket.sendall(data)
         res = self.recv()
         if not res:
             raise ConnectionError("Recieved nothing from the Wii U!")
@@ -475,6 +486,9 @@ async def wiiu_sync_task(ctx: TWWHDContext) -> None:
             sleep_time = 5
             continue
 
-def setup_wiiu_mem(ip: str):
+def setup_wiiu_mem(ctx: TWWHDContext, ip: str):
     global TWWHDMemory
     TWWHDMemory = WiiUClass(ip)
+    ret = TWWHDMemory.connect()
+    ctx.status = CONNECTION_CONNECTED_STATUS if ret == 0 else CONNECTION_INITIAL_STATUS
+    return ret

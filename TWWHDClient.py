@@ -102,10 +102,12 @@ class TWWHDCommandProcessor(ClientCommandProcessor):
         Connects the client to the Wii U.
         Display the current Wii U connection status if the client is already connected.
         """
-
+        logger.info("Attempting connection with the Wii U")
         if isinstance(self.ctx, TWWHDContext) and self.ctx.auth and self.ctx.sync_task is None:
             from .helpers.WiiU import wiiu_sync_task, setup_wiiu_mem
-            setup_wiiu_mem(ip_addr)
+            if setup_wiiu_mem(self.ctx, ip_addr) != 0:
+                logger.info("Could not connect to the Wii U!")
+                return
             self.ctx.sync_task = asyncio.create_task(wiiu_sync_task(self.ctx), name="WiiUSync")
             logger.info('Wii U is connected!')
 
