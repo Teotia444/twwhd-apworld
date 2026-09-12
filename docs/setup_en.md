@@ -5,14 +5,15 @@ If you're playing The Wind Waker HD, you must follow a few simple steps to get s
 
 ## Requirements
 
+**If you're updating from an old version:**
+* Make sure you remove any old WWHD apworlds from your `custom_worlds` folder (which you can usually find at `C:\ProgramData\Archipelago` or wherever you installed AP)
+
 You'll need the following components to be able to play The Wind Waker HD:
-* The latest APWorld for TWWHD. For this beta testing specifically, you'll have to make the APWorld yourself. To do this, simply
-  download [the repo you're on right now](https://github.com/Teotia444/twwhd-apworld/tree/wii-u) and make sure the branch 
-  (toggle on the same line as the green code button) specifies "wii-u". Download the code using the green button, then clicking
-  "Download ZIP" (or just use [this link](https://github.com/Teotia444/twwhd-apworld/archive/refs/heads/wii-u.zip)). Then, rename
-  the zip file and change its extension from `.zip` to `.apworld`. Before installing it, go into the AP folder (usually at `C:\ProgramData\Archipelago`)
-  and into the `custom_worlds` folder. Make sure to remove any old WWHD apworlds if you see them, as they may cause conflicts. Then
-  you can install the new one by simply double clicking the apworld you created earlier. Restart the client if you had it open.
+* The latest APWorld for TWWHD and the latest patcher for TWWHD. Those can be found in the 
+ [releases tab](https://github.com/Teotia444/twwhd-apworld/releases/latest) of this project. The releases contains both the latest APWorld, 
+ and the latest generator (the exe file that also contains the tracker), as well as a `.wuhb` file and a `.wps` file for real hardware. To avoid any conflicts, if 
+ this is not your first time installing this APWorld, do clear any old WWHD apworlds from your `custom_worlds` folder (which you can usually find at 
+ `C:\ProgramData\Archipelago` or wherever you installed AP).
 
 **If you plan on playing on an emulator:** 
 * Install [Cemu Emulator](https://github.com/cemu-project/Cemu/releases/). **We recommend using the latest release. Older** 
@@ -20,20 +21,19 @@ You'll need the following components to be able to play The Wind Waker HD:
 * You'll need a The Wind Waker HD decrypted folder (North American version). The typical folder that comes from dumping the game 
   from a Wii U with [dumpling](https://cemu.cfw.guide/using-dumpling.html#preparations) for instance. It should contain 3 folders 
   inside: `"code", "content", "meta"`.
-* Finally, you'll need the [latest actions build](https://github.com/Teotia444/TWWHD-Randomizer-expbuilds/actions?query=branch%3Aarchipelago-wiiu)
-  from the archipelago-wiiu branch of the generator. Download the one that corresponds to your system.
+* Download whichever patcher suits your system. The APWorld and the patcher is all you need for Cemu.
 
 **If you plan on playing on a real Wii U:** 
-* Download the latest successful actions build from the [AP Helper plugin](https://github.com/Teotia444/twwhd-apworld-helper/actions).
+* Download the latest AP Helper Plugin from the [releases tab](https://github.com/Teotia444/twwhd-apworld/releases/latest).
   Make sure your Wii U has [Aroma](https://wiiu.hacks.guide/aroma/getting-started.html) installed and on the latest version (you can
   check this using the Aroma Updater app on your Wii U, **this step is important** otherwise your wii u may freeze on boot with the
-  plugin installed). Then, put the downloaded `.wups` file into your sd card at `sd:\wiiu\environments\aroma\plugins`.
+  plugin installed). Then, put the downloaded `.wps` file into your sd card at `sd:\wiiu\environments\aroma\plugins`.
 * You'll need the game (duh!) in either physical or digital form. The generator supports both disks and installs from the E-Shop. Note
   that only the North American version is supported at the time, and the European or Japanese version will not work.
-* Finally, you'll need the [latest actions build](https://github.com/Teotia444/TWWHD-Randomizer-expbuilds/actions?query=branch%3Aarchipelago-wiiu)
-  from the archipelago-wiiu branch of the generator. Download the one that has the `.wuhb` format. This file goes into your sd card at
-  `sd:\wiiu\apps\`. Note that you can rename the wuhb file so that you have both the normal randomizer app and the AP randomizer app on
-  your Wii U. They have a different name and icon so you will be able to distinguish them.
+* For the Wii U version the patcher comes in the `.wuhb` format. This file goes into your sd card at `sd:\wiiu\apps\`. Note that you 
+  can rename the wuhb file so that you have both the normal randomizer app and the AP randomizer app on your Wii U. They have a different 
+  name and icon so you will be able to distinguish them.
+* You might also want to download the PC patcher as it contains the tracker for this. Download whichever patcher suits your system.
 
 
 ## Setting Up a YAML
@@ -100,8 +100,11 @@ you open the program.
 
 ## Troubleshooting
 
+* When reporting an issue or asking for help, it is very appreciated if you can log as much version hashes as possible. 
+  You can find the APWorld version hash in the client window's title, the patcher version hash either in game on the title screen,
+  at the bottom right corner or in the patcher itself, in the title of the app, and you can also find the APWorld Helper 
+  version hash in the plugins menu settings. This is all helpful to debug.
 * Ensure you are running the same version of Archipelago on which the multiworld was generated.
-* Ensure you are using the correct randomizer build for the version of Archipelago you are using.
 * Ensure you restart the client if you happen to crash or close Cemu.
 * Do not run the Archipelago Launcher or Cemu as an administrator on Windows.
 * If you encounter issues with authenticating, ensure that the randomized folder is open in Cemu and corresponds to the
