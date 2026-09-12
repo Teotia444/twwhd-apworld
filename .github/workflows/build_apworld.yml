@@ -26,20 +26,25 @@ jobs:
         
             - name: Append commit hash and version
               run: |
-                cat >> Version.py << EOF
+                cat > Version.py << EOF
 
                 VERSION_HASH = "$(git rev-parse --short HEAD)"
                 VERSION_NAME = "${{ inputs.version }}"
+                VERSION: tuple[int, int, int] = (1, 1, 0)
                 EOF
             
             - name: Create APworld
               run: |
                 mkdir "twwhd"
-                rsync -a ./ "twwhd"
+                rsync -a \
+                --exclude='.git/' \
+                --exclude='.github/' \
+                --exclude='twwhd/' \
+                ./ "twwhd"
                 zip -r "twwhd.apworld" "twwhd"
             
             - name: Upload APworld
               uses: actions/upload-artifact@v4
               with:
-                name: APWorld
+                name: APworld
                 path: twwhd.apworld
