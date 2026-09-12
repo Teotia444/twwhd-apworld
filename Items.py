@@ -147,6 +147,7 @@ ITEM_TABLE: dict[str, TWWHDItemData] = {
     "Knights Crest":             TWWHDItemData("Item",      IC.filler,                      40,  3, 0x48),
     "Red Chu Jelly":             TWWHDItemData("Item",      IC.filler,                      41,  1, 0x49),
     "Green Chu Jelly":           TWWHDItemData("Item",      IC.filler,                      42,  1, 0x4A),
+    "Blue Chu Jelly":            TWWHDItemData("Item",      IC.filler,                      154, 1, 0x4B),
     "Joy Pendant":               TWWHDItemData("Item",      IC.filler,                      43, 20, 0x1F),
     "All Purpose Bait":          TWWHDItemData("Item",      IC.filler,                      44,  1, 0x82),
     "Hyoi Pear":                 TWWHDItemData("Item",      IC.filler,                      45,  4, 0x83),

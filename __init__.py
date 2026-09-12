@@ -6,7 +6,7 @@ from typing import Any, ClassVar
 
 import yaml
 
-from BaseClasses import Item
+from BaseClasses import Item, LocationProgressType
 from BaseClasses import ItemClassification as IC
 from BaseClasses import MultiWorld, Region, Tutorial
 from Options import Toggle
@@ -27,7 +27,7 @@ from .randomizers.ItemPool import generate_itempool
 from .randomizers.RequiredBosses import RequiredBossesRandomizer
 from .Rules import set_rules
 
-VERSION: tuple[int, int, int] = (0, 0, 1)
+from .Version import VERSION_HASH, VERSION_NAME, VERSION
 
 
 def run_client(*args: str) -> None:
@@ -37,6 +37,7 @@ def run_client(*args: str) -> None:
     :param *args: Variable length argument list passed to the client.
     """
     print("Running The Wind Waker HD Client")
+    print("Running version " + str(VERSION_NAME) + ", hash is " + str(VERSION_HASH))
     from .TWWHDClient import main
 
     launch(main, name="TheWindWakerHDClient", args=args)
@@ -77,7 +78,6 @@ class TWWHDContainer(APPlayerContainer):
 
         # Record the data for the game under the key `plando`.
         for entr, exit in dict.items(self.data["Entrances"]):
-            print(exit)
             exit_to = exit
             assert [e for e in VANILLA_ENTRANCES_TO_EXITS.keys() if e.find(exit_to) != -1][0], "somehow " + exit_to
             exit_from = ([e for e in VANILLA_ENTRANCES_TO_EXITS.keys() if e.find(exit_to) != -1][0]).split(" -> ")[0]             
@@ -401,14 +401,14 @@ class TWWHDWorld(World):
 
         # Ban the Bait Bag slot from having bait.
         # Beedle's shop does not work correctly if the same item is in multiple slots in the same shop.
-        if "The Great Sea - Beedle's Shop Ship - 20 Rupee Item" in self.progress_locations:
-            beedle_20 = self.get_location("The Great Sea - Beedle's Shop Ship - 20 Rupee Item")
+        if "Great Sea - Beedle Shop 20 Rupee Item" in self.progress_locations:
+            beedle_20 = self.get_location("Great Sea - Beedle Shop 20 Rupee Item")
             add_item_rule(beedle_20, lambda item: item.name not in ["All-Purpose Bait", "Hyoi Pear"])
 
         # For the same reason, the same item should not appear more than once on the Rock Spire Isle shop ship.
         # All non-TWWHD items use the same item (Father's Letter), so at most one non-TWWHD item can appear in the shop.
         # The rest must be (unique, but not necessarily local) TWWHD items.
-        locations = [f"Rock Spire Isle - Beedle's Special Shop Ship - {v} Rupee Item" for v in [500, 950, 900]]
+        locations = [f"Rock Spire Isle - Beedle {v} Rupee Item" for v in [500, 950, 900]]
         if all(loc in self.progress_locations for loc in locations):
             rock_spire_shop_ship_locations = [self.get_location(location_name) for location_name in locations]
 
@@ -486,16 +486,20 @@ class TWWHDWorld(World):
             "Locations": {},
             "Entrances": {},
             "Charts": charts_mapping,
+            "Excluded": []
         }
 
         # Output which item has been placed at each location.
         output_locations = output_data["Locations"]
         locations = multiworld.get_locations(player)
         for location in locations:
+            if location.progress_type == LocationProgressType.EXCLUDED:
+                output_data["Excluded"].append(location.name)
             if location.name != "Defeat Ganondorf":
                 if location.item:
                     item_info = {
                         "player": location.item.player,
+                        "player_name": self.multiworld.get_player_name(location.item.player),
                         "name": location.item.name,
                         "game": location.item.game,
                         "classification": self._get_classification_name(location.item.classification),
@@ -503,6 +507,7 @@ class TWWHDWorld(World):
                 else:
                     item_info = {"name": "Nothing", "game": "The Wind Waker HD", "classification": "filler"}
                 output_locations[location.name] = item_info
+
 
         # Output the mapping of entrances to exits.
         output_entrances = output_data["Entrances"]

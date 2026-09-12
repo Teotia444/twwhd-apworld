@@ -233,6 +233,9 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
     "Windfall Island - Auction 80 Rupee": TWWHDLocationData(
         35, TWWHDFlag.XPENSVE | TWWHDFlag.MINIGME, "The Great Sea", 0xB, TWWHDLocationType.EVENT, 5, 0x10
     ),
+    "Windfall Island - Auction 100 Rupee": TWWHDLocationData(
+        320, TWWHDFlag.XPENSVE | TWWHDFlag.MINIGME, "The Great Sea", 0xB, TWWHDLocationType.EVENT, 0, 0x6B #hd exclusive
+    ),
     "Windfall Island - Zunari Exotic Flower": TWWHDLocationData(
         36, TWWHDFlag.SHRT_SQ, "The Great Sea", 0x0, TWWHDLocationType.EVENT, 6, 0x69
     ),
@@ -274,6 +277,9 @@ LOCATION_TABLE: dict[str, TWWHDLocationData] = {
     ),
     "Windfall Island - Linda and Anton": TWWHDLocationData(
         49, TWWHDFlag.LONG_SQ, "The Great Sea", 0xB, TWWHDLocationType.EVENT, 7, 0x22
+    ),
+    "Windfall Island - Dampa Pig Minigame": TWWHDLocationData(
+        321, TWWHDFlag.SPOILS | TWWHDFlag.MINIGME, "The Great Sea", 0x0, TWWHDLocationType.EVENT, 7, 0x6A #hd exclusive
     ),
 
     # Dragon Roost Island

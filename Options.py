@@ -354,8 +354,6 @@ class ExcludedDungeons(OptionSet):
 
 class ChestTypeMatchesContents(Toggle):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     Changes the chest type to reflect its contents. A metal chest has a progress item, a wooden chest has a non-progress
     item or a consumable, and a green chest has a potentially required dungeon key.
     """
@@ -521,30 +519,34 @@ class RandomizeCharts(Toggle):
 
 class HoHoHints(DefaultOnToggle):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     Places hints on Old Man Ho Ho. Old Man Ho Ho appears at 10 different islands in the game. Talk to Old Man Ho Ho to
     get hints.
     """
 
     display_name = "Place Hints on Old Man Ho Ho"
 
-
-class FishmenHints(DefaultOnToggle):
+class HoHoTriforceHints(DefaultOnToggle):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
-    Places hints on the fishmen. There is one fishman at each of the 49 islands of the Great Sea. Each fishman must be
-    fed an All-Purpose Bait before he will give a hint.
+    Hints from Old Man Ho Ho will prioritize triforce pieces. This applies to any game that has an item conaining the
+    word "Triforce" in it.
     """
 
-    display_name = "Place Hints on Fishmen"
+    display_name = "Place Hints on Old Man Ho Ho"
 
+class KreebHints(Range):
+    """
+    Places hints on Kreeb. Kreeb appears at Windfall's windmill and will give you hints on where bows are located. Any 
+    items from any game that has the word "Bow" can be chosen.
+    Set this option to 0 if you don't want any hints from Kreeb. 
+    """
+
+    display_name = "Place Hints on Kreeb"
+    range_start = 0
+    range_end = 10
+    default = 4
 
 class KoRLHints(Toggle):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     Places hints on the King of Red Lions. Talk to the King of Red Lions to get hints.
     """
 
@@ -553,8 +555,6 @@ class KoRLHints(Toggle):
 
 class NumItemHints(Range):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     The number of item hints that will be placed. Item hints tell you which area contains a particular progress item in
     this seed.
 
@@ -564,13 +564,11 @@ class NumItemHints(Range):
     display_name = "Item Hints"
     range_start = 0
     range_end = 15
-    default = 15
+    default = 0
 
 
 class NumLocationHints(Range):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     The number of location hints that will be placed. Location hints tell you what item is at a specific location in
     this seed.
 
@@ -585,8 +583,6 @@ class NumLocationHints(Range):
 
 class NumBarrenHints(Range):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     The number of barren hints that will be placed. Barren hints tell you that an area does not contain any required
     items in this seed.
 
@@ -601,8 +597,6 @@ class NumBarrenHints(Range):
 
 class NumPathHints(Range):
     """
-    **DEV NOTE:** This option is currently unimplemented and will be ignored.
-
     The number of path hints that will be placed. Path hints tell you that an area contains an item that is required to
     reach a particular goal in this seed.
 
@@ -676,6 +670,27 @@ class ClassicMode(Toggle):
 
     display_name = "Classic Mode"
 
+class StartWithRandomItemSlideItem(Toggle):
+    """
+    Start with a random item that can item slide. This includes: Bow, Grappling Hook, Boomerang or Hookshot
+    """
+    display_name = "Start with random Item Slide item"
+
+class FixRng(Toggle):
+    """
+    This option attempts to fix some of the RNG elements of the game to be fixed, for now this only fixes
+    the Helmaroc King's flight pattern.
+    """
+
+    display_name = "Fix RNG"
+
+class Performance(Toggle):
+    """
+    This option makes the game lag less on real hardware. For now this only fixes a few list of particles
+    that produces lag (for example on the Gohma fight)
+    """
+
+    display_name = "Performance"
 
 @dataclass
 class TWWHDOptions(PerGameCommonOptions):
@@ -711,6 +726,7 @@ class TWWHDOptions(PerGameCommonOptions):
     randomize_smallkeys: RandomizeSmallKeys
     randomize_bigkeys: RandomizeBigKeys
     sword_mode: SwordMode
+    random_itemslide_item: StartWithRandomItemSlideItem
     required_bosses: RequiredBosses
     num_required_bosses: NumRequiredBosses
     included_dungeons: IncludedDungeons
@@ -731,13 +747,14 @@ class TWWHDOptions(PerGameCommonOptions):
     # randomize_music: RandomizeMusic
     randomize_starting_island: RandomizeStartingIsland
     randomize_charts: RandomizeCharts
-    # hoho_hints: HoHoHints
-    # fishmen_hints: FishmenHints
-    # korl_hints: KoRLHints
-    # num_item_hints: NumItemHints
-    # num_location_hints: NumLocationHints
-    # num_barren_hints: NumBarrenHints
-    # num_path_hints: NumPathHints
+    kreeb_bow_hints: KreebHints
+    ho_ho_hints: HoHoHints
+    ho_ho_triforce_hints: HoHoTriforceHints
+    korl_hints: KoRLHints
+    item_hints: NumItemHints
+    location_hints: NumLocationHints
+    barren_hints: NumBarrenHints
+    path_hints: NumPathHints
     # prioritize_remote_hints: PrioritizeRemoteHints
     instant_text_boxes: InstantTextBoxes
     reveal_full_sea_chart: RevealFullSeaChart
@@ -745,6 +762,8 @@ class TWWHDOptions(PerGameCommonOptions):
     skip_rematch_bosses: SkipRematchBosses
     remove_music: RemoveMusic
     classic_mode: ClassicMode
+    fix_rng: FixRng
+    performance: Performance
     death_link: DeathLink
 
     def get_slot_data_dict(self) -> dict[str, Any]:
@@ -779,6 +798,15 @@ class TWWHDOptions(PerGameCommonOptions):
             "progression_island_puzzles",
             "progression_misc",
             "sword_mode",
+            "random_itemslide_item",
+            "kreeb_bow_hints",
+            "ho_ho_hints",
+            "ho_ho_triforce_hints",
+            "korl_hints",
+            "item_hints",
+            "location_hints",
+            "barren_hints",
+            "path_hints",
             "required_bosses",
             "logic_obscurity",
             "logic_precision",
@@ -791,6 +819,8 @@ class TWWHDOptions(PerGameCommonOptions):
             "skip_rematch_bosses",
             "remove_music",
             "classic_mode",
+            "fix_rng",
+            "performance",
             "death_link",
         )
 
@@ -854,6 +884,16 @@ class TWWHDOptions(PerGameCommonOptions):
             "skip_rematch_bosses",
             "remove_music",
             "classic_mode",
+            "fix_rng",
+            "performance",
+            "kreeb_bow_hints",
+            "ho_ho_hints",
+            "ho_ho_triforce_hints",
+            "korl_hints",
+            "item_hints",
+            "location_hints",
+            "barren_hints",
+            "path_hints",
         )
 
 
@@ -894,6 +934,7 @@ twwhd_option_groups: list[OptionGroup] = [
             RandomizeSmallKeys,
             RandomizeBigKeys,
             ChestTypeMatchesContents,
+            StartWithRandomItemSlideItem,
             # TrapChests,
         ],
     ),
@@ -925,6 +966,9 @@ twwhd_option_groups: list[OptionGroup] = [
             SkipRematchBosses,
             AddShortcutWarpsBetweenDungeons,
             RemoveMusic,
+            ClassicMode,
+            FixRng,
+            Performance
         ],
     ),
     OptionGroup(
@@ -934,6 +978,21 @@ twwhd_option_groups: list[OptionGroup] = [
             NumRequiredBosses,
             IncludedDungeons,
             ExcludedDungeons,
+        ],
+        start_collapsed=True,
+    ),
+    OptionGroup(
+        "Hints",
+        [
+            KreebHints,
+            HoHoHints,
+            HoHoTriforceHints,
+            KoRLHints,
+            NumPathHints,
+            NumItemHints,
+            NumLocationHints,
+            NumBarrenHints,
+            
         ],
         start_collapsed=True,
     ),
