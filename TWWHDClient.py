@@ -7,6 +7,7 @@ from typing import TYPE_CHECKING, Any, Optional
 
 import Utils
 from CommonClient import ClientCommandProcessor, CommonContext, get_base_parser, gui_enabled, logger, server_loop
+from .Version import VERSION, VERSION_HASH, VERSION_NAME
 
 from .Locations import ISLAND_NAME_TO_SALVAGE_BIT
 from .randomizers.Charts import ISLAND_NUMBER_TO_NAME
@@ -116,15 +117,6 @@ class TWWHDCommandProcessor(ClientCommandProcessor):
 
         elif isinstance(self.ctx, TWWHDContext):
             logger.info(f"Wii U Status: {self.ctx.status}")
-
-
-    def _cmd_attach(self, base_addr: str) -> None:
-        """
-        Deprecated
-
-        :param base_addr: The base cemu address.
-        """
-        logger.info(f"Deprecated command! Your client should already be connected. Use /cemu to check the status of your connection.")
 
 class TWWHDContext(CommonContext):
     """
@@ -267,7 +259,7 @@ class TWWHDContext(CommonContext):
         :return: The client's GUI.
         """
         ui = super().make_gui()
-        ui.base_title = "Archipelago The Wind Waker HD Client"
+        ui.base_title = "Archipelago The Wind Waker HD Client " + VERSION_NAME + " (hash: " + VERSION_HASH + ")"
         return ui
 
     async def update_visited_stages(self, newly_visited_stage_name: str) -> None:
@@ -317,7 +309,7 @@ def main(*args: str) -> None:
 
     :param *args: Command line arguments passed to the client.
     """
-    Utils.init_logging("The Wind Waker HD Client")
+    Utils.init_logging("The Wind Waker HD Client " + VERSION_NAME + " (hash: " + VERSION_HASH + ")")
 
     async def _main(connect: Optional[str], password: Optional[str]) -> None:
         ctx = TWWHDContext(connect, password)

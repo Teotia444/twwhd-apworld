@@ -27,7 +27,7 @@ from .randomizers.ItemPool import generate_itempool
 from .randomizers.RequiredBosses import RequiredBossesRandomizer
 from .Rules import set_rules
 
-VERSION: tuple[int, int, int] = (1, 1, 0)
+from .Version import VERSION_HASH, VERSION_NAME, VERSION
 
 
 def run_client(*args: str) -> None:
@@ -37,6 +37,7 @@ def run_client(*args: str) -> None:
     :param *args: Variable length argument list passed to the client.
     """
     print("Running The Wind Waker HD Client")
+    print("Running version " + str(VERSION_NAME) + ", hash is " + str(VERSION_HASH))
     from .TWWHDClient import main
 
     launch(main, name="TheWindWakerHDClient", args=args)

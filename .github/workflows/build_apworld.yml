@@ -1,0 +1,45 @@
+name: Build apworld
+
+on: 
+    workflow_dispatch:
+        inputs:
+          version:
+            description: 'Version Name'
+            default: ""
+            required: false
+            type: string
+    workflow_call:
+        inputs:
+          version:
+            description: 'Version Name'
+            default: ""
+            required: false
+            type: string
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+        
+            - name: Append commit hash and version
+              run: |
+                cat >> Version.py << EOF
+
+                VERSION_HASH = "$(git rev-parse --short HEAD)"
+                VERSION_NAME = "${{ inputs.version }}"
+                EOF
+            
+            - name: Create APworld
+              run: |
+                mkdir "twwhd"
+                rsync -a ./ "twwhd"
+                zip -r "twwhd.apworld" "twwhd"
+            
+            - name: Upload APworld
+              uses: actions/upload-artifact@v4
+              with:
+                name: APWorld
+                path: twwhd.apworld
