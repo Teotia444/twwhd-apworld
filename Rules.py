@@ -223,6 +223,7 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
     set_rule_if_exists("Windfall Island - Auction 40 Rupee", lambda state: True)
     set_rule_if_exists("Windfall Island - Auction 60 Rupee", lambda state: True)
     set_rule_if_exists("Windfall Island - Auction 80 Rupee", lambda state: True)
+    set_rule_if_exists("Windfall Island - Auction 100 Rupee", lambda state: True)
     set_rule_if_exists(
         "Windfall Island - Zunari Exotic Flower",
         lambda state: state.has("Delivery Bag", player),
@@ -258,6 +259,11 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
     set_rule_if_exists(
         "Windfall Island - Linda and Anton",
         lambda state: has_deluxe_picto_box(state, player) and can_play_song_of_passing(state, player),
+    )
+
+    set_rule_if_exists(
+        "Windfall Island - Dampa Pig Minigame",
+        lambda state: state.has("Spoils Bag", player) and can_farm_skull_necklaces(state, player),
     )
 
     # Dragon Roost Island
