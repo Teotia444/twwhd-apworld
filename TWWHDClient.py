@@ -84,6 +84,7 @@ class TWWHDCommandProcessor(ClientCommandProcessor):
                     self.ctx.CEMU_BASE_ADDR = int(base_addr, base=16)
 
             else:
+                logger.info('WARNING: could not automatically fetch the base address for Cemu! Make sure you\'re on the latest Cemu version and that there\'s no log.txt file next to Cemu\'s executable!')
                 logger.info('Enter base address:')
                 base_addr = await self.ctx.console_input()
                 self.ctx.CEMU_BASE_ADDR = int(base_addr, base=16)
