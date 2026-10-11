@@ -65,10 +65,11 @@ you open the program.
     on the website, this will be `archipelago.gg:<port>`, where `<port>` is the port number. If a game is hosted from the
     `ArchipelagoServer.exe` (without `.exe` on Linux), the port number will default to `38281` but may be changed in the
     `host.yaml`.
-10. **Use the `/cemu` command in the client once you've connected**. The client should notify that Cemu connected succesfully. 
+8. **Use the `/cemu` command in the client once you've connected**. The client should notify that Cemu connected successfully. 
     You can start playing.
-11. Optionnaly, connect the integrated tracker. In the TWWHD AP Randomizer Build program, go into the Tracker tab and
-    input your room informations, then connect. This will track the locations checked and items recieved. If connecting to a
+> If you're using an outdated version of Cemu OR if your `log.txt` file exists next to the Cemu executable, then the client will probably fail to fetch the base address, in which case it will ask for a base address. To fix this, simply update Cemu to 2.6 and delete any `log.txt` file that might still be next to the Cemu executable. If you want to keep using an older Cemu version for whatever reason, you can also manually fetch your base address. Open Cemu and Click on `File > Open Cemu folder`, there you will find a `log.txt`, open it and look for a line that looks something like this: `Init Wii U memory space (base: 0xXXXXXXXXXXXXXXXX)` (with the X being numbers/letters). It should be somewhere near the top. Copy the hex code (the part that looks like `0xXXXXXXXXXXXXXXXX`) and paste it into your client, when it asks for `Enter base address:`. If done correctly it should show `Cemu connected successfully`.
+9. Optionally, connect the integrated tracker. In the TWWHD AP Randomizer Build program, go into the Tracker tab and
+    input your room informations, then connect. This will track the locations checked and items received. If connecting to a
     locally hosted room, make sure to specify the port (default is `38281`)
 
 **If you're playing on a real Wii U**
@@ -94,8 +95,8 @@ you open the program.
    `host.yaml`.
 10. **Use the `/wiiu ip_addr` command once you're connected.** Replace `ip_addr` with the IP Address you fetched on 6.
     The client should notify that the Wii U connected successfully
-11. Optionnaly, connect the integrated tracker. On your computer, in the TWWHD AP Randomizer Build program, go into the 
-    Tracker tab and input your room informations, then connect. This will track the locations checked and items recieved. 
+11. Optionally, connect the integrated tracker. On your computer, in the TWWHD AP Randomizer Build program, go into the 
+    Tracker tab and input your room informations, then connect. This will track the locations checked and items received. 
     If connecting to a locally hosted room, make sure to specify the port (default is `38281`)
 
 ## Troubleshooting
