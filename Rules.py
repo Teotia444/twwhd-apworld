@@ -82,6 +82,8 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
     def set_rule_if_exists(location_name: str, rule: Callable[[CollectionState], bool]) -> None:
         if location_name in world.progress_locations:
             set_rule(world.get_location(location_name), rule)
+        elif location_name not in world.nonprogress_locations and location_name not in world.progress_locations:
+            print("cant find " + location_name)
 
     player = world.player
 
@@ -188,12 +190,12 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
     set_rule_if_exists(
         "Windfall Island - Lenzo Become Assistant", lambda state: has_picto_box(state, player)
     )
-    set_rule_if_exists(
-        "Windfall Island - Lenzo Bring Forest Firefly",
-        lambda state: has_picto_box(state, player)
-        and state.has("Empty Bottle", player)
-        and can_access_forest_haven(state, player),
-    )
+    # set_rule_if_exists(
+    #     "Windfall Island - Lenzo Bring Forest Firefly",
+    #     lambda state: has_picto_box(state, player)
+    #     and state.has("Empty Bottle", player)
+    #     and can_access_forest_haven(state, player),
+    # )
     set_rule_if_exists("Windfall Island - House of Wealth Chest", lambda state: True)
     set_rule_if_exists(
         "Windfall Island - Maggie's Father Give 20 Skull Necklaces",
@@ -397,7 +399,7 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
         "Forbidden Woods - Pot High Above Hollow Tree", lambda state: can_fly_with_deku_leaf_indoors(state, player)
     )
     set_rule_if_exists(
-        "Forbidden Woods - Hole in Tree Chest",
+        "Forbidden Woods - Hole In Tree Chest",
         lambda state: can_fly_with_deku_leaf_indoors(state, player) and can_defeat_boko_babas(state, player),
     )
     set_rule_if_exists(
@@ -551,7 +553,7 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
         lambda state: can_get_inside_forsaken_fortress(state, player),
     )
     set_rule_if_exists(
-        "Forsaken Fortress - Chest Guarded By Bokoblin", lambda state: can_get_inside_forsaken_fortress(state, player)
+        "Forsaken Fortress - Chest Guarded by Bokoblin", lambda state: can_get_inside_forsaken_fortress(state, player)
     )
     set_rule_if_exists(
         "Forsaken Fortress - Chest on Bed", lambda state: can_get_inside_forsaken_fortress(state, player)
