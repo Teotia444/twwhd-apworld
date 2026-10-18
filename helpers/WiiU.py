@@ -1,4 +1,5 @@
 import asyncio
+from queue import Queue
 from CommonClient import logger
 import json
 import socket
@@ -53,6 +54,8 @@ class WiiUClass:
         self.stage_name: str = ""
         self.dBag_content: Optional[list[int]] = None
         self.dBag_flags: Optional[list[int]] = None
+
+        self.command_queue: Queue = Queue()
 
     def connect(self):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
@@ -122,6 +125,8 @@ class WiiUClass:
         self.dBag_content = data["data"]["dBag_content"]
         self.dBag_flags = data["data"]["dBag_flags"]
 
+    def add_to_msg_queue(self, msg):
+        self.command_queue.put(msg)
 
 TWWHDMemory: Optional[WiiUClass] = None
 
@@ -154,6 +159,15 @@ def _give_item(ctx: TWWHDContext, item_name: str) -> bool:
     res = TWWHDMemory.send("g" + str(ITEM_TABLE[item_name].item_id))
     return res["result"]
 
+async def empty_message_queue(ctx: TWWHDContext) -> None:
+    global TWWHDMemory
+    while not TWWHDMemory.command_queue.empty():
+        current = TWWHDMemory.command_queue.get()
+        TWWHDMemory.send("n"+current)
+        if TWWHDMemory.command_queue.qsize() > 20:
+            TWWHDMemory.command_queue = Queue()
+            return
+
 async def give_items(ctx: TWWHDContext) -> None:
     """
     Give the player all outstanding items they have yet to receive.
@@ -171,6 +185,7 @@ async def give_items(ctx: TWWHDContext) -> None:
         return
     # Loop through items to give.
     # Give the player all items at an index greater than or equal to the expected index.
+    num_items = 0
     for idx, item in enumerate(received_items[expected_idx:], start=expected_idx):
         # Attempt to give the item and increment the expected index.
         res = _give_item(ctx, LOOKUP_ID_TO_NAME[item.item])
@@ -179,12 +194,13 @@ async def give_items(ctx: TWWHDContext) -> None:
             res = _give_item(ctx, LOOKUP_ID_TO_NAME[item.item])
             if res == 2:
                 return
+        num_items+=1
         # if(item.player == 0):
         #     TWWHDMemory.send("nRecieved " + str(LOOKUP_ID_TO_NAME[item.item]) + " from the server!")
         # elif(item.player != ctx.slot):
         #     TWWHDMemory.send("nRecieved " + str(LOOKUP_ID_TO_NAME[item.item]) + " from " + ctx.player_names[item.player] + " !")    
         # Increment the expected index.
-        TWWHDMemory.send("i1")
+    TWWHDMemory.send("i"+str(num_items))
 
 def check_special_location(ctx:TWWHDContext, location_name: str, data: TWWHDLocationData) -> bool:
     """
@@ -416,7 +432,7 @@ def check_regular_location(ctx: TWWHDContext, curr_stage_id: int, data: TWWHDLoc
 
 def _forward_message_func(ctx: TWWHDContext, data):
     global TWWHDMemory
-    TWWHDMemory.send("n"+data)
+    TWWHDMemory.add_to_msg_queue(data)
 
 async def wiiu_sync_task(ctx: TWWHDContext) -> None:
     """
@@ -451,12 +467,14 @@ async def wiiu_sync_task(ctx: TWWHDContext) -> None:
                 if ctx.slot is not None:      
                     if "DeathLink" in ctx.tags:
                         await check_death(ctx)
+                    await empty_message_queue(ctx)
                     await give_items(ctx)
                     await check_locations(ctx)
                     await check_current_stage_changed(ctx)
                 else:
                     if not ctx.auth:
                         await ctx.get_username()
+                        await ctx.send_connect()
                     if ctx.awaiting_rom:
                         await ctx.server_auth()
                 sleep_time = 0.1
