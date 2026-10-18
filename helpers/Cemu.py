@@ -133,6 +133,7 @@ CHARTS_MAPPING_ADDR = 0x803FE8E0
 ITEM_GET_BYTE_ADDR = 0x104741fe
 
 LINK_PTR_ADDR = 0x10474be4
+AP_SLOT_NAME_ADDR = 0x028F8868
 
 if sys.platform == "win32":
     MemoryType = pymem.Pymem
@@ -551,14 +552,31 @@ async def cemu_sync_task(ctx: TWWHDContext) -> None:
                     await check_current_stage_changed(ctx)
                 else:
                     if not ctx.auth:
-                        await ctx.get_username()
+                        try:
+                            slotName = read_string(ctx, AP_SLOT_NAME_ADDR, 0x40)
+                            if len(slotName) <= 0:
+                                raise Exception("nullslot")
+                            if not ctx.auth:
+                                ctx.auth = ctx.username
+                                if not ctx.auth:
+                                    ctx.auth = slotName
+                            await ctx.server_auth()
+                        except Exception as e:
+                            await ctx.get_username()
+                        await ctx.send_connect()
                     if ctx.awaiting_rom:
                         await ctx.server_auth()
                 sleep_time = 0.1
             else:
                 if ctx.status == CONNECTION_CONNECTED_STATUS:
-                    logger.info("Connection to Cemu lost, reconnecting...")
+                    logger.info("Connection to Cemu lost! Try reconnecting and typing /cemu again after launching your game")
                     ctx.status = CONNECTION_LOST_STATUS
+                    TWWHDMemory=None
+                    ctx.CEMU_BASE_ADDR = 0
+                    await ctx.disconnect()
+                    ctx.exit_event.set()
+                    continue
+
                 logger.info("Attempting to connect to Cemu...")
                 try:
                     TWWHDMemory = pymem.Pymem("Cemu") if sys.platform == "win32" else LinuxMemory("Cemu")
@@ -566,18 +584,23 @@ async def cemu_sync_task(ctx: TWWHDContext) -> None:
                     ctx.status = CONNECTION_CONNECTED_STATUS
                     ctx.locations_checked = set()
                 except Exception as e:
-                    logger.info("Connection to Cemu failed, attempting again in 5 seconds...")
+                    logger.info("Connection to Cemu unsuccessful! Try reconnecting and typing /cemu again after launching your game")
                     ctx.status = CONNECTION_LOST_STATUS
+                    TWWHDMemory=None
+                    ctx.CEMU_BASE_ADDR = 0
                     await ctx.disconnect()
-                    sleep_time = 5
+                    ctx.exit_event.set()
                     continue
                     
         except Exception:
+            ctx.status = CONNECTION_LOST_STATUS
             TWWHDMemory=None
             ctx.CEMU_BASE_ADDR = 0
-            logger.info("Connection to Cemu failed, attempting again in 5 seconds...")
+            ctx.exit_event.set()
             logger.error(traceback.format_exc())
-            ctx.status = CONNECTION_LOST_STATUS
             await ctx.disconnect()
-            sleep_time = 5
+            logger.info("Unexpected error when connecting to Cemu! Try reconnecting and typing /cemu again after launching your game")
             continue
+
+    ctx.sync_task = None
+    ctx.status = CONNECTION_INITIAL_STATUS

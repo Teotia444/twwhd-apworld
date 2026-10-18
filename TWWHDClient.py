@@ -71,8 +71,7 @@ class TWWHDCommandProcessor(ClientCommandProcessor):
         Connects the client to Cemu.
         Display the current Cemu emulator connection status if the client is already connected.
         """
-
-        if isinstance(self.ctx, TWWHDContext) and self.ctx.auth and self.ctx.sync_task is None:
+        if isinstance(self.ctx, TWWHDContext) and self.ctx.server and self.ctx.sync_task is None:
             log_file_path = get_log_path()
             if os.path.isfile(log_file_path):
                 with open(log_file_path) as f:
@@ -90,10 +89,11 @@ class TWWHDCommandProcessor(ClientCommandProcessor):
                 self.ctx.CEMU_BASE_ADDR = int(base_addr, base=16)
 
             from .helpers.Cemu import cemu_sync_task
-            self.ctx.sync_task = asyncio.create_task(cemu_sync_task(self.ctx), name="CemuSync")
-            logger.info('Cemu is connected!')
+            if not self.ctx.sync_task:
+                self.ctx.exit_event.clear()
+                self.ctx.sync_task = asyncio.create_task(cemu_sync_task(self.ctx), name="CemuSync")
 
-        elif isinstance(self.ctx, TWWHDContext) and not self.ctx.auth:
+        elif isinstance(self.ctx, TWWHDContext) and not self.ctx.server:
             logger.info(f"Connect to the AP room before connecting to Cemu!")
 
         elif isinstance(self.ctx, TWWHDContext):
@@ -105,15 +105,17 @@ class TWWHDCommandProcessor(ClientCommandProcessor):
         Display the current Wii U connection status if the client is already connected.
         """
         logger.info("Attempting connection with the Wii U")
-        if isinstance(self.ctx, TWWHDContext) and self.ctx.auth and self.ctx.sync_task is None:
+        if isinstance(self.ctx, TWWHDContext) and self.ctx.server and self.ctx.sync_task is None:
             from .helpers.WiiU import wiiu_sync_task, setup_wiiu_mem
             if setup_wiiu_mem(self.ctx, ip_addr) != 0:
                 logger.info("Could not connect to the Wii U!")
                 return
-            self.ctx.sync_task = asyncio.create_task(wiiu_sync_task(self.ctx), name="WiiUSync")
+            if not self.ctx.sync_task:
+                self.ctx.exit_event.clear()
+                self.ctx.sync_task = asyncio.create_task(wiiu_sync_task(self.ctx), name="WiiUSync")
             logger.info('Wii U is connected!')
 
-        elif isinstance(self.ctx, TWWHDContext) and not self.ctx.auth:
+        elif isinstance(self.ctx, TWWHDContext) and not self.ctx.server:
             logger.info(f"Connect to the AP room before connecting to the Wii U!")
 
         elif isinstance(self.ctx, TWWHDContext):
@@ -138,7 +140,6 @@ class TWWHDContext(CommonContext):
         :param server_address: Address of the Archipelago server.
         :param password: Password for server authentication.
         """
-
         super().__init__(server_address, password)
         self.sync_task: Optional[asyncio.Task[None]] = None
         self.status: str = CONNECTION_INITIAL_STATUS
@@ -196,9 +197,6 @@ class TWWHDContext(CommonContext):
         """
         if password_requested and not self.password:
             await super().server_auth(password_requested)
-        if not self.auth:
-            await self.get_username()
-            await self.send_connect()
             # if os.path.isfile(os.getenv('APPDATA') + "\\Cemu\\log.txt"):
             #     with open(os.getenv('APPDATA') + "\\Cemu\\log.txt") as f:
             #         next(f)
