@@ -473,7 +473,15 @@ async def wiiu_sync_task(ctx: TWWHDContext) -> None:
                     await check_current_stage_changed(ctx)
                 else:
                     if not ctx.auth:
-                        await ctx.get_username()
+                        res = TWWHDMemory.send("s")
+                        if res["result"] == 0:
+                            if not ctx.auth:
+                                ctx.auth = ctx.username
+                                if not ctx.auth:
+                                    ctx.auth = res["data"]
+                            ctx.server_auth()
+                        else:
+                            await ctx.get_username()
                         await ctx.send_connect()
                     if ctx.awaiting_rom:
                         await ctx.server_auth()

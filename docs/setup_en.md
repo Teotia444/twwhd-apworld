@@ -93,10 +93,10 @@ you open the program.
    on the website, this will be `archipelago.gg:<port>`, where `<port>` is the port number. If a game is hosted from the
    `ArchipelagoServer.exe` (without `.exe` on Linux), the port number will default to `38281` but may be changed in the
    `host.yaml`.
-10. **Use the `/wiiu ip_addr` command once you're connected.** Replace `ip_addr` with the IP Address you fetched on 6.
+8. **Use the `/wiiu ip_addr` command once you're connected.** Replace `ip_addr` with the IP Address you fetched on 6.
     The client should notify that the Wii U connected successfully
-9. Once you start a save, the text client will ask you to input your slot. Then, you'll be all set to play.
-11. Optionally, connect the integrated tracker. On your computer, in the TWWHD AP Randomizer Build program, go into the 
+9. Once you start a save, you should see the server greeting message in your text client. If it asks you to input your slot instead, do so. Then, you'll be all set to play.
+10. Optionally, connect the integrated tracker. On your computer, in the TWWHD AP Randomizer Build program, go into the 
     Tracker tab and input your room informations, then connect. This will track the locations checked and items received. 
     If connecting to a locally hosted room, make sure to specify the port (default is `38281`)
 
