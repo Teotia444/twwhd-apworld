@@ -82,8 +82,6 @@ def set_rules(world: "TWWHDWorld") -> None:  # noqa: F405
     def set_rule_if_exists(location_name: str, rule: Callable[[CollectionState], bool]) -> None:
         if location_name in world.progress_locations:
             set_rule(world.get_location(location_name), rule)
-        elif location_name not in world.nonprogress_locations and location_name not in world.progress_locations:
-            print("cant find " + location_name)
 
     player = world.player
 
