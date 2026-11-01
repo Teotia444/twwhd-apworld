@@ -553,6 +553,15 @@ class KoRLHints(Toggle):
     display_name = "Place Hints on King of Red Lions"
 
 
+class ShopHints(Toggle):
+    """Automatically scout the randomized items sold in supported shops.
+
+    Currently only supported on Cemu.
+    """
+
+    display_name = "Automatic Shop Hints"
+
+
 class NumItemHints(Range):
     """
     The number of item hints that will be placed. Item hints tell you which area contains a particular progress item in
@@ -751,6 +760,7 @@ class TWWHDOptions(PerGameCommonOptions):
     ho_ho_hints: HoHoHints
     ho_ho_triforce_hints: HoHoTriforceHints
     korl_hints: KoRLHints
+    shop_hints: ShopHints
     item_hints: NumItemHints
     location_hints: NumLocationHints
     barren_hints: NumBarrenHints
@@ -803,6 +813,7 @@ class TWWHDOptions(PerGameCommonOptions):
             "ho_ho_hints",
             "ho_ho_triforce_hints",
             "korl_hints",
+            "shop_hints",
             "item_hints",
             "location_hints",
             "barren_hints",
@@ -988,6 +999,7 @@ twwhd_option_groups: list[OptionGroup] = [
             HoHoHints,
             HoHoTriforceHints,
             KoRLHints,
+            ShopHints,
             NumPathHints,
             NumItemHints,
             NumLocationHints,

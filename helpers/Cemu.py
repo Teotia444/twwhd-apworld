@@ -124,6 +124,9 @@ STORY_FLAGS_ARR_ADDR = 0x145B81A4
 # This address is used to check the stage name to verify that the player is in-game before sending items.
 CURR_STAGE_NAME_ADDR = 0x104741F0
 
+# This byte in the current stage state distinguishes the Beedle ship room variants.
+SHOP_ROOM_ID_ADDR = 0x104741FA
+
 # This address is the start of an array that we use to inform us of which charts lead where.
 # The array is of length 49, and each element is two bytes. The index represents the chart's original destination, and
 # the value represents the new destination.
@@ -421,7 +424,9 @@ async def check_current_stage_changed(ctx: TWWHDContext) -> None:
 
     current_stage_name = ctx.current_stage_name
     if new_stage_name != current_stage_name:
+        ctx.shop_stage_handled = False
         ctx.current_stage_name = new_stage_name
+
         # Send a Bounced message containing the new stage name to all trackers connected to the current slot.
         data_to_send = {"twwhd_stage_name": new_stage_name}
         message = {
@@ -437,6 +442,19 @@ async def check_current_stage_changed(ctx: TWWHDContext) -> None:
         if visited_stage_names is not None and new_stage_name not in visited_stage_names:
             visited_stage_names.add(new_stage_name)
             await ctx.update_visited_stages(new_stage_name)
+
+    # Obshop's room ID can still be 0xFF during the stage transition. Keep checking it
+    # until the game fills in the room data, then scout once for that shop entry.
+    if ctx.shop_hints_enabled and not ctx.shop_stage_handled:
+        if new_stage_name == "Obshop":
+            room_id = read_uchar(ctx, SHOP_ROOM_ID_ADDR)
+            shop_key = {0x01: "rock_spire_shop", 0x02: "beedle_shop"}.get(room_id)
+            if shop_key is not None:
+                ctx.shop_stage_handled = True
+                await ctx.scout_shop(shop_key)
+        elif new_stage_name == "Orichh":
+            ctx.shop_stage_handled = True
+            await ctx.scout_shop("auction_house")
 
 
 async def check_alive(ctx:TWWHDContext) -> bool:
