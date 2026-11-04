@@ -9,7 +9,7 @@ import Utils
 from CommonClient import ClientCommandProcessor, CommonContext, get_base_parser, gui_enabled, logger, server_loop
 from .Version import VERSION, VERSION_HASH, VERSION_NAME
 
-from .Locations import ISLAND_NAME_TO_SALVAGE_BIT
+from .Locations import ISLAND_NAME_TO_SALVAGE_BIT, LOCATION_TABLE, TWWHDLocation
 from .randomizers.Charts import ISLAND_NUMBER_TO_NAME
 
 if TYPE_CHECKING:
@@ -29,6 +29,32 @@ CONNECTION_INITIAL_STATUS = "Cemu connection has not been initiated."
 
 # Data storage key
 AP_VISITED_STAGE_NAMES_KEY_FORMAT = "twwhd_visited_stages_%i"
+
+TEXT_HINT_LOCATIONS = {
+    "beedle_shop": ["Great Sea - Beedle Shop 20 Rupee Item"],
+    "rock_spire_shop": [
+        "Rock Spire Isle - Beedle 500 Rupee Item",
+        "Rock Spire Isle - Beedle 950 Rupee Item",
+        "Rock Spire Isle - Beedle 900 Rupee Item",
+    ],
+    "auction_house": [
+        "Windfall Island - Auction 5 Rupee",
+        "Windfall Island - Auction 40 Rupee",
+        "Windfall Island - Auction 60 Rupee",
+        "Windfall Island - Auction 80 Rupee",
+        "Windfall Island - Auction 100 Rupee",
+    ],
+    "auction_40": ["Windfall Island - Auction 40 Rupee"],
+    "auction_5": ["Windfall Island - Auction 5 Rupee"],
+    "auction_60": ["Windfall Island - Auction 60 Rupee"],
+    "auction_80": ["Windfall Island - Auction 80 Rupee"],
+    "auction_100": ["Windfall Island - Auction 100 Rupee"],
+    "savage_labyrinth": [
+        "Outset Island - Savage Labyrinth Floor 30",
+        "Outset Island - Savage Labyrinth Floor 50",
+    ],
+    "big_octo_fairy": ["Two Eye Reef - Big Octo Great Fairy"],
+}
 
 def get_log_path() -> str:
     log_file_path = ''
@@ -175,6 +201,8 @@ class TWWHDContext(CommonContext):
         self.visited_stage_names: Optional[set[str]] = None
 
         self.CEMU_BASE_ADDR: int = 0x0
+        self.text_hints_enabled: bool = False
+        self.handled_text_hint_groups: set[str] = set()
 
     async def disconnect(self, allow_autoreconnect: bool = False) -> None:
         """
@@ -187,6 +215,8 @@ class TWWHDContext(CommonContext):
         self.salvage_locations_map = {}
         self.current_stage_name = ""
         self.visited_stage_names = None
+        self.handled_text_hint_groups.clear()
+        self.text_hints_enabled = False
         await super().disconnect(allow_autoreconnect)
 
     async def server_auth(self, password_requested: bool = False) -> None:
@@ -220,6 +250,8 @@ class TWWHDContext(CommonContext):
         """
         if cmd == "Connected":
             self.update_salvage_locations_map()
+            self.text_hints_enabled = bool(args["slot_data"].get("text_hints", 0))
+            self.handled_text_hint_groups.clear()
             if "death_link" in args["slot_data"]:
                 Utils.async_start(self.update_death_link(bool(args["slot_data"]["death_link"])))
             # Request the connected slot's dictionary (used as a set) of visited stages.
@@ -280,6 +312,24 @@ class TWWHDContext(CommonContext):
                     }
                 ]
             )
+
+    async def scout_text_hint_group(self, group_key: str) -> None:
+        """Create team-visible hints for unchecked locations linked to a game text ID."""
+        if not self.text_hints_enabled or group_key in self.handled_text_hint_groups:
+            return
+        location_ids = []
+        for name in TEXT_HINT_LOCATIONS.get(group_key, []):
+            data = LOCATION_TABLE.get(name)
+            if data is None or data.code is None:
+                continue
+            location_id = TWWHDLocation.get_apid(data.code)
+            if location_id in self.missing_locations:
+                location_ids.append(location_id)
+        if location_ids:
+            await self.send_msgs(
+                [{"cmd": "LocationScouts", "locations": location_ids, "create_as_hint": 2}]
+            )
+            self.handled_text_hint_groups.add(group_key)
 
     def update_salvage_locations_map(self) -> None:
         """
