@@ -553,13 +553,14 @@ class KoRLHints(Toggle):
     display_name = "Place Hints on King of Red Lions"
 
 
-class ShopHints(Toggle):
-    """Automatically scout the randomized items sold in supported shops.
+class TextHints(Toggle):
+    """Automatically scout supported locations when their game text is opened.
 
-    Currently only supported on Cemu.
+    Currently Supported locations: Beedle shops, Auction House (Flyer), Savage Labyrinth Sign,
+    and the Big Octo Great Fairy. Currently only supported on Cemu.
     """
 
-    display_name = "Automatic Shop Hints"
+    display_name = "Automatic Text Hints"
 
 
 class NumItemHints(Range):
@@ -760,7 +761,7 @@ class TWWHDOptions(PerGameCommonOptions):
     ho_ho_hints: HoHoHints
     ho_ho_triforce_hints: HoHoTriforceHints
     korl_hints: KoRLHints
-    shop_hints: ShopHints
+    text_hints: TextHints
     item_hints: NumItemHints
     location_hints: NumLocationHints
     barren_hints: NumBarrenHints
@@ -813,7 +814,7 @@ class TWWHDOptions(PerGameCommonOptions):
             "ho_ho_hints",
             "ho_ho_triforce_hints",
             "korl_hints",
-            "shop_hints",
+            "text_hints",
             "item_hints",
             "location_hints",
             "barren_hints",
@@ -999,7 +1000,7 @@ twwhd_option_groups: list[OptionGroup] = [
             HoHoHints,
             HoHoTriforceHints,
             KoRLHints,
-            ShopHints,
+            TextHints,
             NumPathHints,
             NumItemHints,
             NumLocationHints,

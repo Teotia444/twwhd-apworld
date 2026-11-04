@@ -124,8 +124,22 @@ STORY_FLAGS_ARR_ADDR = 0x145B81A4
 # This address is used to check the stage name to verify that the player is in-game before sending items.
 CURR_STAGE_NAME_ADDR = 0x104741F0
 
-# This byte in the current stage state distinguishes the Beedle ship room variants.
-SHOP_ROOM_ID_ADDR = 0x104741FA
+# This address stores the most recently opened text ID.
+TEXT_ID_ADDR = 0x1FB08C90
+TEXT_ID_HINT_GROUPS = {
+    0x0324: "auction_house",  # 00804: Auction flyer
+    0x0345: "savage_labyrinth",  # 00837: Savage Labyrinth sign
+    0x0F3D: "beedle_shop",  # 03901: Standard Beedle shop opening
+    0x0CFD: "rock_spire_shop",  # 03325: Beedle's Rock Spire letter
+    0x2F46: "rock_spire_shop",  # 12102: Rock Spire Beedle shop opening
+    0x2F47: "rock_spire_shop",  # 12103: Rock Spire Beedle initial text
+    0x2F4A: "rock_spire_shop",  # 12106: Rock Spire Beedle 500 Rupee item
+    0x2F4B: "rock_spire_shop",  # 12107: Rock Spire Beedle 900 Rupee item
+    0x2F4C: "rock_spire_shop",  # 12108: Rock Spire Beedle 950 Rupee item
+    0x2EEF: "big_octo_fairy",  # 12015: Big Octo Great Fairy initial dialogue
+    0x32D3: "big_octo_fairy",  # 13011: Big Octo Great Fairy repeat dialogue
+    0x32D4: "big_octo_fairy",  # 13012: Also observed during Fisherman dialogue
+}
 
 # This address is the start of an array that we use to inform us of which charts lead where.
 # The array is of length 49, and each element is two bytes. The index represents the chart's original destination, and
@@ -424,7 +438,6 @@ async def check_current_stage_changed(ctx: TWWHDContext) -> None:
 
     current_stage_name = ctx.current_stage_name
     if new_stage_name != current_stage_name:
-        ctx.shop_stage_handled = False
         ctx.current_stage_name = new_stage_name
 
         # Send a Bounced message containing the new stage name to all trackers connected to the current slot.
@@ -443,18 +456,11 @@ async def check_current_stage_changed(ctx: TWWHDContext) -> None:
             visited_stage_names.add(new_stage_name)
             await ctx.update_visited_stages(new_stage_name)
 
-    # Obshop's room ID can still be 0xFF during the stage transition. Keep checking it
-    # until the game fills in the room data, then scout once for that shop entry.
-    if ctx.shop_hints_enabled and not ctx.shop_stage_handled:
-        if new_stage_name == "Obshop":
-            room_id = read_uchar(ctx, SHOP_ROOM_ID_ADDR)
-            shop_key = {0x01: "rock_spire_shop", 0x02: "beedle_shop"}.get(room_id)
-            if shop_key is not None:
-                ctx.shop_stage_handled = True
-                await ctx.scout_shop(shop_key)
-        elif new_stage_name == "Orichh":
-            ctx.shop_stage_handled = True
-            await ctx.scout_shop("auction_house")
+    if ctx.text_hints_enabled:
+        text_id = int.from_bytes(read_bytes(ctx, TEXT_ID_ADDR, 4), "big")
+        group_key = TEXT_ID_HINT_GROUPS.get(text_id)
+        if group_key is not None:
+            await ctx.scout_text_hint_group(group_key)
 
 
 async def check_alive(ctx:TWWHDContext) -> bool:

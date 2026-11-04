@@ -30,7 +30,7 @@ CONNECTION_INITIAL_STATUS = "Cemu connection has not been initiated."
 # Data storage key
 AP_VISITED_STAGE_NAMES_KEY_FORMAT = "twwhd_visited_stages_%i"
 
-SHOP_LOCATIONS = {
+TEXT_HINT_LOCATIONS = {
     "beedle_shop": ["Great Sea - Beedle Shop 20 Rupee Item"],
     "rock_spire_shop": [
         "Rock Spire Isle - Beedle 500 Rupee Item",
@@ -44,6 +44,16 @@ SHOP_LOCATIONS = {
         "Windfall Island - Auction 80 Rupee",
         "Windfall Island - Auction 100 Rupee",
     ],
+    "auction_40": ["Windfall Island - Auction 40 Rupee"],
+    "auction_5": ["Windfall Island - Auction 5 Rupee"],
+    "auction_60": ["Windfall Island - Auction 60 Rupee"],
+    "auction_80": ["Windfall Island - Auction 80 Rupee"],
+    "auction_100": ["Windfall Island - Auction 100 Rupee"],
+    "savage_labyrinth": [
+        "Outset Island - Savage Labyrinth Floor 30",
+        "Outset Island - Savage Labyrinth Floor 50",
+    ],
+    "big_octo_fairy": ["Two Eye Reef - Big Octo Great Fairy"],
 }
 
 def get_log_path() -> str:
@@ -191,9 +201,8 @@ class TWWHDContext(CommonContext):
         self.visited_stage_names: Optional[set[str]] = None
 
         self.CEMU_BASE_ADDR: int = 0x0
-        self.shop_hints_enabled: bool = False
-        self.hinted_shops: set[str] = set()
-        self.shop_stage_handled: bool = False
+        self.text_hints_enabled: bool = False
+        self.handled_text_hint_groups: set[str] = set()
 
     async def disconnect(self, allow_autoreconnect: bool = False) -> None:
         """
@@ -206,9 +215,8 @@ class TWWHDContext(CommonContext):
         self.salvage_locations_map = {}
         self.current_stage_name = ""
         self.visited_stage_names = None
-        self.hinted_shops.clear()
-        self.shop_hints_enabled = False
-        self.shop_stage_handled = False
+        self.handled_text_hint_groups.clear()
+        self.text_hints_enabled = False
         await super().disconnect(allow_autoreconnect)
 
     async def server_auth(self, password_requested: bool = False) -> None:
@@ -242,8 +250,8 @@ class TWWHDContext(CommonContext):
         """
         if cmd == "Connected":
             self.update_salvage_locations_map()
-            self.shop_hints_enabled = bool(args["slot_data"].get("shop_hints", 0))
-            self.hinted_shops.clear()
+            self.text_hints_enabled = bool(args["slot_data"].get("text_hints", 0))
+            self.handled_text_hint_groups.clear()
             if "death_link" in args["slot_data"]:
                 Utils.async_start(self.update_death_link(bool(args["slot_data"]["death_link"])))
             # Request the connected slot's dictionary (used as a set) of visited stages.
@@ -305,12 +313,12 @@ class TWWHDContext(CommonContext):
                 ]
             )
 
-    async def scout_shop(self, shop_key: str) -> None:
-        """Create team-visible hints for unchecked locations sold at a shop."""
-        if not self.shop_hints_enabled or shop_key in self.hinted_shops:
+    async def scout_text_hint_group(self, group_key: str) -> None:
+        """Create team-visible hints for unchecked locations linked to a game text ID."""
+        if not self.text_hints_enabled or group_key in self.handled_text_hint_groups:
             return
         location_ids = []
-        for name in SHOP_LOCATIONS.get(shop_key, []):
+        for name in TEXT_HINT_LOCATIONS.get(group_key, []):
             data = LOCATION_TABLE.get(name)
             if data is None or data.code is None:
                 continue
@@ -321,7 +329,7 @@ class TWWHDContext(CommonContext):
             await self.send_msgs(
                 [{"cmd": "LocationScouts", "locations": location_ids, "create_as_hint": 2}]
             )
-            self.hinted_shops.add(shop_key)
+            self.handled_text_hint_groups.add(group_key)
 
     def update_salvage_locations_map(self) -> None:
         """
